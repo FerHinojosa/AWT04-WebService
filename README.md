@@ -1,22 +1,22 @@
-##Create image with a Dockerfile
+Create image with a Dockerfile
 
-docker build -t ubuntufer .
+    docker build -t ubuntufer .
 
-##To Run a container
+To Run a container
 
-docker run -it -d <image_name>
+    docker run -it -d <image_name>
 
-##Connect to the container
+Connect to the container
 
-docker exec -it <ID_image>
+    docker exec -it <ID_image>
 
-##Go to the path
+Go to the path
 
-cd /tmp/AWT04-WebService/
+    cd /tmp/AWT04-WebService/
 
-##Build project
+Build project
 
-./gradlew build 
+    ./gradlew build 
 
-##Run project
-java -jar /tmp/AWT04-WebService/build/libs/WebService-1.0-SNAPSHOT.jar
+Run project
+    java -jar /tmp/AWT04-WebService/build/libs/WebService-1.0-SNAPSHOT.jar
