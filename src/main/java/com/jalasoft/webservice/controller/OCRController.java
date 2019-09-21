@@ -19,17 +19,17 @@ import java.nio.file.Paths;
 public class OCRController {
 
     @PostMapping
-    public String ocrext(@RequestParam("file") MultipartFile file,  @RequestParam(value = "lang", defaultValue = "") String lang) {
-       // try {
-            //String filePath = "D:/" + file.getOriginalFilename();
-            //Path location = Paths.get(filePath);
+    public String ocrext(@RequestParam("file") MultipartFile file, @RequestParam(value = "lang", defaultValue = "") String lang) {
+        try {
+            String filePath = "/home/itadmin/" + file.getOriginalFilename();
+            Path location = Paths.get(filePath);
 
-            //Files.copy(file.getInputStream(), location);
-            //OCRExtractor ocr = new OCRExtractor();
-            //ocr.extract("C:\\Users\\RaulLaredo\\Downloads\\Tess4J-3.4.8-src\\Tess4J\\tessdata\\example1spa.jpg", "eng");
-        //} catch (IOException e) {
-           // System.out.println("Error");
-        //}
+            Files.copy(file.getInputStream(), location);
+
+
+        } catch (IOException e) {
+            System.out.println("Error");
+        }
        return "Done";
     }
 }
