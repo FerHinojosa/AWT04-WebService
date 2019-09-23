@@ -1,4 +1,4 @@
-package com.jalasoft.webservice.controller;
+package com.jalasoft.webservice.model;
 
 public class Criteria {
     private String filePath;
