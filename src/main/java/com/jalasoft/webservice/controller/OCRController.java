@@ -28,7 +28,7 @@ public class OCRController {
     @PostMapping
     public String OCRExtractor (@RequestParam("file") MultipartFile file, @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException {
 
-        String filePath = "C:\\Users\\fernandohinojosa\\Desktop\\" + file.getOriginalFilename();
+        String filePath = "../../../../ThirdParty/Tess4J/tessdata/" + file.getOriginalFilename();
         Path location = Paths.get(filePath);
 
         Files.copy(file.getInputStream(), location, StandardCopyOption.REPLACE_EXISTING);

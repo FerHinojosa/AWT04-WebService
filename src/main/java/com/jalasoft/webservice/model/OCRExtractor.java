@@ -31,7 +31,7 @@ public class OCRExtractor {
     public String extract(String filePath, String lang){
         File imageFile = new File(filePath);
         ITesseract tesseract = new Tesseract();
-        tesseract.setDatapath("C:\\Users\\fernandohinojosa\\Documents\\Tess4J\\tessdata"); // path to tessdata directory
+        tesseract.setDatapath("../../../../ThirdParty/Tess4J/tessdata/"); // path to tessdata directory
         tesseract.setLanguage(lang);
         try {
             String result = tesseract.doOCR(imageFile);
