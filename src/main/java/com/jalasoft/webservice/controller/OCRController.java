@@ -1,3 +1,8 @@
+/**
+ *
+ * @project WebService feature(OCRController)
+ * @author Fernando Hinojosa on 09/23/2019
+ */
 package com.jalasoft.webservice.controller;
 
 
@@ -16,11 +21,6 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
 
-/**
- *
- * @project WebService feature(OCRController)
- * @author Fernando Hinojosa on 09/23/2019
- */
 @RestController
 @RequestMapping ("/api/v1.0/ocr")
 public class OCRController {
@@ -28,7 +28,7 @@ public class OCRController {
     @PostMapping
     public String OCRExtractor (@RequestParam("file") MultipartFile file, @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException {
 
-        String filePath = "C:\\Users\\fernandohinojosa\\Desktop\\" + file.getOriginalFilename();
+        String filePath = "../../../../ThirdParty/Tess4J/tessdata/" + file.getOriginalFilename();
         Path location = Paths.get(filePath);
 
         Files.copy(file.getInputStream(), location, StandardCopyOption.REPLACE_EXISTING);
