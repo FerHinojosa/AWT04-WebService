@@ -10,15 +10,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import net.sourceforge.tess4j.Tesseract;
 
-
-@RestController
+/**
+ *
+ * @project WebService feature(OCRExtractor)
+ * @author Ramalaso on 09/23/2019
+ */
 public class OCRExtractor {
-    @RequestMapping("/ocr")
-    public String extract(){
-        File imageFile = new File("C:\\Users\\RaulLaredo\\Downloads\\Tess4J-3.4.8-src\\Tess4J\\tessdata\\example1spa.jpg");
+
+    public String extract(String filePath, String lang){
+        File imageFile = new File(filePath);
         ITesseract tesseract = new Tesseract();
-        tesseract.setDatapath("C:\\Users\\RaulLaredo\\Downloads\\Tess4J-3.4.8-src\\Tess4J\\tessdata"); // path to tessdata directory
-        tesseract.setLanguage("spa");
+        tesseract.setDatapath("C:\\Users\\fernandohinojosa\\Documents\\Tess4J\\tessdata"); // path to tessdata directory
+        tesseract.setLanguage(lang);
         try {
             String result = tesseract.doOCR(imageFile);
             return result;
