@@ -8,7 +8,7 @@ import java.io.File;
 
 /**
  *
- * @project WebService feature(OCRExtractor)
+ * @project WebService feature(VideoConvert)
  * @author Isaac Vasquez on 09/23/2019
  */
 @RestController
