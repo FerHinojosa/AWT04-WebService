@@ -1,4 +1,4 @@
-package com.ocr.ocr;
+package com.jalasoft.webservice.model;
 
 import java.io.File;
 
