@@ -1,7 +1,9 @@
 ## Code
-FROM ubuntu 
-RUN apt-get update && apt-get install -y default-jdk
+FROM alpine
+RUN apk add openjdk8
 COPY . /home/AWT04-WebService
+WORKDIR /home/AWT04-WebService
+RUN ./gradlew build .
 ENTRYPOINT /bin/bash
 EXPOSE 8080:8080
 CMD java -jar spring.jar
