@@ -1,4 +1,15 @@
-<<<<<<< HEAD
+## DockerCompose
+
+1. Clone this project 
+2. Install docker compose
+   sudo apt-get install docker-compose
+3. Go to this path /src/usr/AWT04-WebService
+4. Run
+   docker-compose up
+5. Install Postman and paste this path:
+	http://localhost:8080/api/v1.0/hello
+   Select option(Get, Post, Put, Delete)
+
 
 ## Dockerfile to create a image WebService
 
@@ -41,4 +52,4 @@ Build project
 
 Run project
     java -jar /tmp/AWT04-WebService/build/libs/WebService-1.0-SNAPSHOT.jar
->>>>>>> develop
+
