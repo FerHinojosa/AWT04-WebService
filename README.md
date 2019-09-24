@@ -5,7 +5,7 @@
    sudo apt-get install docker-compose
 3. Go to this path /src/usr/AWT04-WebService
 4. Run
-   docker-compose up
+   docker-compose up -d
 5. Install Postman and paste this path:
 	http://localhost:8080/api/v1.0/hello
    Select option(Get, Post, Put, Delete)
