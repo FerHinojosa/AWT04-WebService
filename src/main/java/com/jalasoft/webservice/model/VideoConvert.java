@@ -1,44 +1,60 @@
+/**
+ * Copyright (c) 2019 Jalasoft.
+ *
+ * This software is the confidential and proprietary information of Jalasoft.
+ * ("Confidential Information"). You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jalasoft.
+ */
 package com.jalasoft.webservice.model;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import ws.schild.jave.*;
+
 import java.io.File;
+import java.io.IOException;
 
 /**
- *
- * @project WebService feature(VideoConvert)
- * @author Isaac Vasquez on 09/23/2019
+ * VideoConvert implements interface IConvert for using the conversion
  */
-@RestController
-@RequestMapping("/api/v1.0/videoConv")
-public class VideoConvert {
-
-    @GetMapping
-    public String ConverterVideo () throws EncoderException {
+public class VideoConvert implements IConvert {
+     /**
+     * @param Converts the data video data type in another type using the criterias
+     * @return the video converted in another video data type
+     * @throws IOException
+     */
+    @Override
+    public String convert(Criteria criteria) throws IOException {
         try {
-             File source = new File("video.mp4");
-             File target = new File("video.flv");
+            VideoConverterCriteria videocri = (VideoConverterCriteria)criteria;
+
+             File source = new File(videocri.getFilePath()) ;
+             File target = videocri.getTarget();
+
+             //Audio settings
              AudioAttributes audio = new AudioAttributes();
-             audio.setCodec("libmp3lame");
-             audio.setBitRate(new Integer(64000));
-             audio.setChannels(new Integer(1));
-             audio.setSamplingRate(new Integer(22050));
+             audio.setCodec(videocri.getSetCodec());
+             audio.setBitRate(videocri.getSetBitRate());
+             audio.setChannels(videocri.getSetChannels());
+             audio.setSamplingRate(videocri.getSetSamplingRate());
+            //Video settings
              VideoAttributes video = new VideoAttributes();
-             video.setCodec("flv");
-             video.setBitRate(new Integer(160000));
-             video.setFrameRate(new Integer(15));
-             video.setSize(new VideoSize(400, 300));
+             video.setCodec(videocri.getSetCodec());
+             video.setBitRate(videocri.getSetBitRate());
+             video.setFrameRate(videocri.getSetFrameRate());
+             video.setSize(new VideoSize(videocri.getSetSizeX(), videocri.getSetSizeY()));
              EncodingAttributes attrs = new EncodingAttributes();
-             attrs.setFormat("flv");
+             attrs.setFormat(videocri.getSetFormat());
              attrs.setAudioAttributes(audio);
              attrs.setVideoAttributes(video);
              Encoder encoder = new Encoder();
              encoder.encode(new MultimediaObject(source), target, attrs);
              return "Done";
         } catch (Exception e) {
-             return ("error" +e);
+             return e.getMessage();
         }
     }
+
+
+
 }

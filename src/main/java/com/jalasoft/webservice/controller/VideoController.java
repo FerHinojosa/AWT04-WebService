@@ -1,5 +1,7 @@
 package com.jalasoft.webservice.controller;
 
+import com.jalasoft.webservice.model.VideoConvert;
+
 /**
  *
  * @project WebService feature(OCRController)
