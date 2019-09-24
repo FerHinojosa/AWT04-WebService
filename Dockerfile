@@ -1,7 +1,7 @@
-FROM ubuntu
+FROM openjdk:11.0.4
 MAINTAINER Fernando Hinojosa (Fernando.Hinojosa@fundacion-jala.org)
-RUN apt-get update && apt-get install -y default-jdk
-COPY . /AWT04-WebService
-ENTRYPOINT /bin/bash
-EXPOSE 8080
+COPY . /usr/src/webService/
+WORKDIR /usr/src/webService/
+RUN ./gradlew build
+ENTRYPOINT ["java","-jar","/usr/src/webService/build/libs/WebService-1.0-SNAPSHOT.jar"]
 
