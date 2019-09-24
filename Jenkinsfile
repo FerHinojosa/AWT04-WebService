@@ -9,7 +9,7 @@ pipeline {
     stage('Unit test') {
       steps {
         sh 'echo "Hello" && ls /tmp'
-        sh 'ls /src'
+        sh 'ls /tmp'
       }
     }
   }
