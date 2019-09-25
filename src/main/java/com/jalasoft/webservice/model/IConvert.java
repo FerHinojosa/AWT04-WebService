@@ -15,7 +15,7 @@ import java.io.IOException;
  * The interface implements convert function for ImageConvert, videoConvert and OCRExtractor classes
  *
  * @author Andy Bazualdo on 9/23/19.
- * @project WebService
+ * @version 1.0
  */
 public interface IConvert {
     String convert(Criteria criteria) throws IOException;
