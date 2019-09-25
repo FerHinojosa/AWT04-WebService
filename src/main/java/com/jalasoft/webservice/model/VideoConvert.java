@@ -10,7 +10,6 @@
 package com.jalasoft.webservice.model;
 
 import ws.schild.jave.*;
-
 import java.io.File;
 import java.io.IOException;
 
