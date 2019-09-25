@@ -26,11 +26,7 @@ public class ImageConvert implements IConvert{
 
     /**
      *  Creates the Controller Model using Tesseract with the wrapper Tess4J.
-     * //*
-     * //* @param sourcePath for use it as file to extract the text.
-     * //* @param lang language of the file and for using the data training.
-     * //* @return String with the text of the image.
-     * //* @throws To implement after this demo
+     *
      */
     public String convert(Criteria imageCriteria) {
         ImageCriteria imgCriteria = (ImageCriteria) imageCriteria;
@@ -38,13 +34,8 @@ public class ImageConvert implements IConvert{
 
             String source = imgCriteria.getFilePath();
             String destination = imgCriteria.getDestinationPath();
-            int dpis = imgCriteria.getDpi();
+            int dpi = imgCriteria.getDpi();
             String ext = imgCriteria.getExtension();
-
-            //hardcoding values
-            source = "my_doc.pdf";
-            destination = "image";
-            ext = "." + "png";
 
             //Loading an existing PDF document
             File file = new File(source);
@@ -52,19 +43,14 @@ public class ImageConvert implements IConvert{
 
             //Instantiating the PDFRenderer class
             PDFRenderer renderer = new PDFRenderer(document);
-            for (int page = 0; page < document.getNumberOfPages(); ++page) {
+            int count = document.getNumberOfPages();
+            for (int page = 0; page < count; ++page) {
 
-                //Rendering the image into a buffer image
-                BufferedImage img = renderer.renderImageWithDPI(page, dpis, ImageType.RGB);
-
-                //Creating images files
+                BufferedImage img = renderer.renderImageWithDPI(page, dpi, ImageType.RGB);
                 String fileName = destination + page + ext;
-
-                //creating writing the image into new file
                 ImageIOUtil.writeImage(img, fileName, 300);
             }
 
-            //Closing the document
             document.close();
             return "Image created";
         } catch (Exception e) {
@@ -72,7 +58,5 @@ public class ImageConvert implements IConvert{
             return error;
 
         }
-
-
     }
 }
