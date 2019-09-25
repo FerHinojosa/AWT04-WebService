@@ -1,8 +1,23 @@
+/**
+ * Copyright (c) 2019 Jalasoft.
+ *
+ * This software is the confidential and proprietary information of Jalasoft.
+ * ("Confidential Information"). You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jalasoft.
+ */
 package com.jalasoft.webservice.model;
+
 import java.io.File;
 
+/**
+ * Implements the criteria needs for convert the video in other format.
+ *
+ * @author Raul Laredo
+ * @version v1.0
+ */
 public class VideoConverterCriteria extends Criteria {
-
 
      private File target;
      private String setCodec;

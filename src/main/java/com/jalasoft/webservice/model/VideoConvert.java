@@ -15,14 +15,20 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * VideoConvert implements interface IConvert for using the conversion
+ * Implements the video convert implementing IConvert for using in the conversion.
+ *
+ * @author Raul Laredo
+ * @version v1.0
  */
 public class VideoConvert implements IConvert {
-     /**
-     * @param Converts the data video data type in another type using the criterias
-     * @return the video converted in another video data type
-     * @throws IOException
-     */
+
+      /**
+      * Converts the data video data type in another type using the criterias
+      *
+      * @param criteria has the params of the convert method
+      * @return the video transformed in another video data type
+      * @throws IOException
+      */
     @Override
     public String convert(Criteria criteria) throws IOException {
         try {
@@ -31,12 +37,13 @@ public class VideoConvert implements IConvert {
              File source = new File(videocri.getFilePath()) ;
              File target = videocri.getTarget();
 
-             //Audio settings
+             //Audio Attributes
              AudioAttributes audio = new AudioAttributes();
              audio.setCodec(videocri.getSetCodec());
              audio.setBitRate(videocri.getSetBitRate());
              audio.setChannels(videocri.getSetChannels());
              audio.setSamplingRate(videocri.getSetSamplingRate());
+
             //Video settings
              VideoAttributes video = new VideoAttributes();
              video.setCodec(videocri.getSetCodec());
