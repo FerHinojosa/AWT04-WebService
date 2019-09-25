@@ -1,0 +1,27 @@
+Jenkinsfile (Declarative Pipeline)
+pipeline {
+    agent any
+
+    stages {
+        stage('Build') {
+            steps {
+                echo 'Building..'
+            }
+        }
+	 stage('Dockerfile') {
+            steps {
+                run docker build -t MyImage .
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Testing..'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying....'
+            }
+        }
+    }
+}
