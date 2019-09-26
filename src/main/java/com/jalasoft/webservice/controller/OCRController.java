@@ -41,13 +41,13 @@ public class OCRController{
      */
     @PostMapping
     public String OCRExtractor (@RequestParam("file") MultipartFile file, @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException {
-        String filePath = "./src/ThirdParty/Tess4J/tessdata/" + file.getOriginalFilename();
-        Path location = Paths.get(filePath);
-        Files.copy(file.getInputStream(), location, StandardCopyOption.REPLACE_EXISTING);
+
+        String filePath = FileManager.getFilePath(file);
+
         OCRExtractor ocr = new OCRExtractor();
-        //OCRCriteria ocrCriteria = new OCRCriteria(lang,file.getOriginalFilename());
         OCRCriteria ocrCriteria = new OCRCriteria(lang,filePath);
         String test = ocr.convert(ocrCriteria);
+
         return test;
     }
 }

@@ -36,7 +36,7 @@ public class VideoController {
      * @throws IOException
      */
     @PostMapping
-    public String Convert (@RequestParam("sourceFile") MultipartFile sourceFile,
+    public String Convert (@RequestParam("File") MultipartFile file,
                            @RequestParam("targetFile") MultipartFile targetFile,
                            @RequestParam(value = "audioAttributes", defaultValue = "") String audioAttributes,
                            @RequestParam(value = "codec", defaultValue = "") String codec,
@@ -51,10 +51,7 @@ public class VideoController {
                            @RequestParam(value = "format", defaultValue = "") String format
                            ) throws IOException {
 
-        String filePath = "../../../../ThirdParty/Tess4J/tessdata/" + sourceFile.getOriginalFilename();
-        Path location = Paths.get(filePath);
-
-        Files.copy(sourceFile.getInputStream(), location, StandardCopyOption.REPLACE_EXISTING);
+        String filePath = FileManager.getFilePath(file);
 
         VideoConverterCriteria cri = new VideoConverterCriteria();
         cri.setFilePath(filePath);
@@ -77,5 +74,3 @@ public class VideoController {
         return "done";
     }
 }
-
-

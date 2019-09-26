@@ -36,17 +36,12 @@ public class ImageController {
                  @RequestParam (value = "dpi", defaultValue = "") int dpi,
                  @RequestParam (value = "dest", defaultValue = "") String dest,
                  @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException {
+            String filePath = FileManager.getFilePath(file);
 
-            String filePath = "C:\\Users\\fernandohinojosa\\Desktop\\" +
-            file.getOriginalFilename();
-            Path location = Paths.get(filePath);
+            //ImageConvert img = new ImageConvert();
+            //String res = img.convert(filePath,dpi,dest,ext);
 
-            Files.copy(file.getInputStream(), location, StandardCopyOption.REPLACE_EXISTING);
-
-            ImageConvert img = new ImageConvert();
-            String res = img.ImageConvert(filePath,dpi,dest,ext);
-
-            return res;
+            return "Done";
         }
 }
 
