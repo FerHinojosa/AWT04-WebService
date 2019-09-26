@@ -35,4 +35,11 @@ dependencies {
 
     compile group: 'ws.schild', name: 'jave-all-deps', version: '2.6.0'
 
+
+}
+
+repositories { jcenter() }
+dependencies {
+    testCompile 'junit:junit:4.12'
+    compile 'junit:junit:4.12'
 }
