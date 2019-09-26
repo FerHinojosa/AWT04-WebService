@@ -14,13 +14,14 @@ import java.io.IOException;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.TesseractException;
 import net.sourceforge.tess4j.Tesseract;
+import java.nio.file.Paths;
 
 /**
  * The class implements methods to convert PDF files into image files, Creates the Controller Model using Tesseract
  * with the wrapper Tess4J.
  *
  * @author Andy Bazualdo on 9/23/19.
- * @version 1.0
+ * @version v1.0
  */
 public class OCRExtractor implements IConvert {
     private OCRCriteria ocrCriteria;
@@ -34,15 +35,17 @@ public class OCRExtractor implements IConvert {
     @Override
     public String convert(Criteria criteria) throws IOException {
         ocrCriteria = (OCRCriteria) criteria;
-        File imageFile = new File(ocrCriteria.getFilePath());
         ITesseract tesseract = new Tesseract();
-        tesseract.setDatapath("../../../../ThirdParty/Tess4J/tessdata/"); // path to tessdata directory
+        String path =Paths.get("").toAbsolutePath().toString();
         tesseract.setLanguage(ocrCriteria.getLang());
+        tesseract.setDatapath(path + "\\src\\ThirdParty\\Tess4J\\tessdata");
+        File imageFile = new File(path + ocrCriteria.getFilePath());
+
         try {
             String result = tesseract.doOCR(imageFile);
             return result;
         } catch (TesseractException e){
-            return e.toString();
+            return e.getMessage();
         }
     }
 }

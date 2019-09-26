@@ -26,7 +26,7 @@ import java.nio.file.StandardCopyOption;
  *The class is an endpoit for OCR
  *
  * @author Fernando Hinojosa on 09/23/2019
- * @version 1.0
+ * @version v1.0
  */
 @RestController
 @RequestMapping ("/api/v1.0/ocr")
@@ -41,11 +41,12 @@ public class OCRController{
      */
     @PostMapping
     public String OCRExtractor (@RequestParam("file") MultipartFile file, @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException {
-        String filePath = "../../../../ThirdParty/Tess4J/tessdata/" + file.getOriginalFilename();
+        String filePath = "./src/ThirdParty/Tess4J/tessdata/" + file.getOriginalFilename();
         Path location = Paths.get(filePath);
         Files.copy(file.getInputStream(), location, StandardCopyOption.REPLACE_EXISTING);
         OCRExtractor ocr = new OCRExtractor();
-        OCRCriteria ocrCriteria = new OCRCriteria(filePath,lang);
+        //OCRCriteria ocrCriteria = new OCRCriteria(lang,file.getOriginalFilename());
+        OCRCriteria ocrCriteria = new OCRCriteria(lang,filePath);
         String test = ocr.convert(ocrCriteria);
         return test;
     }
