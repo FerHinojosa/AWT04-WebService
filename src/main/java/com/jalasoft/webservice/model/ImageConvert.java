@@ -36,7 +36,8 @@ public class ImageConvert {
      //* @return String with the text of the image.
      //* @throws To implement after this demo
      */
-    public String ImageConvert(String sourcePath, int dpi, String destinationPath, String extension ) throws IOException {
+    public Response ImageConvert(String sourcePath, int dpi, String destinationPath, String extension ) throws IOException {
+        Response res = new Response();
         try {
             //setting source path
             String source = sourcePath;
@@ -75,10 +76,12 @@ public class ImageConvert {
 
             //Closing the document
             document.close();
-            return "Image created";
+            res.setStatus(Response.Status.Ok);
+            res.setUrl("done");
+            return res;
         } catch (Exception e) {
-            String error = "error message" + e;
-            return error;
+            res.setStatus(Response.Status.BadRequest);
+            return res;
 
         }
     }

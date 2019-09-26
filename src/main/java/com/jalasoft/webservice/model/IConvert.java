@@ -19,5 +19,5 @@ import java.io.IOException;
  */
 
 public interface IConvert {
-    String convert(Criteria criteria) throws IOException;
+    Response convert(Criteria criteria) throws IOException;
 }

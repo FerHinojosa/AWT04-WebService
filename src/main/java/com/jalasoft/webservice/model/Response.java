@@ -1,42 +1,90 @@
+/**
+ * Copyright (c) 2019 Jalasoft.
+ *
+ * This software is the confidential and proprietary information of Jalasoft.
+ * ("Confidential Information"). You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jalasoft.
+ */
 package com.jalasoft.webservice.model;
-import java.io.IOException;
-import java.net.HttpURLConnection;
-import java.net.URI;
-import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 
+/**
+ * Implements Responses for implementing response the status of the controller and methods.
+ *
+ * @author Raul Laredo
+ * @version v1.0
+ */
 public class Response {
 
-    public static int status(String filePath) throws IOException {
-        URL url = new URL(filePath);
-        HttpURLConnection http = (HttpURLConnection)url.openConnection();
-        int statusCode = http.getResponseCode();
-        return statusCode;
+    private String url;
+    private Status status;
+    private String message;
+    /**
+     * Get Status  for response
+     * @param Status
+     */
+    public Status getStatus() {
+        return status;
     }
 
-    public void post(String uri, String data) throws Exception {
-        HttpClient client = HttpClient.newBuilder().build();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(uri))
-                .POST(HttpRequest.BodyPublishers.ofString(data))
-                .build();
-
-        HttpResponse<?> response = client.send(request, HttpResponse.BodyHandlers.discarding());
-        System.out.println(response.statusCode());
+    /**
+     * Set Status  for response
+     * @param Status
+     */
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
-
-    public void get(String uri) throws Exception {
-        HttpClient client = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder()
-                .uri(URI.create(uri))
-                .build();
-
-        HttpResponse<String> response =
-                client.send(request, HttpResponse.BodyHandlers.ofString());
-
-        System.out.println(response.body());
+    /**
+     * Get URl  for response
+     * @param Status
+     */
+    public String getUrl() {
+        return url;
     }
+
+    /**
+     * Set URl  for response
+     * @param Status
+     */
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    /**
+     * Get message  for response
+     * @param Status
+     */
+    public String getMessage() {
+        return message;
+    }
+
+    /**
+     * Set message  for response
+     * @param Status
+     */
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    /**
+     * Status for responding
+     */
+    public enum Status{
+        Ok,
+        Created,
+        NoContent,
+        BadRequest,
+        Forbidden,
+        NotFound,
+        MethodNotAllowed,
+        Conflict,
+        InternalServerError
+    }
+
 }
+
+
+
+

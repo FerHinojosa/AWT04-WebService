@@ -28,16 +28,21 @@ public class OCRExtractor {
      * @return String with the text of the image.
      * @throws To implement after this demo
      */
-    public String extract(String filePath, String lang){
+    public Response extract(String filePath, String lang){
         File imageFile = new File(filePath);
         ITesseract tesseract = new Tesseract();
         tesseract.setDatapath("../../../../ThirdParty/Tess4J/tessdata/"); // path to tessdata directory
         tesseract.setLanguage(lang);
+        Response res = new Response();
+
         try {
             String result = tesseract.doOCR(imageFile);
-            return result;
+            res.setStatus(Response.Status.Ok);
+            res.setMessage(result);
+            return res;
         } catch (TesseractException e){
-            return "e.getMessage()";
+            res.setStatus(Response.Status.BadRequest);
+            return res;
         }
     }
 
