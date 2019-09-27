@@ -11,10 +11,12 @@ package com.jalasoft.webservice.model;
 
 import java.io.File;
 import java.io.IOException;
+
+import com.jalasoft.webservice.utils.Utils;
+import com.jalasoft.webservice.utils.Utils;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.TesseractException;
 import net.sourceforge.tess4j.Tesseract;
-import java.nio.file.Paths;
 
 /**
  * The class implements methods to convert PDF files into image files, Creates the Controller Model using Tesseract
@@ -36,11 +38,12 @@ public class OCRExtractor implements IConvert {
     public String convert(Criteria criteria) throws IOException {
         ocrCriteria = (OCRCriteria) criteria;
         ITesseract tesseract = new Tesseract();
-        String path =Paths.get("").toAbsolutePath().toString();
+        Utils fileManager = new Utils();
         tesseract.setLanguage(ocrCriteria.getLang());
-        tesseract.setDatapath(path + "\\src\\ThirdParty\\Tess4J\\tessdata");
-        File imageFile = new File(path + ocrCriteria.getFilePath());
-
+        tesseract.setDatapath(fileManager.getThirdParty()+"/Tess4J/tessdata/");
+        File imageFile = new File(ocrCriteria.getFilePath());
+        System.out.println(ocrCriteria.getFilePath());
+        System.out.println(fileManager.getThirdParty());
         try {
             String result = tesseract.doOCR(imageFile);
             return result;
