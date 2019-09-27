@@ -37,7 +37,7 @@ public class VideoController {
      * @throws IOException
      */
     @PostMapping
-    public Response convert (@RequestParam("sourceFile") MultipartFile sourceFile,
+    public Response convert (@RequestParam("file") MultipartFile file,
 
                            @RequestParam("targetFile") MultipartFile targetFile,
                            @RequestParam(value = "audioAttributes", defaultValue = "") String audioAttributes,
@@ -55,7 +55,7 @@ public class VideoController {
 
         String filePath = FileManager.getFilePath(sourceFile);
 
-        VideoConverterCriteria cri = new VideoConverterCriteria();
+        VideoCriteria cri = new VideoCriteria();
         cri.setFilePath(filePath);
         cri.setTarget((File)targetFile);
         cri.setSetAudioAttributes(audioAttributes);

@@ -19,7 +19,7 @@ is divided into following sections:
   - cleanup
 
         -->
-<project xmlns:if="ant:if" xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" xmlns:unless="ant:unless" basedir="../.." default="default" name="Tess4J-impl">
+<project xmlns:if="ant:if" xmlns:j2seproject1="http://www.netbeans.org/ns/j2se-project/1" xmlns:j2seproject3="http://www.netbeans.org/ns/j2se-project/3" xmlns:jaxrpc="http://www.netbeans.org/ns/j2se-project/jax-rpc" xmlns:unless="ant:unless" basedir="../../.." default="default" name="Tess4J-impl">
     <fail message="Please build using Ant 1.8.0 or higher.">
         <condition>
             <not>
@@ -552,7 +552,7 @@ is divided into following sections:
             <element name="customizePrototype" optional="true"/>
             <sequential>
                 <property name="junit.forkmode" value="perTest"/>
-                <junit dir=".." errorproperty="tests.failed" failureproperty="tests.failed" fork="true" forkmode="${junit.forkmode}" showoutput="true" tempdir="${build.dir}">
+                <junit dir="../../../src" errorproperty="tests.failed" failureproperty="tests.failed" fork="true" forkmode="${junit.forkmode}" showoutput="true" tempdir="${build.dir}">
                     <syspropertyset>
                         <propertyref prefix="test-sys-prop."/>
                         <mapper from="test-sys-prop.*" to="*" type="glob"/>
@@ -580,7 +580,7 @@ is divided into following sections:
             <element name="customizePrototype" optional="true"/>
             <sequential>
                 <property name="junit.forkmode" value="perTest"/>
-                <junit dir=".." errorproperty="tests.failed" failureproperty="tests.failed" fork="true" forkmode="${junit.forkmode}" showoutput="true" tempdir="${build.dir}">
+                <junit dir="../../../src" errorproperty="tests.failed" failureproperty="tests.failed" fork="true" forkmode="${junit.forkmode}" showoutput="true" tempdir="${build.dir}">
                     <syspropertyset>
                         <propertyref prefix="test-sys-prop."/>
                         <mapper from="test-sys-prop.*" to="*" type="glob"/>
@@ -936,7 +936,7 @@ is divided into following sections:
             <attribute default="jvm" name="jvm"/>
             <element name="customize" optional="true"/>
             <sequential>
-                <java classname="@{classname}" dir=".." failonerror="${java.failonerror}" fork="true" module="@{modulename}">
+                <java classname="@{classname}" dir="../../../src" failonerror="${java.failonerror}" fork="true" module="@{modulename}">
                     <classpath>
                         <path path="@{classpath}"/>
                     </classpath>
@@ -970,7 +970,7 @@ is divided into following sections:
             <attribute default="jvm" name="jvm"/>
             <element name="customize" optional="true"/>
             <sequential>
-                <java classname="@{classname}" dir=".." failonerror="${java.failonerror}" fork="true">
+                <java classname="@{classname}" dir="../../../src" failonerror="${java.failonerror}" fork="true">
                     <classpath>
                         <path path="@{classpath}"/>
                     </classpath>
@@ -1002,7 +1002,7 @@ is divided into following sections:
             <attribute default="jvm" name="jvm"/>
             <element name="customize" optional="true"/>
             <sequential>
-                <java classname="@{classname}" dir=".." failonerror="${java.failonerror}" fork="true">
+                <java classname="@{classname}" dir="../../../src" failonerror="${java.failonerror}" fork="true">
                     <jvmarg line="${endorsed.classpath.cmd.line.arg}"/>
                     <jvmarg value="-Dfile.encoding=${runtime.encoding}"/>
                     <redirector errorencoding="${runtime.encoding}" inputencoding="${runtime.encoding}" outputencoding="${runtime.encoding}"/>
