@@ -28,8 +28,9 @@ public class ImageConvert implements IConvert{
      *  Creates the Controller Model using Tesseract with the wrapper Tess4J.
      *
      */
-    public String convert(Criteria imageCriteria) {
-        ImageCriteria imgCriteria = (ImageCriteria) imageCriteria;
+    public Response ImageConvert(String sourcePath, int dpi, String destinationPath, String extension ) throws IOException {
+        Response res = new Response();
+
         try {
 
             String source = imgCriteria.getFilePath();
@@ -52,10 +53,12 @@ public class ImageConvert implements IConvert{
             }
 
             document.close();
-            return "Image created";
+            res.setStatus(Response.Status.Ok);
+            res.setUrl("done");
+            return res;
         } catch (Exception e) {
-            String error = "error message" + e;
-            return error;
+            res.setStatus(Response.Status.BadRequest);
+            return res;
 
         }
     }

@@ -11,6 +11,12 @@ package com.jalasoft.webservice.controller;
 
 import com.jalasoft.webservice.model.OCRCriteria;
 import com.jalasoft.webservice.model.OCRExtractor;
+
+import com.jalasoft.webservice.model.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,13 +46,15 @@ public class OCRController{
      * @throws IOException control the input output exception to handle file used in the method
      */
     @PostMapping
-    public String OCRExtractor (@RequestParam("file") MultipartFile file, @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException {
+    public Response OCRExtractor (@RequestParam("file") MultipartFile file, @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException {
 
         String filePath = FileManager.getFilePath(file);
 
         OCRExtractor ocr = new OCRExtractor();
+
         OCRCriteria ocrCriteria = new OCRCriteria(lang,filePath);
-        String test = ocr.convert(ocrCriteria);
+        Response test = ocr.convert(ocrCriteria);
+
 
         return test;
     }

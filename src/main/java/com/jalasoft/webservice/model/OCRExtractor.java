@@ -32,20 +32,25 @@ public class OCRExtractor implements IConvert {
      * @return returns the result of the method and error message in case of error
      * @throws IOException get input/output exception to read files
      */
-    @Override
-    public String convert(Criteria criteria) throws IOException {
+    public Response convert(Criteria criteria) throws IOException {
         ocrCriteria = (OCRCriteria) criteria;
         ITesseract tesseract = new Tesseract();
         String path =Paths.get("").toAbsolutePath().toString();
         tesseract.setLanguage(ocrCriteria.getLang());
         tesseract.setDatapath(path + "\\src\\ThirdParty\\Tess4J\\tessdata");
         File imageFile = new File(path + ocrCriteria.getFilePath());
+        Response res = new Response();
+
 
         try {
             String result = tesseract.doOCR(imageFile);
-            return result;
+            res.setStatus(Response.Status.Ok);
+            res.setMessage(result);
+            return res;
         } catch (TesseractException e){
-            return e.getMessage();
+            res.setStatus(Response.Status.BadRequest);
+            return res;
+
         }
     }
 }
