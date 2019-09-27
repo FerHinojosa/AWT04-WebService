@@ -53,7 +53,7 @@ public class VideoController {
                            @RequestParam(value = "format", defaultValue = "") String format
                            ) throws IOException {
 
-        String filePath = FileManager.getFilePath(file);
+        String filePath = FileManager.getFilePath(sourceFile);
 
         VideoConverterCriteria cri = new VideoConverterCriteria();
         cri.setFilePath(filePath);
