@@ -21,7 +21,7 @@ import java.io.IOException;
  * @version v1.0
  */
 @RestController
-@RequestMapping ("/api/v1.0/image")
+@RequestMapping ("/api/v1.0/imageToImage")
 public class ImageToImageController {
 
     /**
