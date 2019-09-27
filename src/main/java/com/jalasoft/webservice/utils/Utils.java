@@ -56,9 +56,9 @@ public class Utils{
      * Getter method for public path
      * @return
      */
-    public String getPublic(){
+    public String getPublics(){
 
-        return this.getAbsolutePath() + "./publics/";
+        return this.getAbsolutePath() + "./public/";
     }
 
     /**
