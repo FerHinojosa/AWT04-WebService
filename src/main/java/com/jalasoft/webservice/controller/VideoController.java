@@ -7,6 +7,7 @@
  * accordance with the terms of the license agreement you entered into
  * with Jalasoft.
  */
+
 package com.jalasoft.webservice.controller;
 
 import com.jalasoft.webservice.model.*;
@@ -36,7 +37,8 @@ public class VideoController {
      * @throws IOException
      */
     @PostMapping
-    public String Convert (@RequestParam("File") MultipartFile file,
+    public Response convert (@RequestParam("file") MultipartFile file,
+
                            @RequestParam("targetFile") MultipartFile targetFile,
                            @RequestParam(value = "audioAttributes", defaultValue = "") String audioAttributes,
                            @RequestParam(value = "codec", defaultValue = "") String codec,
@@ -53,7 +55,7 @@ public class VideoController {
 
         String filePath = FileManager.getFilePath(file);
 
-        VideoConverterCriteria cri = new VideoConverterCriteria();
+        VideoCriteria cri = new VideoCriteria();
         cri.setFilePath(filePath);
         cri.setTarget((File)targetFile);
         cri.setSetAudioAttributes(audioAttributes);
@@ -69,8 +71,7 @@ public class VideoController {
         cri.setSetFormat(format);
 
         IConvert video = new VideoConvert();
-        video.convert((Criteria)cri);
+        return video.convert((Criteria)cri);
 
-        return "done";
     }
 }

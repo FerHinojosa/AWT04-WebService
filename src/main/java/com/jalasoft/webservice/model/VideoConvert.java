@@ -10,6 +10,8 @@
 package com.jalasoft.webservice.model;
 
 import ws.schild.jave.*;
+
+import javax.xml.transform.OutputKeys;
 import java.io.File;
 import java.io.IOException;
 
@@ -29,9 +31,10 @@ public class VideoConvert implements IConvert {
       * @throws IOException
       */
     @Override
-    public String convert(Criteria criteria) throws IOException {
+    public Response convert(Criteria criteria) throws IOException {
+        Response res = new Response();
         try {
-            VideoConverterCriteria videocri = (VideoConverterCriteria)criteria;
+            VideoCriteria videocri = (VideoCriteria)criteria;
 
              File source = new File(videocri.getFilePath()) ;
              File target = videocri.getTarget();
@@ -55,9 +58,12 @@ public class VideoConvert implements IConvert {
              attrs.setVideoAttributes(video);
              Encoder encoder = new Encoder();
              encoder.encode(new MultimediaObject(source), target, attrs);
-             return "Done";
+             res.setStatus(Response.Status.Ok);
+             res.setUrl("url");
+             return res;
         } catch (Exception e) {
-             return e.getMessage();
+              res.setStatus(Response.Status.BadRequest);
+              return res;
         }
     }
 
