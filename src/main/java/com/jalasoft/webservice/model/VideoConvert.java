@@ -34,7 +34,7 @@ public class VideoConvert implements IConvert {
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
         try {
-            VideoConverterCriteria videocri = (VideoConverterCriteria)criteria;
+            VideoCriteria videocri = (VideoCriteria)criteria;
 
              File source = new File(videocri.getFilePath()) ;
              File target = videocri.getTarget();

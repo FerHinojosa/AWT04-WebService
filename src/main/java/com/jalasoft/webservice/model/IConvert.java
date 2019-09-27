@@ -21,4 +21,4 @@ import java.io.IOException;
 public interface IConvert {
     Response convert(Criteria criteria) throws IOException;
 
-
+}

@@ -15,6 +15,7 @@ import org.apache.pdfbox.rendering.PDFRenderer;
 import org.apache.pdfbox.tools.imageio.ImageIOUtil;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 
 /**
  * The class implements methods to convert PDF files into image files
@@ -28,8 +29,9 @@ public class ImageConvert implements IConvert{
      *  Creates the Controller Model using Tesseract with the wrapper Tess4J.
      *
      */
-    public Response ImageConvert(String sourcePath, int dpi, String destinationPath, String extension ) throws IOException {
+    public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
+        ImageCriteria imgCriteria = (ImageCriteria) criteria;
 
         try {
 
@@ -48,7 +50,7 @@ public class ImageConvert implements IConvert{
             for (int page = 0; page < count; ++page) {
 
                 BufferedImage img = renderer.renderImageWithDPI(page, dpi, ImageType.RGB);
-                String fileName = destination + page + ext;
+                String fileName = destination + page + "." + ext;
                 ImageIOUtil.writeImage(img, fileName, 300);
             }
 

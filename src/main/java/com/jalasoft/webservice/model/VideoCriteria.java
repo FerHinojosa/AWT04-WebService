@@ -17,7 +17,7 @@ import java.io.File;
  * @author Raul Laredo
  * @version v1.0
  */
-public class VideoConverterCriteria extends Criteria {
+public class VideoCriteria extends Criteria {
 
      private File target;
      private String setCodec;

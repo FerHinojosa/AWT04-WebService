@@ -8,7 +8,6 @@
  * with Jalasoft.
  */
 package com.jalasoft.webservice.controller;
-
 import com.jalasoft.webservice.model.OCRCriteria;
 import com.jalasoft.webservice.model.OCRExtractor;
 
@@ -23,10 +22,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 
 /**
  *The class is an endpoit for OCR
@@ -37,7 +32,6 @@ import java.nio.file.StandardCopyOption;
 @RestController
 @RequestMapping ("/api/v1.0/ocr")
 public class OCRController{
-
     /**
      *
      * @param file the parameter have the file path information
@@ -54,7 +48,6 @@ public class OCRController{
 
         OCRCriteria ocrCriteria = new OCRCriteria(lang,filePath);
         Response test = ocr.convert(ocrCriteria);
-
 
         return test;
     }

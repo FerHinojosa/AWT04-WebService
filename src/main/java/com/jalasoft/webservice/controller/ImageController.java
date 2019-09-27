@@ -10,6 +10,9 @@
 package com.jalasoft.webservice.controller;
 
 import com.jalasoft.webservice.model.ImageConvert;
+import com.jalasoft.webservice.model.ImageCriteria;
+import com.jalasoft.webservice.model.Response;
+import com.jalasoft.webservice.utils.Utils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,17 +34,31 @@ import java.nio.file.StandardCopyOption;
 @RequestMapping("/api/v1.0/image")
 public class ImageController {
 
+    /**
+     * Implements the Convert classes
+     * @param file the parameter have the file path information
+     * @param dpi the parameter have the dpi information
+     * @param ext the parameter have the ext information
+     * @return
+     * @throws IOException
+     */
         @PostMapping
-        public String imageConvert (@RequestParam("file") MultipartFile file,
-                 @RequestParam (value = "dpi", defaultValue = "") int dpi,
-                 @RequestParam (value = "dest", defaultValue = "") String dest,
-                 @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException {
+        public Response Convert (@RequestParam("file") MultipartFile file,
+                                      @RequestParam (value = "dpi", defaultValue = "") int dpi,
+                                      @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException {
             String filePath = FileManager.getFilePath(file);
 
-            //ImageConvert img = new ImageConvert();
-            //String res = img.convert(filePath,dpi,dest,ext);
+            ImageConvert img = new ImageConvert();
+            ImageCriteria imageCriteria = new ImageCriteria();
+            Utils utils = new Utils();
 
-            return "Done";
+            imageCriteria.setFilePath(filePath);
+            imageCriteria.setDpi(dpi);
+            imageCriteria.setDestinationPath(utils.getPublic());
+            imageCriteria.setExtension(ext);
+            Response response = new Response();
+            response = img.convert(imageCriteria);
+
+            return response;
         }
 }
-
