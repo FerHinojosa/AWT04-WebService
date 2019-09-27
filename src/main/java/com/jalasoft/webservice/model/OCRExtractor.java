@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.IOException;
 
 import com.jalasoft.webservice.utils.Utils;
-import com.jalasoft.webservice.utils.Utils;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.TesseractException;
 import net.sourceforge.tess4j.Tesseract;
@@ -42,8 +41,7 @@ public class OCRExtractor implements IConvert {
         tesseract.setLanguage(ocrCriteria.getLang());
         tesseract.setDatapath(fileManager.getThirdParty()+"/Tess4J/tessdata/");
         File imageFile = new File(ocrCriteria.getFilePath());
-        System.out.println(ocrCriteria.getFilePath());
-        System.out.println(fileManager.getThirdParty());
+
         try {
             String result = tesseract.doOCR(imageFile);
             return result;

@@ -40,7 +40,7 @@ public class Utils{
      */
     public String getThirdParty(){
 
-        return this.getAbsolutePath() + "./ThirdParty/";
+        return this.getAbsolutePath() + "/ThirdParty/";
     }
 
     /**
@@ -49,16 +49,16 @@ public class Utils{
      */
     public String getResources(){
 
-        return this.getAbsolutePath() + "./src/main/java/com/jalasoft/webservice/resources/";
+        return this.getAbsolutePath() + "/src/main/java/com/jalasoft/webservice/resources/";
     }
 
     /**
      * Getter method for public path
      * @return
      */
-    public String getPublics(){
+    public String getPublic(){
 
-        return this.getAbsolutePath() + "./public/";
+        return this.getAbsolutePath() + "/publics/";
     }
 
     /**
@@ -67,7 +67,7 @@ public class Utils{
      */
     public String getTemp(){
 
-        return this.getAbsolutePath() + "./temp/";
+        return this.getAbsolutePath() + "/temp/";
     }
 
     /**
@@ -76,7 +76,7 @@ public class Utils{
      */
     public String getConig(){
 
-        return this.getAbsolutePath() + "./config/";
+        return this.getAbsolutePath() + "/config/";
     }
 
 }

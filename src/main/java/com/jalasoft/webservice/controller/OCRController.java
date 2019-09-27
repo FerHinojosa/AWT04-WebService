@@ -16,10 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
+
 /**
  *The class is an endpoit for OCR
  *
@@ -41,7 +38,6 @@ public class OCRController{
         String filePath = FileManager.getFilePath(file);
 
         OCRExtractor ocr = new OCRExtractor();
-        //OCRCriteria ocrCriteria = new OCRCriteria(lang,file.getOriginalFilename());
         OCRCriteria ocrCriteria = new OCRCriteria(lang,filePath);
         String test = ocr.convert(ocrCriteria);
 

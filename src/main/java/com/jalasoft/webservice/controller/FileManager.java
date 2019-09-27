@@ -9,6 +9,7 @@
  */
 package com.jalasoft.webservice.controller;
 
+import com.jalasoft.webservice.utils.Utils;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
@@ -25,11 +26,10 @@ import java.nio.file.StandardCopyOption;
 public class FileManager {
     public static String getFilePath(@RequestParam("file") MultipartFile file) throws IOException {
 
-        String filePath = "C:\\Users\\fernandohinojosa\\Desktop\\" + file.getOriginalFilename();
+        Utils utils = new Utils();
+        String filePath = utils.getTemp() + file.getOriginalFilename();
         Path location = Paths.get(filePath);
-
         Files.copy(file.getInputStream(), location, StandardCopyOption.REPLACE_EXISTING);
-
         return filePath;
     }
 }
