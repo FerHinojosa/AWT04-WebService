@@ -1,15 +1,3 @@
-package com.jalasoft.webservice.model;
-
-import java.io.File;
-
-
-import net.sourceforge.tess4j.ITesseract;
-import net.sourceforge.tess4j.TesseractException;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import net.sourceforge.tess4j.Tesseract;
-
 /**
  * Copyright (c) 2019 Jalasoft.
  *
@@ -19,21 +7,40 @@ import net.sourceforge.tess4j.Tesseract;
  * accordance with the terms of the license agreement you entered into
  * with Jalasoft.
  */
-public class OCRExtractor {
+package com.jalasoft.webservice.model;
+
+import java.io.File;
+import java.io.IOException;
+import net.sourceforge.tess4j.ITesseract;
+import net.sourceforge.tess4j.TesseractException;
+import net.sourceforge.tess4j.Tesseract;
+import java.nio.file.Paths;
+
+/**
+ * The class implements methods to convert PDF files into image files, Creates the Controller Model using Tesseract
+ * with the wrapper Tess4J.
+ *
+ * @author Andy Bazualdo on 9/23/19.
+ * @version v1.0
+ */
+public class OCRExtractor implements IConvert {
+    private OCRCriteria ocrCriteria;
+
     /**
-     * Creates the Controller Model using Tesseract with the wrapper Tess4J.
      *
-     * @param file for use it as file to extract the text.
-     * @param lang language of the file and for using the data training.
-     * @return String with the text of the image.
-     * @throws To implement after this demo
+     * @param criteria the object have the parameters to start the method execution
+     * @return returns the result of the method and error message in case of error
+     * @throws IOException get input/output exception to read files
      */
-    public Response extract(String filePath, String lang){
-        File imageFile = new File(filePath);
+    public Response convert(Criteria criteria) throws IOException {
+        ocrCriteria = (OCRCriteria) criteria;
         ITesseract tesseract = new Tesseract();
-        tesseract.setDatapath("../../../../ThirdParty/Tess4J/tessdata/"); // path to tessdata directory
-        tesseract.setLanguage(lang);
+        String path =Paths.get("").toAbsolutePath().toString();
+        tesseract.setLanguage(ocrCriteria.getLang());
+        tesseract.setDatapath(path + "\\src\\ThirdParty\\Tess4J\\tessdata");
+        File imageFile = new File(path + ocrCriteria.getFilePath());
         Response res = new Response();
+
 
         try {
             String result = tesseract.doOCR(imageFile);
@@ -43,7 +50,7 @@ public class OCRExtractor {
         } catch (TesseractException e){
             res.setStatus(Response.Status.BadRequest);
             return res;
+
         }
     }
-
 }
