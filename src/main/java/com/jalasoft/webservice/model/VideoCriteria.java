@@ -19,23 +19,22 @@ import java.io.File;
  */
 public class VideoCriteria extends Criteria {
 
-     private File target;
-     private String setCodec;
-     private int setBitRate;
-     private int setChannels;
-     private int setSamplingRate;
-     private int setFrameRate;
-     private int setSizeX;
-     private int setSizeY;
-     private String setFormat;
-     private String setAudioAttributes;
-     private String setVideoAttributes;
+     private String target;
+     private String codec;
+     private int bitRate;
+     private int channels;
+     private int samplingRate;
+     private int frameRate;
+     private String videoCodec;
+     private int size1;
+     private int size2;
+     private String format;
 
     /**
      * Set target file
      * @param target
      */
-    public void setTarget(File target) {
+    public void setTarget(String target) {
         this.target = target;
     }
 
@@ -43,7 +42,7 @@ public class VideoCriteria extends Criteria {
      * Get target file
      * @return
      */
-    public File getTarget() {
+    public String getTarget() {
         return target;
     }
 
@@ -52,160 +51,135 @@ public class VideoCriteria extends Criteria {
      *Get codec for conversion
      * @return
      */
-    public String getSetCodec() {
-        return setCodec;
+    public String getCodec() {
+        return codec;
     }
 
     /**
      * Set codec for conversion
-     * @param setCodec
+     * @param codec
      */
-    public void setSetCodec(String setCodec) {
-        this.setCodec = setCodec;
+    public void setCodec(String codec) {
+        this.codec = codec;
     }
 
     /**
      * Get bit rate for conversion
      * @return
      */
-    public int getSetBitRate() {
-        return setBitRate;
+    public int getBitRate() {
+        return bitRate;
     }
 
     /**
      * Set bit rate for conversion
-     * @param setBitRate
+     * @param bitRate
      */
-    public void setSetBitRate(int setBitRate) {
-        this.setBitRate = setBitRate;
+    public void setBitRate(int bitRate) {
+        this.bitRate = bitRate;
     }
 
     /**
      * Get channels for video conversion
      * @return
      */
-    public int getSetChannels() {
-        return setChannels;
+    public int getChannels() {
+        return channels;
     }
 
     /**
      * Set channels for video conversion
-     * @param setChannels
+     * @param channels
      */
-    public void setSetChannels(int setChannels) {
-        this.setChannels = setChannels;
+    public void setChannels(int channels) {
+        this.channels = channels;
     }
 
     /**
      * Get Sampling Rate for video conversion
      * @return
      */
-    public int getSetSamplingRate() {
-        return setSamplingRate;
+    public int getSamplingRate() {
+        return samplingRate;
     }
 
     /**
      * Set Sampling Rate for video conversion
-     * @param setSamplingRate
+     * @param samplingRate
      */
-    public void setSetSamplingRate(int setSamplingRate) {
-        this.setSamplingRate = setSamplingRate;
+    public void setSamplingRate(int samplingRate) {
+        this.samplingRate = samplingRate;
     }
 
     /**
      * Get frame rate for video conversion
      * @return
      */
-    public int getSetFrameRate() {
-        return setFrameRate;
+    public int getFrameRate() {
+        return frameRate;
     }
 
     /**
      * Set frame rate for video conversion
-     * @param setFrameRate
+     * @param frameRate
      */
-    public void setSetFrameRate(int setFrameRate) {
-        this.setFrameRate = setFrameRate;
+    public void setFrameRate(int frameRate) {
+        this.frameRate = frameRate;
     }
 
     /**
      * Get Size X for video conversion
      * @return
      */
-    public int getSetSizeX() {
-        return setSizeX;
+    public int getSize1() {
+        return size1;
     }
 
     /**
      * Set Size X for video conversion
-     * @param setSizeX
+     * @param size1
      */
-    public void setSetSizeX(int setSizeX) {
-        this.setSizeX = setSizeX;
+    public void setSize1(int size1) {
+        this.size1 = size1;
     }
 
     /**
      * Get Size Y for video conversion
      * @return
      */
-    public int getSetSizeY() {
-        return setSizeY;
+    public int getSize2() {
+        return size2;
     }
 
     /**
      * Set Size Y for video conversion
-     * @param setSizeY
+     * @param size2
      */
-    public void setSetSizeY(int setSizeY) {
-        this.setSizeY = setSizeY;
+    public void setSize2(int size2) {
+        this.size2 = size2;
     }
 
     /**
      * Get format for video conversion
      * @return
      */
-    public String getSetFormat() {
-        return setFormat;
+    public String getFormat() {
+        return format;
     }
 
     /**
      * Set format for video conversion
-     * @param setFormat
+     * @param format
      */
-    public void setSetFormat(String setFormat) {
-        this.setFormat = setFormat;
+    public void setFormat(String format) {
+        this.format = format;
     }
 
-    /**
-     * Get attributes for video conversion
-     * @return
-     */
-    public String getSetAudioAttributes() {
-        return setAudioAttributes;
+    public String getVideoCodec() {
+        return videoCodec;
     }
 
-    /**
-     * Set attributes for video conversion
-     * @param setAudioAttributes
-     */
-    public void setSetAudioAttributes(String setAudioAttributes) {
-        this.setAudioAttributes = setAudioAttributes;
+    public void setVideoCodec(String videoCodec) {
+        this.videoCodec = videoCodec;
     }
-
-    /**
-     * Get video attributes for video conversion
-     * @return
-     */
-    public String getSetVideoAttributes() {
-        return setVideoAttributes;
-    }
-
-    /**
-     * Set video attributes for video conversion
-     * @param setVideoAttributes
-     */
-    public void setSetVideoAttributes(String setVideoAttributes) {
-        this.setVideoAttributes = setVideoAttributes;
-    }
-
 }

@@ -10,8 +10,6 @@
 package com.jalasoft.webservice.model;
 
 import ws.schild.jave.*;
-
-import javax.xml.transform.OutputKeys;
 import java.io.File;
 import java.io.IOException;
 
@@ -37,23 +35,23 @@ public class VideoConvert implements IConvert {
             VideoCriteria videocri = (VideoCriteria)criteria;
 
              File source = new File(videocri.getFilePath()) ;
-             File target = videocri.getTarget();
+             File target = new File(videocri.getTarget());
 
              //Audio Attributes
              AudioAttributes audio = new AudioAttributes();
-             audio.setCodec(videocri.getSetCodec());
-             audio.setBitRate(videocri.getSetBitRate());
-             audio.setChannels(videocri.getSetChannels());
-             audio.setSamplingRate(videocri.getSetSamplingRate());
+             audio.setCodec(videocri.getCodec());
+             audio.setBitRate(videocri.getBitRate());
+             audio.setChannels(videocri.getChannels());
+             audio.setSamplingRate(videocri.getSamplingRate());
 
             //Video settings
              VideoAttributes video = new VideoAttributes();
-             video.setCodec(videocri.getSetCodec());
-             video.setBitRate(videocri.getSetBitRate());
-             video.setFrameRate(videocri.getSetFrameRate());
-             video.setSize(new VideoSize(videocri.getSetSizeX(), videocri.getSetSizeY()));
+             video.setCodec(videocri.getVideoCodec());
+             video.setBitRate(videocri.getBitRate());
+             video.setFrameRate(videocri.getFrameRate());
+             video.setSize(new VideoSize(videocri.getSize1(), videocri.getSize2()));
              EncodingAttributes attrs = new EncodingAttributes();
-             attrs.setFormat(videocri.getSetFormat());
+             attrs.setFormat(videocri.getFormat());
              attrs.setAudioAttributes(audio);
              attrs.setVideoAttributes(video);
              Encoder encoder = new Encoder();
