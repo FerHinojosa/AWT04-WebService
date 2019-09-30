@@ -1,40 +1,40 @@
-/**
- * Copyright (c) 2019 Jalasoft.
- *
- * This software is the confidential and proprietary information of Jalasoft.
- * ("Confidential Information"). You shall not
- * disclose such Confidential Information and shall use it only in
- * accordance with the terms of the license agreement you entered into
- * with Jalasoft.
- */
 package com.jalasoft.webservice.controller;
 
 import com.jalasoft.webservice.model.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import java.io.File;
 import java.io.IOException;
 
 /**
- * Implements the audio convert.
  *
- * @author Raul Laredo
- * @version v1.0
+ * @project WebService feature(VideoConvert)
+ * @author Isaac Vasquez on 09/23/2019
  */
 @RestController
-@RequestMapping ("/api/v1.0/audio")
+@RequestMapping("/api/v1.0/audioConv")
 public class AudioController {
-
-    /**
-     * Converts the data audio data type in another type
-     *
-     * @throws IOException
-     */
     @PostMapping
-    public Response convert(@RequestParam("sourceFile") MultipartFile sourceFile
+    public Response convert (@RequestParam("file") MultipartFile file,
+                             @RequestParam("targetFile") MultipartFile targetFile,
+                             @RequestParam(value = "codec", defaultValue = "libmp3lame") String codec,
+                             @RequestParam(value = "bitRate", defaultValue = "64000") int bitRate,
+                             @RequestParam(value = "channels", defaultValue = "1") int channels,
+                             @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
+                             @RequestParam(value = "format", defaultValue = "mp3") String format
     ) throws IOException {
+        String filePath = FileManager.getFilePath(file);
+        String fileTarget = FileManager.getFilePath(targetFile);
+        AudioCriteria cri = new AudioCriteria();
+        cri.setFilePath(filePath);
+        cri.setTarget(fileTarget);
+        cri.setCodec(codec);
+        cri.setBitRate(bitRate);
+        cri.setChannels(channels);
+        cri.setSamplingRate(samplingRate);
+        cri.setFormat(format);
 
-        Response response = new Response();
-        return response;
+        IConvert audio = new AudioConvert();
+        return audio.convert(cri);
     }
 }
-

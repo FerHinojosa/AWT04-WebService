@@ -31,7 +31,6 @@ public class VideoController {
         String filePath = FileManager.getFilePath(file);
         String fileTarget = FileManager.getFilePath(targetFile);
         VideoCriteria cri = new VideoCriteria();
-        //cri.setFilePath("C:/Users/RaulLaredo/Desktop/example.avi");
         cri.setFilePath(filePath);
         cri.setTarget(fileTarget);
         cri.setCodec(codec);

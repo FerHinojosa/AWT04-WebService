@@ -65,7 +65,4 @@ public class VideoConvert implements IConvert {
               return res;
         }
     }
-
-
-
 }
