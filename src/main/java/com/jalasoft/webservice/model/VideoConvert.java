@@ -57,6 +57,7 @@ public class VideoConvert implements IConvert {
              Encoder encoder = new Encoder();
              encoder.encode(new MultimediaObject(source), target, attrs);
              res.setStatus(Response.Status.Ok);
+             res.setMessage("Video conversion succesfully.");
              res.setUrl("url");
              return res;
         } catch (Exception e) {

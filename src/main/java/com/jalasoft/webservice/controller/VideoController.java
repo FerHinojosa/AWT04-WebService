@@ -16,7 +16,7 @@ import java.io.IOException;
 public class VideoController {
     @PostMapping
     public Response convert (@RequestParam("file") MultipartFile file,
-                             @RequestParam(value = "targetFile", defaultValue = "/home/ramalaso/Desktop/target.flv") String targetFile,
+                             @RequestParam("targetFile") MultipartFile targetFile,
                              @RequestParam(value = "codec", defaultValue = "libmp3lame") String codec,
                              @RequestParam(value = "bitRate", defaultValue = "64000") int bitRate,
                              @RequestParam(value = "channels", defaultValue = "1") int channels,
@@ -27,13 +27,13 @@ public class VideoController {
                              @RequestParam(value = "sizeX", defaultValue = "400") int size1,
                              @RequestParam(value = "sizeY", defaultValue = "300") int size2,
                              @RequestParam(value = "format", defaultValue = "flv") String format
-
     ) throws IOException {
-
-        //String filePath = FileManager.getFilePath(file);
+        String filePath = FileManager.getFilePath(file);
+        String fileTarget = FileManager.getFilePath(targetFile);
         VideoCriteria cri = new VideoCriteria();
-        cri.setFilePath("/home/ramalaso/Desktop/example.avi");
-        cri.setTarget(targetFile);
+        //cri.setFilePath("C:/Users/RaulLaredo/Desktop/example.avi");
+        cri.setFilePath(filePath);
+        cri.setTarget(fileTarget);
         cri.setCodec(codec);
         cri.setBitRate(bitRate);
         cri.setChannels(channels);
