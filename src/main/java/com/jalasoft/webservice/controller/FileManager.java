@@ -29,6 +29,7 @@ public class FileManager {
         Utils utils = new Utils();
         String filePath = utils.getTemp() + file.getOriginalFilename();
         Path location = Paths.get(filePath);
+        System.out.println(filePath);
         Files.copy(file.getInputStream(), location, StandardCopyOption.REPLACE_EXISTING);
         return filePath;
     }
