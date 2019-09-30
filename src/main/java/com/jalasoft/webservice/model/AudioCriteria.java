@@ -9,8 +9,6 @@
  */
 package com.jalasoft.webservice.model;
 
-import java.io.File;
-
 /**
  * Implements the criteria needs for convert the audio in other format.
  *
