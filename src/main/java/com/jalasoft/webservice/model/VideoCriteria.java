@@ -9,8 +9,6 @@
  */
 package com.jalasoft.webservice.model;
 
-import java.io.File;
-
 /**
  * Implements the criteria needs for convert the video in other format.
  *
@@ -32,7 +30,7 @@ public class VideoCriteria extends Criteria {
 
     /**
      * Set target file
-     * @param target
+     * @param target file
      */
     public void setTarget(String target) {
         this.target = target;
@@ -40,16 +38,15 @@ public class VideoCriteria extends Criteria {
 
     /**
      * Get target file
-     * @return
+     * @return string target
      */
     public String getTarget() {
         return target;
     }
 
-
     /**
      *Get codec for conversion
-     * @return
+     * @return codec
      */
     public String getCodec() {
         return codec;
@@ -65,7 +62,7 @@ public class VideoCriteria extends Criteria {
 
     /**
      * Get bit rate for conversion
-     * @return
+     * @return bitRate
      */
     public int getBitRate() {
         return bitRate;
@@ -81,7 +78,7 @@ public class VideoCriteria extends Criteria {
 
     /**
      * Get channels for video conversion
-     * @return
+     * @return channels
      */
     public int getChannels() {
         return channels;
@@ -97,7 +94,7 @@ public class VideoCriteria extends Criteria {
 
     /**
      * Get Sampling Rate for video conversion
-     * @return
+     * @return samplingRate
      */
     public int getSamplingRate() {
         return samplingRate;
@@ -113,7 +110,7 @@ public class VideoCriteria extends Criteria {
 
     /**
      * Get frame rate for video conversion
-     * @return
+     * @return frameRate
      */
     public int getFrameRate() {
         return frameRate;
@@ -129,7 +126,7 @@ public class VideoCriteria extends Criteria {
 
     /**
      * Get Size X for video conversion
-     * @return
+     * @return size1
      */
     public int getSize1() {
         return size1;
@@ -145,7 +142,7 @@ public class VideoCriteria extends Criteria {
 
     /**
      * Get Size Y for video conversion
-     * @return
+     * @return size2
      */
     public int getSize2() {
         return size2;
@@ -161,7 +158,7 @@ public class VideoCriteria extends Criteria {
 
     /**
      * Get format for video conversion
-     * @return
+     * @return format
      */
     public String getFormat() {
         return format;

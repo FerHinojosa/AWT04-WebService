@@ -16,7 +16,7 @@ import java.io.IOException;
 /**
  * Implements the video convert implementing IConvert for using in the conversion.
  *
- * @author Raul Laredo
+ * @author Raul Laredo on 09/23/2019
  * @version v1.0
  */
 public class VideoConvert implements IConvert {
@@ -26,7 +26,7 @@ public class VideoConvert implements IConvert {
       *
       * @param criteria has the params of the convert method
       * @return the video transformed in another video data type
-      * @throws IOException
+      * @throws IOException throws input/output exceptions
       */
     @Override
     public Response convert(Criteria criteria) throws IOException {
