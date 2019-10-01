@@ -34,7 +34,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      * Get target file
-     * @return target
+     * @return target file
      */
     public String getTarget() {
         return target;
@@ -43,7 +43,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      *Get codec for conversion
-     * @return codec
+     * @return codec for conversion
      */
     public String getCodec() {
         return codec;
@@ -59,7 +59,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      * Get bit rate for conversion
-     * @return bitrate
+     * @return bitrate for conversion
      */
     public int getBitRate() {
         return bitRate;
@@ -67,47 +67,47 @@ public class AudioCriteria extends Criteria {
 
     /**
      * Set bit rate for conversion
-     * @param bitRate
+     * @param bitRate for conversion
      */
     public void setBitRate(int bitRate) {
         this.bitRate = bitRate;
     }
 
     /**
-     * Get channels for video conversion
-     * @return channels
+     * Get channels for audio conversion
+     * @return channels for conversion
      */
     public int getChannels() {
         return channels;
     }
 
     /**
-     * Set channels for video conversion
-     * @param channels
+     * Set channels for audio conversion
+     * @param channels for conversion
      */
     public void setChannels(int channels) {
         this.channels = channels;
     }
 
     /**
-     * Get Sampling Rate for video conversion
-     * @return sampleRate
+     * Get Sampling Rate for audio conversion
+     * @return sampleRate for conversion
      */
     public int getSamplingRate() {
         return samplingRate;
     }
 
     /**
-     * Set Sampling Rate for video conversion
-     * @param samplingRate
+     * Set Sampling Rate for audio conversion
+     * @param samplingRate for audio conversion
      */
     public void setSamplingRate(int samplingRate) {
         this.samplingRate = samplingRate;
     }
 
     /**
-     * Get format for video conversion
-     * @return format
+     * Get format for audio conversion
+     * @return format for conversion
      */
     public String getFormat() {
         return format;
@@ -115,7 +115,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      * Set format for video conversion
-     * @param format
+     * @param format for conversion
      */
     public void setFormat(String format) {
         this.format = format;

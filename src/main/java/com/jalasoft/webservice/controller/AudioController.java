@@ -9,16 +9,22 @@
  */
 package com.jalasoft.webservice.controller;
 
-import com.jalasoft.webservice.model.*;
+import com.jalasoft.webservice.model.AudioConvert;
+import com.jalasoft.webservice.model.AudioCriteria;
+import com.jalasoft.webservice.model.IConvert;
+import com.jalasoft.webservice.model.Response;
 import com.jalasoft.webservice.utils.Utils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 /**
  *The class is an endpoint for audio converter
  *
- * @author Isaac Vargas on 09/19/2019
+ * @author Raul Laredo on 09/19/2019
  * @version v1.0
  */
 @RestController
