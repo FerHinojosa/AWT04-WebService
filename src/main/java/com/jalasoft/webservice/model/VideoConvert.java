@@ -10,15 +10,13 @@
 package com.jalasoft.webservice.model;
 
 import ws.schild.jave.*;
-
-import javax.xml.transform.OutputKeys;
 import java.io.File;
 import java.io.IOException;
 
 /**
  * Implements the video convert implementing IConvert for using in the conversion.
  *
- * @author Raul Laredo
+ * @author Raul Laredo on 09/23/2019
  * @version v1.0
  */
 public class VideoConvert implements IConvert {
@@ -28,7 +26,7 @@ public class VideoConvert implements IConvert {
       *
       * @param criteria has the params of the convert method
       * @return the video transformed in another video data type
-      * @throws IOException
+      * @throws IOException throws input/output exceptions
       */
     @Override
     public Response convert(Criteria criteria) throws IOException {
@@ -37,28 +35,29 @@ public class VideoConvert implements IConvert {
             VideoCriteria videocri = (VideoCriteria)criteria;
 
              File source = new File(videocri.getFilePath()) ;
-             File target = videocri.getTarget();
+             File target = new File(videocri.getTarget());
 
              //Audio Attributes
              AudioAttributes audio = new AudioAttributes();
-             audio.setCodec(videocri.getSetCodec());
-             audio.setBitRate(videocri.getSetBitRate());
-             audio.setChannels(videocri.getSetChannels());
-             audio.setSamplingRate(videocri.getSetSamplingRate());
+             audio.setCodec(videocri.getCodec());
+             audio.setBitRate(videocri.getBitRate());
+             audio.setChannels(videocri.getChannels());
+             audio.setSamplingRate(videocri.getSamplingRate());
 
             //Video settings
              VideoAttributes video = new VideoAttributes();
-             video.setCodec(videocri.getSetCodec());
-             video.setBitRate(videocri.getSetBitRate());
-             video.setFrameRate(videocri.getSetFrameRate());
-             video.setSize(new VideoSize(videocri.getSetSizeX(), videocri.getSetSizeY()));
+             video.setCodec(videocri.getVideoCodec());
+             video.setBitRate(videocri.getBitRate());
+             video.setFrameRate(videocri.getFrameRate());
+             video.setSize(new VideoSize(videocri.getSize1(), videocri.getSize2()));
              EncodingAttributes attrs = new EncodingAttributes();
-             attrs.setFormat(videocri.getSetFormat());
+             attrs.setFormat(videocri.getFormat());
              attrs.setAudioAttributes(audio);
              attrs.setVideoAttributes(video);
              Encoder encoder = new Encoder();
              encoder.encode(new MultimediaObject(source), target, attrs);
              res.setStatus(Response.Status.Ok);
+             res.setMessage("Video conversion succesfully.");
              res.setUrl("url");
              return res;
         } catch (Exception e) {
@@ -66,7 +65,4 @@ public class VideoConvert implements IConvert {
               return res;
         }
     }
-
-
-
 }
