@@ -63,7 +63,7 @@ public class VideoController {
     ) throws IOException {
         Utils utils = new Utils();
         String filePath = FileManager.getFilePath(file);
-        String fileTarget = utils.getTemp() + nameFile + "." + format ;
+        String fileTarget = utils.getPublic() + nameFile + "." + format ;
         VideoCriteria cri = new VideoCriteria();
         cri.setFilePath(filePath);
         cri.setTarget(fileTarget);

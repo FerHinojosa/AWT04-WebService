@@ -34,7 +34,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      * Get target file
-     * @return
+     * @return target
      */
     public String getTarget() {
         return target;
@@ -43,7 +43,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      *Get codec for conversion
-     * @return
+     * @return codec
      */
     public String getCodec() {
         return codec;
@@ -59,7 +59,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      * Get bit rate for conversion
-     * @return
+     * @return bitrate
      */
     public int getBitRate() {
         return bitRate;
@@ -75,7 +75,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      * Get channels for video conversion
-     * @return
+     * @return channels
      */
     public int getChannels() {
         return channels;
@@ -91,7 +91,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      * Get Sampling Rate for video conversion
-     * @return
+     * @return sampleRate
      */
     public int getSamplingRate() {
         return samplingRate;
@@ -107,7 +107,7 @@ public class AudioCriteria extends Criteria {
 
     /**
      * Get format for video conversion
-     * @return
+     * @return format
      */
     public String getFormat() {
         return format;

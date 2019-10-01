@@ -1,3 +1,12 @@
+/**
+ * Copyright (c) 2019 Jalasoft.
+ *
+ * This software is the confidential and proprietary information of Jalasoft.
+ * ("Confidential Information"). You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jalasoft.
+ */
 package com.jalasoft.webservice.controller;
 
 import com.jalasoft.webservice.model.*;
@@ -7,13 +16,26 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 
 /**
+ *The class is an endpoint for audio converter
  *
- * @project WebService feature(VideoConvert)
- * @author Isaac Vasquez on 09/23/2019
+ * @author Isaac Vargas on 09/19/2019
+ * @version v1.0
  */
 @RestController
 @RequestMapping("/api/v1.0/audioConv")
 public class AudioController {
+    /**
+     * Converts to another type of audio
+     * @param file has the file to be converted in another type
+     * @param nameFile has the nameFile of the output
+     * @param codec has the codec to be converted in another type
+     * @param bitRate has the bitrate to be converted in another type
+     * @param channels has the channels to be converted in another type
+     * @param samplingRate has the samplingrate to be converted in another type
+     * @param format has the format of the output
+     * @return type requested of audio
+     * @throws IOException throws the input/output exceptions
+     */
     @PostMapping
     public Response convert (@RequestParam("file") MultipartFile file,
                              @RequestParam("nameFile") String nameFile,
@@ -25,7 +47,7 @@ public class AudioController {
     ) throws IOException {
         Utils utils = new Utils();
         String filePath = FileManager.getFilePath(file);
-        String fileTarget = utils.getTemp() + nameFile + "." + format ;
+        String fileTarget = utils.getPublic() + nameFile + "." + format ;
         AudioCriteria cri = new AudioCriteria();
         cri.setFilePath(filePath);
         cri.setTarget(fileTarget);
