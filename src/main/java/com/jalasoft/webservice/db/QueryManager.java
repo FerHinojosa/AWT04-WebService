@@ -7,7 +7,6 @@
  * accordance with the terms of the license agreement you entered into
  * with Jalasoft.
  */
-
 package com.jalasoft.webservice.db;
 
 import java.sql.*;
@@ -53,14 +52,13 @@ public class QueryManager {
      * @param checksum
      * @return a String with the path if exist.
      */
-
     public String getPath (String checksum) {
 
         Statement state = null;
         ResultSet resultSet = null;
         String path = "";
         try{
-            String sql = "Select path from FileStorage where trim(checksum)='" + checksum +"';";
+            String sql = "select path from FileStorage where trim(checksum)='" + checksum +"';";
             state = connection.createStatement();
             resultSet = state.executeQuery(sql);
             while (resultSet.next()) {

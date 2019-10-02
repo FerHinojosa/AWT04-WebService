@@ -7,7 +7,6 @@
  * accordance with the terms of the license agreement you entered into
  * with Jalasoft.
  */
-
 package com.jalasoft.webservice.db;
 
 import java.sql.Connection;
