@@ -10,7 +10,6 @@
 package com.jalasoft.webservice.model;
 
 import com.jalasoft.webservice.utils.Utils;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -44,18 +43,15 @@ public class ZipFiles {
 
             for (String aFile : filePaths) {
                 zos.putNextEntry(new ZipEntry(new File(aFile).getName()));
-
                 byte[] bytes = Files.readAllBytes(Paths.get(aFile));
                 zos.write(bytes, 0, bytes.length);
                 zos.closeEntry();
             }
-
             zos.close();
-
         } catch (FileNotFoundException ex) {
-            System.err.println("A file does not exist: " + ex);
+            ex.printStackTrace();
         } catch (IOException ex) {
-            System.err.println("I/O error: " + ex);
+            ex.printStackTrace();
         }
     }
 }

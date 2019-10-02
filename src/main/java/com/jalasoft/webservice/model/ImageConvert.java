@@ -34,7 +34,6 @@ public class ImageConvert implements IConvert{
         ImageCriteria imgCriteria = (ImageCriteria) criteria;
 
         try {
-
             String source = "C:\\Users\\fernandohinojosa\\Desktop\\1.pdf";
             //String source = imgCriteria.getFilePath();
             String destination = imgCriteria.getDestinationPath();
@@ -49,7 +48,6 @@ public class ImageConvert implements IConvert{
             PDFRenderer renderer = new PDFRenderer(document);
             int count = document.getNumberOfPages();
             String [] filePaths = new String[count];
-
             for (int page = 0; page < count; ++page) {
 
                 BufferedImage img = renderer.renderImageWithDPI(page, dpi, ImageType.RGB);
