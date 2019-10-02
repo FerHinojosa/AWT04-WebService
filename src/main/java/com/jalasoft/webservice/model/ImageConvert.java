@@ -34,8 +34,8 @@ public class ImageConvert implements IConvert{
         ImageCriteria imgCriteria = (ImageCriteria) criteria;
 
         try {
-
-            String source = imgCriteria.getFilePath();
+            String source = "C:\\Users\\fernandohinojosa\\Desktop\\1.pdf";
+            //String source = imgCriteria.getFilePath();
             String destination = imgCriteria.getDestinationPath();
             int dpi = imgCriteria.getDpi();
             String ext = imgCriteria.getExtension();
@@ -47,14 +47,18 @@ public class ImageConvert implements IConvert{
             //Instantiating the PDFRenderer class
             PDFRenderer renderer = new PDFRenderer(document);
             int count = document.getNumberOfPages();
+            String [] filePaths = new String[count];
             for (int page = 0; page < count; ++page) {
 
                 BufferedImage img = renderer.renderImageWithDPI(page, dpi, ImageType.RGB);
                 String fileName = destination + page + "." + ext;
                 ImageIOUtil.writeImage(img, fileName, 300);
+                filePaths[page]=fileName;
             }
-
             document.close();
+            ZipFiles zipFiles = new ZipFiles();
+            zipFiles.zipFiles(filePaths);
+
             res.setStatus(Response.Status.Ok);
             res.setUrl("done");
             return res;
