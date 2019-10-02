@@ -35,6 +35,9 @@ dependencies {
 
     compile group: 'ws.schild', name: 'jave-all-deps', version: '2.6.0'
 
+    // https://mvnrepository.com/artifact/mysql/mysql-connector-java
+    compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
+
 
 }
 
