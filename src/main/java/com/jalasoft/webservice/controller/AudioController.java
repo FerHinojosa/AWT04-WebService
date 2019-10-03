@@ -44,6 +44,8 @@ public class AudioController {
      */
     @PostMapping
     public Response convert (@RequestParam("file") MultipartFile file,
+                             @RequestParam(value = "metadata",defaultValue = "false")String metadata,
+                             @RequestParam(value = "checksum",defaultValue = "false")String checksum,
                              @RequestParam("nameFile") String nameFile,
                              @RequestParam(value = "codec", defaultValue = "libmp3lame") String codec,
                              @RequestParam(value = "bitRate", defaultValue = "64000") int bitRate,
