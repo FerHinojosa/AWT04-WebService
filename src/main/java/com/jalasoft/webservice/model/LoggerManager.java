@@ -13,6 +13,7 @@ import org.apache.log4j.PropertyConfigurator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 /**
  * Implements the logger for logging the errors in the webservice.
  *
@@ -20,9 +21,10 @@ import org.apache.logging.log4j.Logger;
  * @version v1.0
  */
 public class LoggerManager {
-    private static final Logger logger = LogManager.getLogger("HelloWorld");
+    //private static final Logger logger = LogManager.getLogger("HelloWorld");
+    private static Logger logger = LogManager.getLogger();
     public void CreateLogs() {
-        PropertyConfigurator.configure("log4j.properties");
+        PropertyConfigurator.configure("C:\\Users\\RaulLaredo\\Documents\\Prog102\\AWT04-WebService\\src\\log4j.properties");
         logger.debug("This is debug message");
         logger.info("This is info message");
         logger.warn("This is warn message");
