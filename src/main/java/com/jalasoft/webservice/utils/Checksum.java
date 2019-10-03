@@ -21,6 +21,7 @@ import java.security.NoSuchAlgorithmException;
  * @version v1.0
  */
 public class Checksum {
+
     /**
      * The method return a checksum string based on a file path
      * @param filepath file send to generate checksum

@@ -13,7 +13,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import org.apache.tika.exception.TikaException;
 import org.apache.tika.metadata.Metadata;
 import org.apache.tika.parser.AutoDetectParser;
@@ -21,8 +20,8 @@ import org.apache.tika.parser.ParseContext;
 import org.apache.tika.parser.Parser;
 import org.apache.tika.sax.BodyContentHandler;
 import com.google.gson.Gson;
-
 import org.xml.sax.SAXException;
+
 /**
  * The class generates a json file
  * @author Andy Bazualdo on 9/23/19.
@@ -38,20 +37,16 @@ public class MetadataFileCreator {
     public void getMetada(String filepath) throws IOException, TikaException, SAXException{
         //Assume that boy.jpg is in your current directory
         File file = new File(filepath);
-
         //Parser method parameters
         Parser parser = new AutoDetectParser();
         BodyContentHandler handler = new BodyContentHandler();
         Metadata metadata = new Metadata();
         FileInputStream inputStream = new FileInputStream(file);
         ParseContext context = new ParseContext();
-
         parser.parse(inputStream, handler, metadata, context);
         System.out.println(handler.toString());
-
         //getting the list of all meta data elements
         String[] metadataNames = metadata.names();
-
         Gson gson = new Gson();
         //convert java object to JSON format
         String json = gson.toJson(metadata);
