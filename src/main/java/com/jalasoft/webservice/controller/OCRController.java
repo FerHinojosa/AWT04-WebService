@@ -40,7 +40,9 @@ public class OCRController{
      * @throws IOException control the input output exception to handle file used in the method
      */
     @PostMapping
-    public Response OCRExtractor (@RequestParam("file") MultipartFile file, @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException {
+    public Response OCRExtractor (@RequestParam("file") MultipartFile file,
+                                  @RequestParam(value = "checksum",defaultValue = "false")String checksum,
+                                  @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException {
 
         String filePath = FileManager.getFilePath(file);
 

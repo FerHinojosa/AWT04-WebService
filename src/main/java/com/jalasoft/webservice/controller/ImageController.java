@@ -44,8 +44,10 @@ public class ImageController {
      */
         @PostMapping
         public Response Convert (@RequestParam("file") MultipartFile file,
-                                      @RequestParam (value = "dpi", defaultValue = "") int dpi,
-                                      @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException {
+                                 @RequestParam(value = "metadata",defaultValue = "false")String metadata,
+                                 @RequestParam(value = "checksum",defaultValue = "false")String checksum,
+                                 @RequestParam (value = "dpi", defaultValue = "") int dpi,
+                                 @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException {
             String filePath = FileManager.getFilePath(file);
 
             ImageConvert img = new ImageConvert();
