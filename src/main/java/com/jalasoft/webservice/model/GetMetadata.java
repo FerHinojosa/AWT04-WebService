@@ -34,7 +34,6 @@ public class GetMetadata {
         //getting the list of all meta data elements
         String[] metadataNames = metadata.names();
 
-
         for(String name : metadataNames) {
             System.out.println(name + ": " + metadata.get(name));
         }

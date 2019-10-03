@@ -19,7 +19,6 @@ public class Checksum {
             while (dis.read() != -1) ; //empty loop to clear the data
             md = dis.getMessageDigest();
         }
-
         // bytes to hex
         StringBuilder result = new StringBuilder();
         for (byte b : md.digest()) {
