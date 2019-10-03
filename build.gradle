@@ -37,8 +37,8 @@ dependencies {
 
     // https://mvnrepository.com/artifact/mysql/mysql-connector-java
     compile group: 'mysql', name: 'mysql-connector-java', version: '5.1.6'
-
-
+    // https://mvnrepository.com/artifact/org.apache.tika/tika-parsers
+    compile group: 'org.apache.tika', name: 'tika-parsers', version: '1.18'
 }
 
 repositories { jcenter() }
