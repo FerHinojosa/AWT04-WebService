@@ -1,4 +1,14 @@
+/**
+ * Copyright (c) 2019 Jalasoft.
+ *
+ * This software is the confidential and proprietary information of Jalasoft.
+ * ("Confidential Information"). You shall not
+ * disclose such Confidential Information and shall use it only in
+ * accordance with the terms of the license agreement you entered into
+ * with Jalasoft.
+ */
 package com.jalasoft.webservice.model;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
@@ -13,13 +23,21 @@ import org.apache.tika.sax.BodyContentHandler;
 import com.google.gson.Gson;
 
 import org.xml.sax.SAXException;
-
-public class GetMetadata {
-
-    public static void main(final String[] args) throws IOException, TikaException, SAXException {
-
+/**
+ * The class generates a json file
+ * @author Andy Bazualdo on 9/23/19.
+ * @version v1.0
+ */
+public class MetadataFileCreator {
+    /**
+     * The method generates a json file based a path file
+     * @throws IOException trows input output exceptions
+     * @throws TikaException trows Tika exceptions
+     * @throws SAXException trows SAX exceptions
+     */
+    public void getMetada(String filepath) throws IOException, TikaException, SAXException{
         //Assume that boy.jpg is in your current directory
-        File file = new File("c:\\jala\\progra\\webservice\\AWT04-WebService\\temp\\example.jpg");
+        File file = new File(filepath);
 
         //Parser method parameters
         Parser parser = new AutoDetectParser();
@@ -34,30 +52,17 @@ public class GetMetadata {
         //getting the list of all meta data elements
         String[] metadataNames = metadata.names();
 
-        for(String name : metadataNames) {
-            System.out.println(name + ": " + metadata.get(name));
-        }
-
-
-        //test andy
-
         Gson gson = new Gson();
         //convert java object to JSON format
         String json = gson.toJson(metadata);
 
-        System.out.println(json);
         try {
             //write converted json data to a file named "CountryGSON.json"
-            FileWriter writer = new FileWriter("./metadata.json");
+            FileWriter writer = new FileWriter(filepath+".json");
             writer.write(json);
             writer.close();
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-        System.out.println(json);
     }
 }
-
-
-
