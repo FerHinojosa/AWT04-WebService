@@ -9,6 +9,8 @@
  */
 package com.jalasoft.webservice.model;
 
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
 /**
  * Implements Responses for implementing response the status of the controller and methods.
  *
@@ -22,7 +24,7 @@ public class Response {
     private String message;
     /**
      * Get Status  for response
-     * @param Status
+     * @param
      */
     public Status getStatus() {
         return status;
@@ -30,7 +32,7 @@ public class Response {
 
     /**
      * Set Status  for response
-     * @param Status
+     * @param
      */
     public void setStatus(Status status) {
         this.status = status;
@@ -38,7 +40,7 @@ public class Response {
 
     /**
      * Get URl  for response
-     * @param Status
+     * @param
      */
     public String getUrl() {
         return url;
@@ -46,15 +48,16 @@ public class Response {
 
     /**
      * Set URl  for response
-     * @param Status
+     * @param
      */
-    public void setUrl(String url) {
-        this.url = url;
+    public void setUrl(String nameFile) {
+        String uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").path("file/").path(nameFile).toUriString();
+        this.url = uri;
     }
 
     /**
      * Get message  for response
-     * @param Status
+     * @param
      */
     public String getMessage() {
         return message;
@@ -62,7 +65,7 @@ public class Response {
 
     /**
      * Set message  for response
-     * @param Status
+     * @param
      */
     public void setMessage(String message) {
         this.message = message;

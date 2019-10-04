@@ -17,7 +17,10 @@ import com.jalasoft.webservice.db.QueryManager;
  * @version v1.0
  */
 public class DBManager {
-    private static QueryManager queryManager;
+    private QueryManager queryManager;
+    public DBManager(){
+        queryManager = new QueryManager();
+    }
 
     /**
      * Implements Add classes
@@ -25,7 +28,7 @@ public class DBManager {
      * @param path Location the file
      * @return true if save in the FileStorage table
      */
-    public static boolean add (String checksum, String path) {
+    public boolean add (String checksum, String path) {
         boolean result = queryManager.insert(checksum,path);
         return result;
     }
@@ -35,7 +38,7 @@ public class DBManager {
      * @param checksum Unique value
      * @return the location the path
      */
-    public static String getPath (String checksum) {
+    public String getPath (String checksum) {
         String path = queryManager.getPath(checksum);
         return path;
     }

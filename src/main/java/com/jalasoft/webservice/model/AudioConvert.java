@@ -9,7 +9,11 @@
  */
 package com.jalasoft.webservice.model;
 
+import com.jalasoft.webservice.db.DBConnection;
+import com.jalasoft.webservice.db.QueryManager;
 import ws.schild.jave.*;
+
+import javax.management.Query;
 import java.io.File;
 import java.io.IOException;
 
@@ -31,6 +35,7 @@ public class AudioConvert implements IConvert {
     @Override
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
+
         try {
             AudioCriteria audiocri = (AudioCriteria) criteria;
 
@@ -52,9 +57,14 @@ public class AudioConvert implements IConvert {
 
             res.setStatus(Response.Status.Ok);
             res.setMessage("Audio conversion succesfully.");
-            res.setUrl("url");
+            res.setUrl(source.getName());
+            ZipFiles zipFiles = new ZipFiles();
+            String [] filePaths = new String[5];
+            filePaths[0]=audiocri.getTarget();
+            zipFiles.zipFiles(filePaths);
+
             return res;
-        } catch (Exception e) {
+        }    catch (Exception e) {
             res.setStatus(Response.Status.BadRequest);
             return res;
         }

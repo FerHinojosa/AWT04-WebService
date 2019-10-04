@@ -9,6 +9,7 @@
  */
 package com.jalasoft.webservice.model;
 
+import com.jalasoft.webservice.db.QueryManager;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
@@ -33,9 +34,9 @@ public class ImageConvert implements IConvert{
         Response res = new Response();
         ImageCriteria imgCriteria = (ImageCriteria) criteria;
 
+
         try {
-            String source = "C:\\Users\\fernandohinojosa\\Desktop\\1.pdf";
-            //String source = imgCriteria.getFilePath();
+            String source = imgCriteria.getFilePath();
             String destination = imgCriteria.getDestinationPath();
             int dpi = imgCriteria.getDpi();
             String ext = imgCriteria.getExtension();
@@ -60,9 +61,9 @@ public class ImageConvert implements IConvert{
             zipFiles.zipFiles(filePaths);
 
             res.setStatus(Response.Status.Ok);
-            res.setUrl("done");
+            res.setUrl("0.zip");
             return res;
-        } catch (Exception e) {
+        }   catch (Exception e) {
             res.setStatus(Response.Status.BadRequest);
             return res;
 

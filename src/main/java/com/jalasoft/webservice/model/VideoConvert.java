@@ -9,6 +9,7 @@
  */
 package com.jalasoft.webservice.model;
 
+import com.jalasoft.webservice.db.QueryManager;
 import ws.schild.jave.*;
 import java.io.File;
 import java.io.IOException;
@@ -31,6 +32,7 @@ public class VideoConvert implements IConvert {
     @Override
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
+
         try {
             VideoCriteria videocri = (VideoCriteria)criteria;
 
@@ -58,7 +60,13 @@ public class VideoConvert implements IConvert {
              encoder.encode(new MultimediaObject(source), target, attrs);
              res.setStatus(Response.Status.Ok);
              res.setMessage("Video conversion succesfully.");
-             res.setUrl("url");
+             res.setUrl(source.getName());;
+
+             ZipFiles zipFiles = new ZipFiles();
+            String [] filePaths = new String[5];
+            filePaths[0]=videocri.getTarget();
+            zipFiles.zipFiles(filePaths);
+
              return res;
         } catch (Exception e) {
               res.setStatus(Response.Status.BadRequest);

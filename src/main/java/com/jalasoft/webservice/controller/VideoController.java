@@ -9,17 +9,19 @@
  */
 package com.jalasoft.webservice.controller;
 
-import com.jalasoft.webservice.model.IConvert;
-import com.jalasoft.webservice.model.Response;
-import com.jalasoft.webservice.model.VideoConvert;
-import com.jalasoft.webservice.model.VideoCriteria;
+import com.jalasoft.webservice.model.*;
+import com.jalasoft.webservice.utils.Checksum;
 import com.jalasoft.webservice.utils.Utils;
+import org.apache.tika.exception.TikaException;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+import org.xml.sax.SAXException;
+
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *The class is an endpoint for VideoConverter
@@ -49,7 +51,7 @@ public class VideoController {
      */
     @PostMapping
     public Response convert (@RequestParam("file") MultipartFile file,
-                             @RequestParam(value = "metadata",defaultValue = "false")String metadata,
+                             @RequestParam(value = "metadata",defaultValue = "false")boolean metadata,
                              @RequestParam(value = "checksum",defaultValue = "false")String checksum,
                              @RequestParam("nameFile") String nameFile,
                              @RequestParam(value = "codec", defaultValue = "libmp3lame") String codec,
@@ -61,26 +63,47 @@ public class VideoController {
                              @RequestParam(value = "frameRate", defaultValue = "24") int frameRate,
                              @RequestParam(value = "sizeX", defaultValue = "400") int size1,
                              @RequestParam(value = "sizeY", defaultValue = "300") int size2,
-                             @RequestParam(value = "format", defaultValue = "mp4") String format
-    ) throws IOException {
-        Utils utils = new Utils();
+                             @RequestParam(value = "format", defaultValue = "mp4") String format)
+                             throws IOException, TikaException, SAXException, NoSuchAlgorithmException {
         String filePath = FileManager.getFilePath(file);
-        String fileTarget = utils.getPublic() + nameFile + "." + format ;
+        Checksum checksum1 = new Checksum();
+        Response response = new Response();
+        DBManager db = new DBManager();
+        String checksumResult = checksum1.checksum(filePath);
         VideoCriteria cri = new VideoCriteria();
-        cri.setFilePath(filePath);
-        cri.setTarget(fileTarget);
-        cri.setCodec(codec);
-        cri.setBitRate(bitRate);
-        cri.setChannels(channels);
-        cri.setSamplingRate(samplingRate);
-        cri.setVideoCodec(videoCodec);
-        cri.setBitRate(videoBitRate);
-        cri.setFrameRate(frameRate);
-        cri.setSize1(size1);
-        cri.setSize2(size2);
-        cri.setFormat(format);
-
+        Utils utils = new Utils();
+        String fileTarget = utils.getPublic() + nameFile + "." + format ;
         IConvert video = new VideoConvert();
+
+        if (metadata){
+            MetadataFileCreator metadataF =  new MetadataFileCreator();
+            metadataF.getMetada(filePath);
+        }
+        String pathDb = "";
+        if (checksum.equals(checksumResult)){
+            if (db.getPath(checksumResult).isEmpty()){
+                db.add(checksum,filePath);
+            }else {
+                pathDb= db.getPath(checksumResult);
+            }
+            cri.setFilePath(filePath);
+            cri.setTarget(fileTarget);
+            cri.setCodec(codec);
+            cri.setBitRate(bitRate);
+            cri.setChannels(channels);
+            cri.setSamplingRate(samplingRate);
+            cri.setVideoCodec(videoCodec);
+            cri.setBitRate(videoBitRate);
+            cri.setFrameRate(frameRate);
+            cri.setSize1(size1);
+            cri.setSize2(size2);
+            cri.setFormat(format);
+        }
+        else {
+            response.setStatus(Response.Status.BadRequest);
+            response.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+            return response;
+        }
         return video.convert(cri);
     }
 }
