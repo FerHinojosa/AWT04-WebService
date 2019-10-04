@@ -8,20 +8,21 @@
  * with Jalasoft.
  */
 package com.jalasoft.webservice.controller;
+import com.jalasoft.webservice.model.DBManager;
 import com.jalasoft.webservice.model.OCRCriteria;
 import com.jalasoft.webservice.model.OCRExtractor;
 
 import com.jalasoft.webservice.model.Response;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import com.jalasoft.webservice.utils.Checksum;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.management.Query;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  *The class is an endpoit for OCR
@@ -42,15 +43,31 @@ public class OCRController{
     @PostMapping
     public Response OCRExtractor (@RequestParam("file") MultipartFile file,
                                   @RequestParam(value = "checksum",defaultValue = "false")String checksum,
-                                  @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException {
+                                  @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException,
+                                  NoSuchAlgorithmException {
 
         String filePath = FileManager.getFilePath(file);
+        Checksum checksum1 = new Checksum();
+        Response test = new Response();
+        DBManager db = new DBManager();
+        String checksumResult = checksum1.checksum(filePath);
+        String pathDb = "";
+        if (checksum.equals(checksumResult)){
+            if (db.getPath(checksumResult).isEmpty()){
+                db.add(checksum,filePath);
+            }else {
+                pathDb= db.getPath(checksumResult);
+            }
+            OCRExtractor ocr = new OCRExtractor();
+            OCRCriteria ocrCriteria = new OCRCriteria(lang,filePath);
+            test = ocr.convert(ocrCriteria);
+            return test;
+        }
+        else {
+            test.setStatus(Response.Status.BadRequest);
+            test.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+            return test;
+        }
 
-        OCRExtractor ocr = new OCRExtractor();
-
-        OCRCriteria ocrCriteria = new OCRCriteria(lang,filePath);
-        Response test = ocr.convert(ocrCriteria);
-
-        return test;
     }
 }
