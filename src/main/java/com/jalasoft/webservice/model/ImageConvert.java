@@ -61,9 +61,9 @@ public class ImageConvert implements IConvert{
             zipFiles.zipFiles(filePaths);
 
             res.setStatus(Response.Status.Ok);
-            res.setUrl("done");
+            res.setUrl("0.zip");
             return res;
-        } catch (Exception e) {
+        }   catch (Exception e) {
             res.setStatus(Response.Status.BadRequest);
             return res;
 

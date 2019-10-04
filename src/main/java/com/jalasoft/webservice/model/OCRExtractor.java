@@ -12,6 +12,7 @@ package com.jalasoft.webservice.model;
 import java.io.File;
 import java.io.IOException;
 
+import com.jalasoft.webservice.db.QueryManager;
 import com.jalasoft.webservice.utils.Utils;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.TesseractException;
