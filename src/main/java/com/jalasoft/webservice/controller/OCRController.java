@@ -65,7 +65,7 @@ public class OCRController{
         }
         else {
             test.setStatus(Response.Status.BadRequest);
-            test.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+            test.setMessage("The cheksum sent is incorrect");
             return test;
         }
 

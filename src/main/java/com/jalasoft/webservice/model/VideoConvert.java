@@ -62,13 +62,15 @@ public class VideoConvert implements IConvert {
              res.setMessage("Video conversion succesfully.");
              res.setUrl(source.getName());;
 
-             ZipFiles zipFiles = new ZipFiles();
-            String [] filePaths = new String[5];
+            ZipFiles zipFiles = new ZipFiles();
+            String [] filePaths = new String[1];
             filePaths[0]=videocri.getTarget();
             zipFiles.zipFiles(filePaths);
 
+
              return res;
-        } catch (Exception e) {
+        }
+        catch (Exception e) {
               res.setStatus(Response.Status.BadRequest);
               return res;
         }

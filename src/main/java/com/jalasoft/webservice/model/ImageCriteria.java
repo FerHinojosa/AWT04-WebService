@@ -20,6 +20,7 @@ public class ImageCriteria extends Criteria{
     private int dpi;
     private String destinationPath;
     private String extension;
+    private boolean metadata;
 
     /**
      * Gets dpi resolution.
@@ -67,5 +68,21 @@ public class ImageCriteria extends Criteria{
      */
     public void setExtension(String extension) {
         this.extension = extension;
+    }
+
+    /**
+     * Gets extension.
+     * @return extension.
+     */
+    public boolean getMetadata() {
+        return metadata;
+    }
+
+    /**
+     * Sets extension.
+     * @param extension set the value.
+     */
+    public void setMetadata(boolean extension) {
+        this.metadata = metadata;
     }
 }

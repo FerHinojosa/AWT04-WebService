@@ -59,10 +59,10 @@ public class ImageController {
             ImageConvert img = new ImageConvert();
             ImageCriteria imageCriteria = new ImageCriteria();
             Utils utils = new Utils();
-            if (metadata){
+            /*if (metadata){
                 MetadataFileCreator metadataF =  new MetadataFileCreator();
                 metadataF.getMetada(filePath);
-            }
+            }*/
             String pathDb = "";
             if (checksum.equals(checksumResult)){
                 if (db.getPath(checksumResult).isEmpty()){
@@ -74,10 +74,11 @@ public class ImageController {
                 imageCriteria.setDpi(dpi);
                 imageCriteria.setDestinationPath(utils.getPublic());
                 imageCriteria.setExtension(ext);
+                imageCriteria.setMetadata(metadata);
             }
             else {
                 response.setStatus(Response.Status.BadRequest);
-                response.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+                response.setMessage("The cheksum sent is incorrect");
                 return response;
             }
             response = img.convert(imageCriteria);

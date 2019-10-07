@@ -32,7 +32,7 @@ public class ZipFiles {
      *
      * @param filePaths
      */
-    public void zipFiles(String [] filePaths) {
+    public void zipFiles(String [] filePaths) throws IOException{
         try {
             Utils util = new Utils();
             File firstFile = new File(filePaths[0]);

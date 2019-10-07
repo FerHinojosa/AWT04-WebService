@@ -86,7 +86,8 @@ public class AudioController {
         }
         else {
             response.setStatus(Response.Status.BadRequest);
-            response.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+            System.out.println("test 1");
+            response.setMessage("The cheksum sent is incorrect");
             return response;
         }
         return audio.convert(cri);

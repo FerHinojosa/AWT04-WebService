@@ -58,14 +58,17 @@ public class AudioConvert implements IConvert {
             res.setStatus(Response.Status.Ok);
             res.setMessage("Audio conversion succesfully.");
             res.setUrl(source.getName());
+
             ZipFiles zipFiles = new ZipFiles();
-            String [] filePaths = new String[5];
+            String [] filePaths = new String[1];
             filePaths[0]=audiocri.getTarget();
             zipFiles.zipFiles(filePaths);
 
             return res;
-        }    catch (Exception e) {
+        }
+        catch (Exception e) {
             res.setStatus(Response.Status.BadRequest);
+            System.out.println("test 2");
             return res;
         }
     }

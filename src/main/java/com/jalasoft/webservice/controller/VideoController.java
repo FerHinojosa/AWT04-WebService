@@ -101,7 +101,7 @@ public class VideoController {
         }
         else {
             response.setStatus(Response.Status.BadRequest);
-            response.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+            response.setMessage("The cheksum sent is incorrect");
             return response;
         }
         return video.convert(cri);

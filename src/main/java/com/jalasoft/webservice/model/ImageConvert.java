@@ -32,10 +32,11 @@ public class ImageConvert implements IConvert{
      */
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
+        MetadataFileCreator metadataFileCreator;
         ImageCriteria imgCriteria = (ImageCriteria) criteria;
 
-
         try {
+
             String source = imgCriteria.getFilePath();
             String destination = imgCriteria.getDestinationPath();
             int dpi = imgCriteria.getDpi();
@@ -55,6 +56,10 @@ public class ImageConvert implements IConvert{
                 String fileName = destination + page + "." + ext;
                 ImageIOUtil.writeImage(img, fileName, 300);
                 filePaths[page]=fileName;
+                if (imgCriteria.getMetadata()){
+                    metadataFileCreator = new MetadataFileCreator();
+                    metadataFileCreator.getMetada(fileName);
+                }
             }
             document.close();
             ZipFiles zipFiles = new ZipFiles();
