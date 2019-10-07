@@ -9,11 +9,15 @@ buildscript{
 
 plugins {
     id 'java'
+    id 'org.springframework.boot' version '2.1.8.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 
+group = 'com.jalasoft.webservice'
+version = '0.0.1-SNAPSHOT'
 group 'WebService'
 version '1.0-SNAPSHOT'
 
@@ -41,6 +45,7 @@ dependencies {
     compile group: 'org.apache.tika', name: 'tika-parsers', version: '1.18'
 
     compile('org.springframework.boot:spring-boot-starter-log4j2')
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 
 }

@@ -17,6 +17,10 @@ public class LoggerController {
         logger.info("This is an INFO message.");
         logger.warn("This is a WARN message.");
         logger.error("You guessed it, an ERROR message.");
+        logger.debug("Debugging log");
+        logger.info("Info log");
+        logger.warn("Hey, This is a warning!");
+        logger.error("Oops! We have an Error. OK");
 
         return "Welcome to Spring Logging! Check the console to see the log messages.";
     }

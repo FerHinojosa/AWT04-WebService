@@ -13,7 +13,7 @@
     </root>
 
     <!-- Log everything at the TRACE level -->
-    <logger name="com.example" level="trace" additivity="false">
+    <logger name="com.jalasoft.webservice" level="trace" additivity="false">
         <appender-ref ref="Console" />
     </logger>
 </configuration>
