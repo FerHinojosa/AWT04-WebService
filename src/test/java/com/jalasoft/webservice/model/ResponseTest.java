@@ -31,15 +31,6 @@ public class ResponseTest {
     }
 
     /**
-     * Implements test for Url
-     */
-    @Test
-    public void getUrl() {
-        response.setUrl("www.jala.com");
-        assertEquals("www.jala.com", response.getUrl());
-    }
-
-    /**
      * Implements test for Message
      */
     @Test
