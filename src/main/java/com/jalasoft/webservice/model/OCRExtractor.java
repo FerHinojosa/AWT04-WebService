@@ -17,6 +17,8 @@ import com.jalasoft.webservice.utils.Utils;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.TesseractException;
 import net.sourceforge.tess4j.Tesseract;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * The class implements methods to convert PDF files into image files, Creates the Controller Model using Tesseract
@@ -27,6 +29,7 @@ import net.sourceforge.tess4j.Tesseract;
  */
 public class OCRExtractor implements IConvert {
     private OCRCriteria ocrCriteria;
+    private static final Logger logger = LogManager.getLogger(OCRExtractor.class);
 
     /**
      *
@@ -35,6 +38,7 @@ public class OCRExtractor implements IConvert {
      * @throws IOException get input/output exception to read files
      */
     public Response convert(Criteria criteria) throws IOException {
+        logger.info("OCR convert starting...");
         ocrCriteria = (OCRCriteria) criteria;
         ITesseract tesseract = new Tesseract();
         Utils fileManager = new Utils();
@@ -48,11 +52,12 @@ public class OCRExtractor implements IConvert {
             String result = tesseract.doOCR(imageFile);
             res.setStatus(Response.Status.Ok);
             res.setMessage(result);
+            logger.debug("OCR Extractor sucessfully");
             return res;
         } catch (TesseractException e){
             res.setStatus(Response.Status.BadRequest);
+            logger.error(e);
             return res;
-
         }
     }
 }

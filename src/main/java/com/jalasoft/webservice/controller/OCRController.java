@@ -12,6 +12,8 @@ import com.jalasoft.webservice.model.DBManager;
 import com.jalasoft.webservice.model.OCRCriteria;
 import com.jalasoft.webservice.model.OCRExtractor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.jalasoft.webservice.model.Response;
 import com.jalasoft.webservice.utils.Checksum;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
-
-import javax.management.Query;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -33,6 +33,7 @@ import java.security.NoSuchAlgorithmException;
 @RestController
 @RequestMapping ("/api/v1.0/ocr")
 public class OCRController{
+    Logger logger = LoggerFactory.getLogger(OCRController.class);
     /**
      *
      * @param file the parameter have the file path information
@@ -46,6 +47,7 @@ public class OCRController{
                                   @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException,
                                   NoSuchAlgorithmException {
 
+        logger.info("Starting OCR Controller");
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
         Response test = new Response();
@@ -53,6 +55,7 @@ public class OCRController{
         String checksumResult = checksum1.checksum(filePath);
         String pathDb = "";
         if (checksum.equals(checksumResult)){
+            logger.info("Verifying checksum - " + Thread.currentThread().getStackTrace());
             if (db.getPath(checksumResult).isEmpty()){
                 db.add(checksum,filePath);
             }else {

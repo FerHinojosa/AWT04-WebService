@@ -1,0 +1,426 @@
+2019-10-08 14:25:32 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 8512 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 14:25:32 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 14:25:45 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 14:25:45 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 14:25:47 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 14:25:50 [main] INFO  com.jalasoft.webservice.Main - Started Main in 20.455 seconds (JVM running for 22.4)
+2019-10-08 14:26:17 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 14:26:24 [http-nio-8080-exec-2] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 14:26:25 [http-nio-8080-exec-2] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 14:27:57 [http-nio-8080-exec-5] ERROR o.a.c.c.C.[.[.[.[dispatcherServlet] - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.nio.file.FileSystemException: C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\temp\music.wav: The process cannot access the file because it is being used by another process.
+
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.implDelete(WindowsFileSystemProvider.java:270)
+	at java.base/sun.nio.fs.AbstractFileSystemProvider.deleteIfExists(AbstractFileSystemProvider.java:110)
+	at java.base/java.nio.file.Files.deleteIfExists(Files.java:1180)
+	at java.base/java.nio.file.Files.copy(Files.java:3054)
+	at com.jalasoft.webservice.controller.FileManager.getFilePath(FileManager.java:32)
+	at com.jalasoft.webservice.controller.AudioController.convert(AudioController.java:58)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1039)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2019-10-08 14:31:56 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 8544 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 14:31:56 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 14:32:08 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 14:32:08 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 14:32:09 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 14:32:12 [main] INFO  com.jalasoft.webservice.Main - Started Main in 17.179 seconds (JVM running for 19.096)
+2019-10-08 14:32:13 [http-nio-8080-exec-9] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 14:32:18 [http-nio-8080-exec-9] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 14:32:18 [http-nio-8080-exec-9] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 14:34:31 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 8624 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 14:34:31 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 14:34:35 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 14:34:35 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 14:34:35 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 14:34:36 [main] INFO  com.jalasoft.webservice.Main - Started Main in 7.058 seconds (JVM running for 8.45)
+2019-10-08 14:35:12 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 14:35:16 [http-nio-8080-exec-2] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 14:35:16 [http-nio-8080-exec-2] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 14:39:13 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 5084 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 14:39:13 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 14:39:17 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 14:39:17 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 14:39:17 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 14:39:19 [main] INFO  com.jalasoft.webservice.Main - Started Main in 7.929 seconds (JVM running for 9.268)
+2019-10-08 14:39:26 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 14:39:30 [http-nio-8080-exec-1] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 14:39:30 [http-nio-8080-exec-1] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 14:42:34 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 3496 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 14:42:34 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 14:42:38 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 14:42:38 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 14:42:38 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 14:42:40 [main] INFO  com.jalasoft.webservice.Main - Started Main in 7.677 seconds (JVM running for 9.094)
+2019-10-08 14:42:53 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 14:42:53 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Starting OCR Controller
+2019-10-08 14:42:56 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Verifying metadata
+2019-10-08 14:42:57 [http-nio-8080-exec-1] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 14:42:57 [http-nio-8080-exec-1] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 14:42:57 [http-nio-8080-exec-1] ERROR c.j.w.controller.OCRController - The cheksum send is not match
+2019-10-08 14:43:20 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 1484 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 14:43:20 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 14:43:23 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 14:43:23 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 14:43:24 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 14:43:25 [main] INFO  com.jalasoft.webservice.Main - Started Main in 7.39 seconds (JVM running for 8.781)
+2019-10-08 14:43:48 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 14:43:49 [http-nio-8080-exec-2] INFO  c.j.w.controller.OCRController - Starting OCR Controller
+2019-10-08 14:43:51 [http-nio-8080-exec-2] INFO  c.j.w.controller.OCRController - Verifying metadata
+2019-10-08 14:43:52 [http-nio-8080-exec-2] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 14:43:52 [http-nio-8080-exec-2] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 14:43:53 [http-nio-8080-exec-2] ERROR c.j.w.controller.OCRController - The cheksum send is not match
+2019-10-08 15:45:49 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 1292 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+ - logStarting2019-10-08 15:45:49 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+ - logStartupProfileInfo2019-10-08 15:45:54 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+ - log2019-10-08 15:45:54 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+ - log2019-10-08 15:45:54 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+ - log2019-10-08 15:45:56 [main] INFO  com.jalasoft.webservice.Main - Started Main in 7.881 seconds (JVM running for 9.425)
+ - logStarted2019-10-08 15:46:27 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ - log2019-10-08 15:46:27 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Starting OCR Controller
+ - convert2019-10-08 15:46:30 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Verifying metadata
+ - convert2019-10-08 15:46:31 [http-nio-8080-exec-1] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+ - handleInitializableProblem2019-10-08 15:46:31 [http-nio-8080-exec-1] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+ - handleInitializableProblem2019-10-08 15:46:32 [http-nio-8080-exec-1] ERROR c.j.w.controller.OCRController - The cheksum send is not match
+ - convert2019-10-08 15:47:22 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 10052 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+ - logStarting2019-10-08 15:47:22 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+ - logStartupProfileInfo2019-10-08 15:47:25 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+ - log2019-10-08 15:47:25 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+ - log2019-10-08 15:47:26 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+ - log2019-10-08 15:47:27 [main] INFO  com.jalasoft.webservice.Main - Started Main in 7.554 seconds (JVM running for 8.912)
+ - logStarted2019-10-08 15:50:15 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+ - log2019-10-08 15:50:15 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Starting OCR Controller
+ - convert2019-10-08 15:50:18 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Verifying metadata
+ - convert2019-10-08 15:50:19 [http-nio-8080-exec-1] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+ - handleInitializableProblem2019-10-08 15:50:19 [http-nio-8080-exec-1] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+ - handleInitializableProblem2019-10-08 15:50:19 [http-nio-8080-exec-1] ERROR c.j.w.controller.OCRController - The cheksum send is not match
+ - convert2019-10-08 15:53:07 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 8144 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 15:53:07 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 15:53:12 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 15:53:12 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 15:53:12 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 15:53:14 [main] INFO  com.jalasoft.webservice.Main - Started Main in 8.812 seconds (JVM running for 10.28)
+2019-10-08 15:53:49 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 15:53:50 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Starting OCR Controller
+2019-10-08 15:53:52 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Verifying metadata
+2019-10-08 15:53:53 [http-nio-8080-exec-1] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 15:53:54 [http-nio-8080-exec-1] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 15:53:54 [http-nio-8080-exec-1] ERROR c.j.w.controller.OCRController - The cheksum send is not match
+2019-10-08 15:57:06 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 3728 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)logStarting
+2019-10-08 15:57:06 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: defaultlogStartupProfileInfo
+2019-10-08 15:57:09 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]log
+2019-10-08 15:57:09 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]log
+2019-10-08 15:57:10 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContextlog
+2019-10-08 15:57:11 [main] INFO  com.jalasoft.webservice.Main - Started Main in 7.208 seconds (JVM running for 8.734)logStarted
+2019-10-08 15:57:35 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'log
+2019-10-08 15:57:35 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Starting OCR Controllerconvert
+2019-10-08 15:57:38 [http-nio-8080-exec-1] INFO  c.j.w.controller.OCRController - Verifying metadataconvert
+2019-10-08 15:57:39 [http-nio-8080-exec-1] WARN  org.apache.tika.parsers.PDFParser - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+handleInitializableProblem
+2019-10-08 15:57:39 [http-nio-8080-exec-1] WARN  org.apache.tika.parser.SQLite3Parser - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.handleInitializableProblem
+2019-10-08 15:57:39 [http-nio-8080-exec-1] ERROR c.j.w.controller.OCRController - The cheksum send is not matchconvert
+2019-10-08 16:05:37 INFO  c.j.w.Main:50 - Starting Main on C303-20 with PID 4712 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 16:05:37 INFO  c.j.w.Main:648 - No active profile set, falling back to default profiles: default
+2019-10-08 16:05:44 INFO  o.a.c.c.StandardService:173 - Starting service [Tomcat]
+2019-10-08 16:05:44 INFO  o.a.c.c.StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 16:05:45 INFO  o.a.c.c.C.[.[.[/]:173 - Initializing Spring embedded WebApplicationContext
+2019-10-08 16:05:47 INFO  c.j.w.Main:59 - Started Main in 13.303 seconds (JVM running for 14.926)
+2019-10-08 16:06:10 INFO  o.a.c.c.C.[.[.[/]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 16:06:11 INFO  c.j.w.c.OCRController:61 - Starting OCR Controller
+2019-10-08 16:06:17 INFO  c.j.w.c.OCRController:73 - Verifying metadata
+2019-10-08 16:06:20 WARN  o.a.t.p.PDFParser:69 - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 16:06:21 WARN  o.a.t.p.SQLite3Parser:69 - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 16:06:23 ERROR c.j.w.c.OCRController:96 - The cheksum send is not match
+2019-10-08 16:24:02 INFO  c.j.w.Main:50 - Starting Main on C303-20 with PID 6476 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 16:24:02 INFO  c.j.w.Main:648 - No active profile set, falling back to default profiles: default
+2019-10-08 16:24:08 INFO  o.a.c.c.StandardService:173 - Starting service [Tomcat]
+2019-10-08 16:24:08 INFO  o.a.c.c.StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 16:24:09 INFO  o.a.c.c.C.[.[.[/]:173 - Initializing Spring embedded WebApplicationContext
+2019-10-08 16:24:10 INFO  c.j.w.Main:59 - Started Main in 11.32 seconds (JVM running for 13.699)
+2019-10-08 16:24:38 INFO  o.a.c.c.C.[.[.[/]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 16:24:38 INFO  c.j.w.c.OCRController:61 - Starting OCR Controller - [Ljava.lang.StackTraceElement;@3ea5edfc
+2019-10-08 16:24:42 INFO  c.j.w.c.OCRController:73 - Verifying metadata - [Ljava.lang.StackTraceElement;@5d730a01
+2019-10-08 16:24:45 WARN  o.a.t.p.PDFParser:69 - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 16:24:46 WARN  o.a.t.p.SQLite3Parser:69 - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 16:24:46 ERROR c.j.w.c.OCRController:96 - The cheksum send is not match - [Ljava.lang.StackTraceElement;@4c53444e
+2019-10-08 17:03:26 INFO  c.j.w.Main:50 - Starting Main on C303-20 with PID 7588 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 17:03:26 INFO  c.j.w.Main:648 - No active profile set, falling back to default profiles: default
+2019-10-08 17:03:30 INFO  o.a.c.c.StandardService:173 - Starting service [Tomcat]
+2019-10-08 17:03:30 INFO  o.a.c.c.StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 17:03:30 INFO  o.a.c.c.C.[.[.[/]:173 - Initializing Spring embedded WebApplicationContext
+2019-10-08 17:03:33 INFO  c.j.w.Main:59 - Started Main in 9.178 seconds (JVM running for 10.731)
+2019-10-08 17:04:37 INFO  o.a.c.c.C.[.[.[/]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 17:04:37 INFO  c.j.w.c.OCRController:61 - Starting OCR Controller - convert
+2019-10-08 17:04:40 INFO  c.j.w.c.OCRController:73 - Verifying metadata - convert
+2019-10-08 17:04:41 WARN  o.a.t.p.PDFParser:69 - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 17:04:41 WARN  o.a.t.p.SQLite3Parser:69 - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 17:04:42 ERROR c.j.w.c.OCRController:96 - The cheksum send is not match - convert
+2019-10-08 17:05:02 INFO  c.j.w.c.OCRController:61 - Starting OCR Controller - convert
+2019-10-08 17:05:02 ERROR o.a.c.c.C.[.[.[.[dispatcherServlet]:175 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.nio.file.FileSystemException: C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\temp\music.wav: The process cannot access the file because it is being used by another process.
+
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.implDelete(WindowsFileSystemProvider.java:270)
+	at java.base/sun.nio.fs.AbstractFileSystemProvider.deleteIfExists(AbstractFileSystemProvider.java:110)
+	at java.base/java.nio.file.Files.deleteIfExists(Files.java:1180)
+	at java.base/java.nio.file.Files.copy(Files.java:3054)
+	at com.jalasoft.webservice.controller.FileManager.getFilePath(FileManager.java:32)
+	at com.jalasoft.webservice.controller.AudioController.convert(AudioController.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1039)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2019-10-08 17:05:52 INFO  c.j.w.c.OCRController:61 - Starting OCR Controller - convert
+2019-10-08 17:05:52 ERROR o.a.c.c.C.[.[.[.[dispatcherServlet]:175 - Servlet.service() for servlet [dispatcherServlet] in context with path [] threw exception
+java.nio.file.FileSystemException: C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\temp\music.wav: The process cannot access the file because it is being used by another process.
+
+	at java.base/sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:92)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103)
+	at java.base/sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108)
+	at java.base/sun.nio.fs.WindowsFileSystemProvider.implDelete(WindowsFileSystemProvider.java:270)
+	at java.base/sun.nio.fs.AbstractFileSystemProvider.deleteIfExists(AbstractFileSystemProvider.java:110)
+	at java.base/java.nio.file.Files.deleteIfExists(Files.java:1180)
+	at java.base/java.nio.file.Files.copy(Files.java:3054)
+	at com.jalasoft.webservice.controller.FileManager.getFilePath(FileManager.java:32)
+	at com.jalasoft.webservice.controller.AudioController.convert(AudioController.java:62)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.springframework.web.method.support.InvocableHandlerMethod.doInvoke(InvocableHandlerMethod.java:190)
+	at org.springframework.web.method.support.InvocableHandlerMethod.invokeForRequest(InvocableHandlerMethod.java:138)
+	at org.springframework.web.servlet.mvc.method.annotation.ServletInvocableHandlerMethod.invokeAndHandle(ServletInvocableHandlerMethod.java:104)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.invokeHandlerMethod(RequestMappingHandlerAdapter.java:892)
+	at org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter.handleInternal(RequestMappingHandlerAdapter.java:797)
+	at org.springframework.web.servlet.mvc.method.AbstractHandlerMethodAdapter.handle(AbstractHandlerMethodAdapter.java:87)
+	at org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1039)
+	at org.springframework.web.servlet.DispatcherServlet.doService(DispatcherServlet.java:942)
+	at org.springframework.web.servlet.FrameworkServlet.processRequest(FrameworkServlet.java:1005)
+	at org.springframework.web.servlet.FrameworkServlet.doPost(FrameworkServlet.java:908)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:660)
+	at org.springframework.web.servlet.FrameworkServlet.service(FrameworkServlet.java:882)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:741)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:231)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.tomcat.websocket.server.WsFilter.doFilter(WsFilter.java:53)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.RequestContextFilter.doFilterInternal(RequestContextFilter.java:99)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.FormContentFilter.doFilterInternal(FormContentFilter.java:92)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.HiddenHttpMethodFilter.doFilterInternal(HiddenHttpMethodFilter.java:93)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.springframework.web.filter.CharacterEncodingFilter.doFilterInternal(CharacterEncodingFilter.java:200)
+	at org.springframework.web.filter.OncePerRequestFilter.doFilter(OncePerRequestFilter.java:118)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:193)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:166)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:202)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:96)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:526)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:139)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:92)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:74)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:343)
+	at org.apache.coyote.http11.Http11Processor.service(Http11Processor.java:408)
+	at org.apache.coyote.AbstractProcessorLight.process(AbstractProcessorLight.java:66)
+	at org.apache.coyote.AbstractProtocol$ConnectionHandler.process(AbstractProtocol.java:860)
+	at org.apache.tomcat.util.net.NioEndpoint$SocketProcessor.doRun(NioEndpoint.java:1587)
+	at org.apache.tomcat.util.net.SocketProcessorBase.run(SocketProcessorBase.java:49)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2019-10-08 17:17:24 INFO  c.j.w.Main:50 - Starting Main on C303-20 with PID 9872 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 17:17:24 INFO  c.j.w.Main:648 - No active profile set, falling back to default profiles: default
+2019-10-08 17:17:28 INFO  o.a.c.c.StandardService:173 - Starting service [Tomcat]
+2019-10-08 17:17:28 INFO  o.a.c.c.StandardEngine:173 - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 17:17:28 INFO  o.a.c.c.C.[.[.[/]:173 - Initializing Spring embedded WebApplicationContext
+2019-10-08 17:17:29 INFO  c.j.w.Main:59 - Started Main in 7.741 seconds (JVM running for 9.169)
+2019-10-08 17:17:42 INFO  o.a.c.c.C.[.[.[/]:173 - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2019-10-08 17:17:42 INFO  c.j.w.c.OCRController:61 - Starting OCR Controller - Method: convert
+2019-10-08 17:17:46 INFO  c.j.w.c.OCRController:73 - Verifying metadata - Method: convert
+2019-10-08 17:17:48 WARN  o.a.t.p.PDFParser:69 - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2019-10-08 17:17:48 WARN  o.a.t.p.SQLite3Parser:69 - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2019-10-08 17:17:49 ERROR c.j.w.c.OCRController:96 - The cheksum send is not match - Method: convert

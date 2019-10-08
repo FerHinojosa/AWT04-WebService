@@ -65,6 +65,7 @@ public class VideoController {
                              @RequestParam(value = "sizeY", defaultValue = "300") int size2,
                              @RequestParam(value = "format", defaultValue = "mp4") String format)
                              throws IOException, TikaException, SAXException, NoSuchAlgorithmException {
+
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
         Response response = new Response();
