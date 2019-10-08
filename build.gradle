@@ -45,7 +45,6 @@ dependencies {
     compile group: 'org.apache.tika', name: 'tika-parsers', version: '1.18'
 
     compile('org.springframework.boot:spring-boot-starter-log4j2')
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 
 }

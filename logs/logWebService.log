@@ -4,3 +4,71 @@
 2019-10-08 11:07:01 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
 2019-10-08 11:07:02 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
 2019-10-08 11:07:04 [main] INFO  com.jalasoft.webservice.Main - Started Main in 11.611 seconds (JVM running for 13.457)
+2019-10-08 11:12:38 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 5144 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 11:12:38 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 11:12:43 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 11:12:43 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 11:12:44 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 11:12:45 [main] INFO  com.jalasoft.webservice.Main - Started Main in 9.993 seconds (JVM running for 11.881)
+2019-10-08 11:14:29 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 8868 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 11:14:29 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 11:14:37 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 11:14:38 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 11:14:41 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 11:14:51 [main] INFO  com.jalasoft.webservice.Main - Started Main in 26.308 seconds (JVM running for 28.8)
+2019-10-08 11:15:51 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 928 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 11:15:51 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 11:15:57 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 11:15:57 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 11:15:58 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 11:16:00 [main] INFO  com.jalasoft.webservice.Main - Started Main in 12.012 seconds (JVM running for 14.074)
+2019-10-08 11:17:51 [main] INFO  com.jalasoft.webservice.Main - Starting Main on C303-20 with PID 3200 (C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService\build\classes\java\main started by RaulLaredo in C:\Users\RaulLaredo\Documents\FeatureLogger\AWT04-WebService)
+2019-10-08 11:17:51 [main] INFO  com.jalasoft.webservice.Main - No active profile set, falling back to default profiles: default
+2019-10-08 11:17:56 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2019-10-08 11:17:56 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/9.0.24]
+2019-10-08 11:17:57 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2019-10-08 11:17:59 [main] ERROR o.apache.catalina.util.LifecycleBase - Failed to start component [Connector[HTTP/1.1-8080]]
+org.apache.catalina.LifecycleException: Protocol handler start failed
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1008)
+	at org.apache.catalina.util.LifecycleBase.start(LifecycleBase.java:183)
+	at org.apache.catalina.core.StandardService.addConnector(StandardService.java:227)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.addPreviouslyRemovedConnectors(TomcatWebServer.java:263)
+	at org.springframework.boot.web.embedded.tomcat.TomcatWebServer.start(TomcatWebServer.java:195)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.startWebServer(ServletWebServerApplicationContext.java:297)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.finishRefresh(ServletWebServerApplicationContext.java:163)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:552)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:141)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:744)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:391)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1215)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1204)
+	at com.jalasoft.webservice.Main.main(Main.java:12)
+Caused by: java.net.BindException: Address already in use: bind
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:461)
+	at java.base/sun.nio.ch.Net.bind(Net.java:453)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
+	at java.base/sun.nio.ch.ServerSocketAdaptor.bind(ServerSocketAdaptor.java:80)
+	at org.apache.tomcat.util.net.NioEndpoint.initServerSocket(NioEndpoint.java:230)
+	at org.apache.tomcat.util.net.NioEndpoint.bind(NioEndpoint.java:213)
+	at org.apache.tomcat.util.net.AbstractEndpoint.bindWithCleanup(AbstractEndpoint.java:1124)
+	at org.apache.tomcat.util.net.AbstractEndpoint.start(AbstractEndpoint.java:1210)
+	at org.apache.coyote.AbstractProtocol.start(AbstractProtocol.java:585)
+	at org.apache.catalina.connector.Connector.startInternal(Connector.java:1005)
+	... 14 common frames omitted
+2019-10-08 11:17:59 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2019-10-08 11:18:00 [main] ERROR o.s.b.d.LoggingFailureAnalysisReporter - 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+The Tomcat connector configured to listen on port 8080 failed to start. The port may already be in use or the connector may be misconfigured.
+
+Action:
+
+Verify the connector's configuration, identify and stop any process that's listening on port 8080, or configure this application to listen on another port.
+
