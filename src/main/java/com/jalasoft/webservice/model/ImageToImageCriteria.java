@@ -19,8 +19,10 @@ public class ImageToImageCriteria extends Criteria {
     private String inputImagePath;
     private String outputImagePath;
     private String formatName;
+    private int height;
+    private int weight;
 
-    /**
+     /**
      * Gets input path.
      * @return input image path.
      */
@@ -67,4 +69,37 @@ public class ImageToImageCriteria extends Criteria {
     public void setFormatName(String formatName) {
         this.formatName = formatName;
     }
+
+    /**
+     * Gets height of the image.
+     * @return the height.
+     */
+    public int getHeight() {
+        return height;
+    }
+
+    /**
+     * Sets height of the image.
+     * @param height
+     */
+    public void setHeight(int height) {
+        this.height = height;
+    }
+
+    /**
+     * Gets weight of the image.
+     * @return
+     */
+    public int getWeight() {
+        return weight;
+    }
+
+    /**
+     * Sets weight of the image.
+     * @param weight
+     */
+    public void setWeight(int weight) {
+        this.weight = weight;
+    }
+
 }
