@@ -12,7 +12,7 @@ package com.jalasoft.webservice.model;
 import java.io.IOException;
 
 /**
- * The interface implements convert function for ImageConvert, videoConvert and OCRExtractor classes
+ * The interface implements convert function for ImageConvert, videoConvert and OCRExtractor classes.
  *
  * @author Andy Bazualdo on 9/23/19.
  * @version v1.0
@@ -20,5 +20,4 @@ import java.io.IOException;
 
 public interface IConvert {
     Response convert(Criteria criteria) throws IOException;
-
 }

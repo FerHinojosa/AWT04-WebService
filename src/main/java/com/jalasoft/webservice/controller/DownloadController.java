@@ -37,12 +37,12 @@ public class DownloadController {
         Utils utils = new Utils();
         try {
             File file = new File(utils.getPublic());
-            if (file.exists()){
+            if (file.exists()) {
                 response.setContentType("application/octet-stream");
                 InputStream inputStream = new BufferedInputStream(new FileInputStream(file));
                 FileCopyUtils.copy(inputStream,response.getOutputStream());
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }

@@ -11,8 +11,6 @@ package com.jalasoft.webservice.model;
 
 import java.io.File;
 import java.io.IOException;
-
-import com.jalasoft.webservice.db.QueryManager;
 import com.jalasoft.webservice.utils.Utils;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.TesseractException;
@@ -32,10 +30,11 @@ public class OCRExtractor implements IConvert {
     private static final Logger logger = LogManager.getLogger(OCRExtractor.class);
 
     /**
+     * This class convert PDF files into image files.
      *
-     * @param criteria the object have the parameters to start the method execution
-     * @return returns the result of the method and error message in case of error
-     * @throws IOException get input/output exception to read files
+     * @param criteria the object have the parameters to start the method execution.
+     * @return returns the result of the method and error message in case of error.
+     * @throws IOException get input/output exception to read files.
      */
     public Response convert(Criteria criteria) throws IOException {
         logger.info("OCR convert starting...");
@@ -45,9 +44,7 @@ public class OCRExtractor implements IConvert {
         tesseract.setLanguage(ocrCriteria.getLang());
         tesseract.setDatapath(fileManager.getThirdParty()+"/Tess4J/tessdata/");
         File imageFile = new File(ocrCriteria.getFilePath());
-
         Response res = new Response();
-
         try {
             String result = tesseract.doOCR(imageFile);
             res.setStatus(Response.Status.Ok);

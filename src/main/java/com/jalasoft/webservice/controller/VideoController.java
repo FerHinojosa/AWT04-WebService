@@ -19,12 +19,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- *The class is an endpoint for VideoConverter
+ * The class is an endpoint for VideoConverter.
  *
  * @author Isaac Vargas on 09/19/2019
  * @version v1.0
@@ -33,21 +32,21 @@ import java.security.NoSuchAlgorithmException;
 @RequestMapping("/api/v1.0/videoConv")
 public class VideoController {
     /**
-     * Converts to another type of video
-     * @param file has the file to be converted in another type
-     * @param nameFile has the nameFile of the output
-     * @param codec has the codec to be converted in another type
-     * @param bitRate has the bitrate to be converted in another type
-     * @param channels has the channels to be converted in another type
-     * @param samplingRate has the samplingrate to be converted in another type
-     * @param videoCodec has the videocodec to be converted in another type
-     * @param videoBitRate has the videobitrate to be converted in another type
-     * @param frameRate has the framerate to be converted in another type
-     * @param size1 has the first size to be converted in another type
-     * @param size2 has the second size to be converted in another type
-     * @param format has the format of the output
-     * @return type requested of video
-     * @throws IOException throws the input/output exceptions
+     * Converts to another type of video.
+     * @param file has the file to be converted in another type.
+     * @param nameFile has the nameFile of the output.
+     * @param codec has the codec to be converted in another type.
+     * @param bitRate has the bitrate to be converted in another type.
+     * @param channels has the channels to be converted in another type.
+     * @param samplingRate has the sampling rate to be converted in another type.
+     * @param videoCodec has the video codec to be converted in another type.
+     * @param videoBitRate has the video bit rate to be converted in another type.
+     * @param frameRate has the frame rate to be converted in another type.
+     * @param size1 has the first size to be converted in another type.
+     * @param size2 has the second size to be converted in another type.
+     * @param format has the format of the output.
+     * @return type requested of video.
+     * @throws IOException throws the input/output exceptions.
      */
     @PostMapping
     public Response convert (@RequestParam("file") MultipartFile file,
@@ -75,16 +74,15 @@ public class VideoController {
         Utils utils = new Utils();
         String fileTarget = utils.getPublic() + nameFile + "." + format ;
         IConvert video = new VideoConvert();
-
-        if (metadata){
+        if (metadata) {
             MetadataFileCreator metadataF =  new MetadataFileCreator();
             metadataF.getMetada(filePath);
         }
         String pathDb = "";
-        if (checksum.equals(checksumResult)){
-            if (db.getPath(checksumResult).isEmpty()){
+        if (checksum.equals(checksumResult)) {
+            if (db.getPath(checksumResult).isEmpty()) {
                 db.add(checksum,filePath);
-            }else {
+            } else {
                 pathDb= db.getPath(checksumResult);
             }
             cri.setFilePath(filePath);
@@ -99,10 +97,9 @@ public class VideoController {
             cri.setSize1(size1);
             cri.setSize2(size2);
             cri.setFormat(format);
-        }
-        else {
+        } else {
             response.setStatus(Response.Status.BadRequest);
-            response.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+            response.setMessage("The cheksum is incorrect, please try again.");
             return response;
         }
         return video.convert(cri);

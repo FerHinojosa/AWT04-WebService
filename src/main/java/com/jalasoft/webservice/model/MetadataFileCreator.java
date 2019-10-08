@@ -28,13 +28,14 @@ import org.xml.sax.SAXException;
  * @version v1.0
  */
 public class MetadataFileCreator {
+
     /**
-     * The method generates a json file based a path file
-     * @throws IOException trows input output exceptions
-     * @throws TikaException trows Tika exceptions
-     * @throws SAXException trows SAX exceptions
+     * The method generates a json file based a path file.
+     * @throws IOException trows input output exceptions.
+     * @throws TikaException trows Tika exceptions.
+     * @throws SAXException trows SAX exceptions.
      */
-    public void getMetada(String filepath) throws IOException, TikaException, SAXException{
+    public void getMetada(String filepath) throws IOException, TikaException, SAXException {
         //Assume that boy.jpg is in your current directory
         File file = new File(filepath);
         //Parser method parameters
@@ -44,13 +45,11 @@ public class MetadataFileCreator {
         FileInputStream inputStream = new FileInputStream(file);
         ParseContext context = new ParseContext();
         parser.parse(inputStream, handler, metadata, context);
-        System.out.println(handler.toString());
-        //getting the list of all meta data elements
+        //Getting the list of all meta data elements
         String[] metadataNames = metadata.names();
         Gson gson = new Gson();
         //convert java object to JSON format
         String json = gson.toJson(metadata);
-
         try {
             //write converted json data to a file named "CountryGSON.json"
             FileWriter writer = new FileWriter(filepath+".json");

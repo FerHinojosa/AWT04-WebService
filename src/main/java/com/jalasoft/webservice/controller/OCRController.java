@@ -11,7 +11,6 @@ package com.jalasoft.webservice.controller;
 import com.jalasoft.webservice.model.DBManager;
 import com.jalasoft.webservice.model.OCRCriteria;
 import com.jalasoft.webservice.model.OCRExtractor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import com.jalasoft.webservice.model.Response;
@@ -25,9 +24,9 @@ import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- *The class is an endpoit for OCR
+ * The class is an end point for OCR.
  *
- * @author Fernando Hinojosa on 09/23/2019
+ * @author Fernando Hinojosa on 09/23/2019.
  * @version v1.0
  */
 @RestController
@@ -36,17 +35,16 @@ public class OCRController{
     Logger logger = LoggerFactory.getLogger(OCRController.class);
     /**
      *
-     * @param file the parameter have the file path information
-     * @param lang the parameter have the language set to recognize the text
-     * @return returns a String with the text obtain and in case of error shows the error message
-     * @throws IOException control the input output exception to handle file used in the method
+     * @param file the parameter have the file path information.
+     * @param lang the parameter have the language set to recognize the text.
+     * @return returns a String with the text obtain and in case of error shows the error message.
+     * @throws IOException control the input output exception to handle file used in the method.
      */
     @PostMapping
     public Response OCRExtractor (@RequestParam("file") MultipartFile file,
                                   @RequestParam(value = "checksum",defaultValue = "false")String checksum,
                                   @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException,
                                   NoSuchAlgorithmException {
-
         logger.info("Starting OCR Controller");
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
@@ -58,19 +56,17 @@ public class OCRController{
             logger.info("Verifying checksum - " + Thread.currentThread().getStackTrace());
             if (db.getPath(checksumResult).isEmpty()){
                 db.add(checksum,filePath);
-            }else {
+            } else {
                 pathDb= db.getPath(checksumResult);
             }
             OCRExtractor ocr = new OCRExtractor();
             OCRCriteria ocrCriteria = new OCRCriteria(lang,filePath);
             test = ocr.convert(ocrCriteria);
             return test;
-        }
-        else {
+        } else {
             test.setStatus(Response.Status.BadRequest);
-            test.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+            test.setMessage("The cheksum is incorrect, please try again.");
             return test;
         }
-
     }
 }

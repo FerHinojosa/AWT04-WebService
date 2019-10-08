@@ -7,16 +7,15 @@
  * accordance with the terms of the license agreement you entered into
  * with Jalasoft.
  */
-
 package com.jalasoft.webservice.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
 /**
- * Implements DB connection
+ * Implements DB connection.
  *
- * @author Fernando Hinojosa on 10/02/2019
+ * @author Fernando Hinojosa on 10/02/2019.
  * @version v1.0
  */
 public class DBConnection {
@@ -42,11 +41,11 @@ public class DBConnection {
      * This classes set the connection with the DB.
      */
     private void init() {
-        try{
+        try {
             Class.forName("com.mysql.jdbc.Driver");
             dbconnection = DriverManager.getConnection(
                     "jdbc:mysql://localhost/webservicedb","root","");
-        }catch(Exception e){ e.printStackTrace();}
+        } catch(Exception e) { e.printStackTrace(); }
     }
 
     /**
@@ -60,8 +59,7 @@ public class DBConnection {
             } else if (connection.getConnection().isClosed()) {
                 connection = new DBConnection();
             }
-        }
-        catch (Exception e){ e.printStackTrace();}
+        } catch (Exception e) { e.printStackTrace(); }
         return connection;
     }
 }
