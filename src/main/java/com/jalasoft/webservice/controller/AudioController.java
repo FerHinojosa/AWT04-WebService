@@ -19,30 +19,29 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
 /**
- *The class is an endpoint for audio converter
+ * The class is an endpoint for audio converter.
  *
- * @author Raul Laredo on 09/19/2019
+ * @author Raul Laredo on 09/19/2019.
  * @version v1.0
  */
 @RestController
 @RequestMapping("/api/v1.0/audioConv")
 public class AudioController {
     /**
-     * Converts to another type of audio
-     * @param file has the file to be converted in another type
-     * @param nameFile has the nameFile of the output
-     * @param codec has the codec to be converted in another type
-     * @param bitRate has the bitrate to be converted in another type
-     * @param channels has the channels to be converted in another type
-     * @param samplingRate has the samplingrate to be converted in another type
-     * @param format has the format of the output
-     * @return type requested of audio
-     * @throws IOException throws the input/output exceptions
+     * Converts to another type of audio.
+     * @param file has the file to be converted in another type.
+     * @param nameFile has the nameFile of the output.
+     * @param codec has the codec to be converted in another type.
+     * @param bitRate has the bitrate to be converted in another type.
+     * @param channels has the channels to be converted in another type.
+     * @param samplingRate has the samplingrate to be converted in another type.
+     * @param format has the format of the output.
+     * @return type requested of audio.
+     * @throws IOException throws the input/output exceptions.
      */
     @PostMapping
     public Response convert (@RequestParam("file") MultipartFile file,
@@ -64,17 +63,16 @@ public class AudioController {
         Utils utils = new Utils();
         String fileTarget = utils.getPublic() + nameFile + "." + format ;
         IConvert audio = new AudioConvert();
-
-        if (metadata){
+        if (metadata) {
             MetadataFileCreator metadataF =  new MetadataFileCreator();
             metadataF.getMetada(filePath);
         }
         String pathDb = "";
-        if (checksum.equals(checksumResult)){
-            if (db.getPath(checksumResult).isEmpty()){
+        if (checksum.equals(checksumResult)) {
+            if (db.getPath(checksumResult).isEmpty()) {
                 db.add(checksum,filePath);
-            }else {
-                pathDb= db.getPath(checksumResult);
+            } else {
+                pathDb = db.getPath(checksumResult);
             }
             cri.setFilePath(filePath);
             cri.setTarget(fileTarget);
@@ -83,10 +81,9 @@ public class AudioController {
             cri.setChannels(channels);
             cri.setSamplingRate(samplingRate);
             cri.setFormat(format);
-        }
-        else {
+        } else {
             response.setStatus(Response.Status.BadRequest);
-            response.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+            response.setMessage("The cheksum is incorrect, please try again.");
             return response;
         }
         return audio.convert(cri);
