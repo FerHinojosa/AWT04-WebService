@@ -72,7 +72,7 @@ public class VideoCriteriaTest {
     @Test
     public void getFrameRate() {
         videoCriteria.setFrameRate(24);
-        assertEquals(24, videoCriteria.getSamplingRate());
+        assertEquals(24, videoCriteria.getFrameRate());
     }
 
     /**

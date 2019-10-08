@@ -1,10 +1,7 @@
 package com.jalasoft.webservice;
 
-import com.jalasoft.webservice.model.ImageConvert;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-
-import javax.swing.*;
 import java.io.IOException;
 
 @SpringBootApplication
