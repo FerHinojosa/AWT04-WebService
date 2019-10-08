@@ -51,7 +51,8 @@ public class Response {
      * @param
      */
     public void setUrl(String nameFile) {
-        String uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").path("file/").path(nameFile).toUriString();
+        String uri = ServletUriComponentsBuilder.fromCurrentContextPath().path("/download/").
+        path("file/").path(nameFile).toUriString();
         this.url = uri;
     }
 
@@ -85,9 +86,4 @@ public class Response {
         Conflict,
         InternalServerError
     }
-
 }
-
-
-
-

@@ -9,12 +9,6 @@
  */
 package com.jalasoft.webservice.controller;
 
-/**
- * Implements Image to image controller classes.
- *
- * @author Fernando Hinojosa on 10/08/2019
- * @version v1.0
- */
 import com.jalasoft.webservice.model.ImageToImageConvert;
 import com.jalasoft.webservice.model.ImageToImageCriteria;
 import com.jalasoft.webservice.utils.Checksum;
@@ -27,18 +21,23 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
+/**
+ * Implements Image to image controller classes.
+ *
+ * @author Fernando Hinojosa on 10/08/2019.
+ * @version v1.0
+ */
 @RestController
 @RequestMapping("/api/v1.0/imagetoimage")
 public class ImageToImageController {
 
     /**
-     * Converts image to the other extension format (PNG, JPG, GIF, TIFF)
-     * @param file  has the file to be converted in another type
-     * @param ext the parameter have the ext information
+     * Converts image to the other extension format (PNG, JPG, GIF, TIFF).
+     * @param file  has the file to be converted in another type.
+     * @param ext the parameter have the ext information.
      * @return type request the image.
      * @throws IOException
      */
@@ -58,15 +57,15 @@ public class ImageToImageController {
         ImageToImageConvert imageToImageConvert = new ImageToImageConvert();
         ImageToImageCriteria imageToImageCriteria = new ImageToImageCriteria();
         Utils utils = new Utils();
-        if (metadata){
+        if (metadata) {
             MetadataFileCreator metadataF =  new MetadataFileCreator();
             metadataF.getMetada(filePath);
         }
         String pathDb = "";
-        if (checksum.equals(checksumResult)){
-            if (db.getPath(checksumResult).isEmpty()){
+        if (checksum.equals(checksumResult)) {
+            if (db.getPath(checksumResult).isEmpty()) {
                 db.add(checksum,filePath);
-            }else {
+            } else {
                 pathDb= db.getPath(checksumResult);
             }
             imageToImageCriteria.setInputImagePath(filePath);
@@ -74,10 +73,9 @@ public class ImageToImageController {
             imageToImageCriteria.setFormatName(ext);
             imageToImageCriteria.setHeight(height);
             imageToImageCriteria.setWeight(weight);
-        }
-        else {
+        } else {
             response.setStatus(Response.Status.BadRequest);
-            response.setMessage("The cheksum send is not match with checksum generated. System works with md5.");
+            response.setMessage("The cheksum is incorrect, please try again.");
             return response;
         }
         response = imageToImageConvert.convert(imageToImageCriteria);

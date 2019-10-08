@@ -9,39 +9,32 @@
  */
 package com.jalasoft.webservice.model;
 
-import com.jalasoft.webservice.db.DBConnection;
-import com.jalasoft.webservice.db.QueryManager;
 import ws.schild.jave.*;
-
-import javax.management.Query;
 import java.io.File;
 import java.io.IOException;
 
 /**
  * Implements the video convert implementing IConvert for using in the conversion.
  *
- * @author Raul Laredo
+ * @author Raul Laredo on 9/23/19.
  * @version v1.0
  */
 public class AudioConvert implements IConvert {
 
     /**
-     * Converts the data video data type in another type using the criterias
+     * Converts audio extension in another type using the criteria.
      *
-     * @param criteria has the params of the convert method
-     * @return the video transformed in another video data type
+     * @param criteria has the params of the convert method.
+     * @return video transformed in another video data type.
      * @throws IOException
      */
     @Override
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
-
         try {
             AudioCriteria audiocri = (AudioCriteria) criteria;
-
             File source = new File(audiocri.getFilePath()) ;
             File target = new File(audiocri.getTarget());
-
             //Audio Attributes
             AudioAttributes audio = new AudioAttributes();
             audio.setCodec(audiocri.getCodec());
@@ -63,10 +56,8 @@ public class AudioConvert implements IConvert {
             String [] filePaths = new String[1];
             filePaths[0]=audiocri.getTarget();
             zipFiles.zipFiles(filePaths);
-
             return res;
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             res.setStatus(Response.Status.BadRequest);
             System.out.println("test 2");
             return res;

@@ -9,7 +9,6 @@
  */
 package com.jalasoft.webservice.model;
 
-import com.jalasoft.webservice.db.QueryManager;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
@@ -19,7 +18,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * The class implements methods to convert PDF files into image files
+ * The class implements methods to convert PDF files into image files.
  *
  * @author Andy Bazualdo on 9/23/19.
  * @version v1.0
@@ -34,7 +33,6 @@ public class ImageConvert implements IConvert{
         Response res = new Response();
         MetadataFileCreator metadataFileCreator;
         ImageCriteria imgCriteria = (ImageCriteria) criteria;
-
         try {
 
             String source = imgCriteria.getFilePath();
@@ -51,7 +49,6 @@ public class ImageConvert implements IConvert{
             int count = document.getNumberOfPages();
             String [] filePaths = new String[count];
             for (int page = 0; page < count; ++page) {
-
                 BufferedImage img = renderer.renderImageWithDPI(page, dpi, ImageType.RGB);
                 String fileName = destination + page + "." + ext;
                 ImageIOUtil.writeImage(img, fileName, 300);
@@ -60,18 +57,17 @@ public class ImageConvert implements IConvert{
                     metadataFileCreator = new MetadataFileCreator();
                     metadataFileCreator.getMetada(fileName);
                 }
+                filePaths[page] = fileName;
             }
             document.close();
             ZipFiles zipFiles = new ZipFiles();
             zipFiles.zipFiles(filePaths);
-
             res.setStatus(Response.Status.Ok);
             res.setUrl("0.zip");
             return res;
-        }   catch (Exception e) {
+        } catch (Exception e) {
             res.setStatus(Response.Status.BadRequest);
             return res;
-
         }
     }
 }

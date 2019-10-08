@@ -19,17 +19,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
-
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.security.NoSuchAlgorithmException;
 
 /**
- * Implements ImageController with the Imageconvert classes
- * @author Fernando Hinojosa on 09/24/2019
+ * Implements ImageController with the Image convert classes.
+ * @author Fernando Hinojosa on 09/24/2019.
  * @version v1.0
  */
 @RestController
@@ -37,20 +32,20 @@ import java.security.NoSuchAlgorithmException;
 public class ImageController {
 
     /**
-     * Implements the Convert classes
-     * @param file the parameter have the file path information
-     * @param dpi the parameter have the dpi information
-     * @param ext the parameter have the ext information
+     * Implements the Convert classes.
+     * @param file the parameter have the file path information.
+     * @param dpi the parameter have the dpi information.
+     * @param ext the parameter have the ext information.
      * @return
      * @throws IOException
      */
-        @PostMapping
-        public Response Convert (@RequestParam("file") MultipartFile file,
-                                 @RequestParam(value = "metadata",defaultValue = "false")boolean metadata,
-                                 @RequestParam(value = "checksum",defaultValue = "false")String checksum,
-                                 @RequestParam (value = "dpi", defaultValue = "") int dpi,
-                                 @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException,
-                                 NoSuchAlgorithmException, TikaException, SAXException {
+    @PostMapping
+    public Response Convert (@RequestParam("file") MultipartFile file,
+                             @RequestParam(value = "metadata",defaultValue = "false")boolean metadata,
+                             @RequestParam(value = "checksum",defaultValue = "false")String checksum,
+                             @RequestParam (value = "dpi", defaultValue = "") int dpi,
+                             @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException,
+                             NoSuchAlgorithmException, TikaException, SAXException {
             String filePath = FileManager.getFilePath(file);
             Checksum checksum1 = new Checksum();
             Response response = new Response();
@@ -64,11 +59,11 @@ public class ImageController {
                 metadataF.getMetada(filePath);
             }*/
             String pathDb = "";
-            if (checksum.equals(checksumResult)){
-                if (db.getPath(checksumResult).isEmpty()){
+            if (checksum.equals(checksumResult)) {
+                if (db.getPath(checksumResult).isEmpty()) {
                     db.add(checksum,filePath);
-                }else {
-                    pathDb= db.getPath(checksumResult);
+                } else {
+                    pathDb = db.getPath(checksumResult);
                 }
                 imageCriteria.setFilePath(filePath);
                 imageCriteria.setDpi(dpi);
@@ -78,7 +73,7 @@ public class ImageController {
             }
             else {
                 response.setStatus(Response.Status.BadRequest);
-                response.setMessage("The cheksum sent is incorrect");
+                response.setMessage("The cheksum is incorrect, please try again.");
                 return response;
             }
             response = img.convert(imageCriteria);

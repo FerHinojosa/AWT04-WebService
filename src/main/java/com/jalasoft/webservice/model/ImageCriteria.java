@@ -7,16 +7,15 @@
  * accordance with the terms of the license agreement you entered into
  * with Jalasoft.
  */
-
 package com.jalasoft.webservice.model;
 
 /**
  * Implements Image Criteria Class.
  *
- * @author Fernando Hinojosa on 09/24/2019
+ * @author Fernando Hinojosa on 09/24/2019.
  * @version v1.0
  */
-public class ImageCriteria extends Criteria{
+public class ImageCriteria extends Criteria {
     private int dpi;
     private String destinationPath;
     private String extension;
@@ -24,7 +23,7 @@ public class ImageCriteria extends Criteria{
 
     /**
      * Gets dpi resolution.
-     * @return dpi value
+     * @return dpi value.
      */
     public int getDpi() {
         return dpi;

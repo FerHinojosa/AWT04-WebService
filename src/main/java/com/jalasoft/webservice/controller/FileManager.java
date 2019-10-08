@@ -24,8 +24,14 @@ import java.nio.file.StandardCopyOption;
  * @version v1.0
  */
 public class FileManager {
-    public static String getFilePath(@RequestParam("file") MultipartFile file) throws IOException {
 
+    /**
+     * This classes return the file path.
+     * @param file the parameter have the file path information.
+     * @return string with the path of the file.
+     * @throws IOException
+     */
+    public static String getFilePath(@RequestParam("file") MultipartFile file) throws IOException {
         Utils utils = new Utils();
         String filePath = utils.getTemp() + file.getOriginalFilename();
         Path location = Paths.get(filePath);

@@ -9,12 +9,6 @@
  */
 package com.jalasoft.webservice.model;
 
-/**
- * Implements Image to image converts classes.
- *
- * @author Fernando Hinojosa on 10/08/2019
- * @version v1.0
- */
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -26,6 +20,8 @@ import java.io.IOException;
 /**
  * The class implements methods to convert Image to image using ImageIO to change the extension file.
  *
+ * @author Fernando Hinojosa on 10/08/2019.
+ * @version v1.0
  */
 public class ImageToImageConvert implements IConvert{
 
@@ -51,18 +47,15 @@ public class ImageToImageConvert implements IConvert{
             BufferedImage inputImage = ImageIO.read(inputStream);
             BufferedImage resized = resize(inputImage,weight, height);
             ImageIO.write(resized, ext, outputStream);
-
             outputStream.close();
             inputStream.close();
 
             response.setStatus(Response.Status.Ok);
             response.setUrl(destination.getName());
-
             ZipFiles zipFiles = new ZipFiles();
             String [] filePaths = new String[1];
             filePaths[0]=destination.getName();
             zipFiles.zipFiles(filePaths);
-
             return response;
         } catch (IOException e) {
             response.setStatus(Response.Status.BadRequest);
@@ -76,5 +69,5 @@ public class ImageToImageConvert implements IConvert{
         g2d.drawImage(tmp, 0, 0, null);
         g2d.dispose();
         return resized;
-}
+    }
 }

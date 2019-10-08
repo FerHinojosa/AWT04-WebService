@@ -40,7 +40,7 @@ public class ImageToImageCriteria extends Criteria {
 
     /**
      * Gets destination path.
-     * @return output image path
+     * @return output image path.
      */
     public String getOutputImagePath() {
         return outputImagePath;
@@ -101,5 +101,4 @@ public class ImageToImageCriteria extends Criteria {
     public void setWeight(int weight) {
         this.weight = weight;
     }
-
 }
