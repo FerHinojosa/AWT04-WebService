@@ -10,7 +10,7 @@
 package com.jalasoft.webservice.model;
 
 /**
- * The class implements methods to constructor, get and set methods
+ * The class implements methods to constructor, get and set methods.
  *
  * @author Andy Bazualdo on 9/24/19.
  * @version v1.0
@@ -19,10 +19,10 @@ public class OCRCriteria extends Criteria {
     private String lang;
 
     /**
-     * Constructor method
+     * Constructor method.
      *
-     * @param lang the parameter lang set the language used
-     * @param path the parameter saves the path file location
+     * @param lang the parameter lang set the language used.
+     * @param path the parameter saves the path file location.
      */
     public OCRCriteria(String lang, String path) {
         this.lang = lang;

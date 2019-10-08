@@ -16,7 +16,6 @@ package com.jalasoft.webservice.model;
  * @version v1.0
  */
 public class VideoCriteria extends Criteria {
-
      private String target;
      private String codec;
      private int bitRate;

@@ -11,9 +11,9 @@ package com.jalasoft.webservice.model;
 import com.jalasoft.webservice.db.QueryManager;
 
 /**
- * Implements DB Manager
+ * Implements DB Manager.
  *
- * @author Fernando Hinojosa on 10/03/2019
+ * @author Fernando Hinojosa on 10/03/2019.
  * @version v1.0
  */
 public class DBManager {
@@ -23,10 +23,11 @@ public class DBManager {
     }
 
     /**
-     * Implements Add classes
-     * @param checksum Unique value
-     * @param path Location the file
-     * @return true if save in the FileStorage table
+     * Implements Add classes.
+     *
+     * @param checksum Unique value.
+     * @param path Location the file.
+     * @return true if save in the FileStorage table.
      */
     public boolean add (String checksum, String path) {
         boolean result = queryManager.insert(checksum,path);
@@ -34,9 +35,10 @@ public class DBManager {
     }
 
     /**
+     * Return the path.
      *
-     * @param checksum Unique value
-     * @return the location the path
+     * @param checksum Unique value.
+     * @return the location the path.
      */
     public String getPath (String checksum) {
         String path = queryManager.getPath(checksum);
