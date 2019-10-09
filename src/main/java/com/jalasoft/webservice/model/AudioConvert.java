@@ -9,6 +9,7 @@
  */
 package com.jalasoft.webservice.model;
 
+import com.jalasoft.webservice.utils.Checksum;
 import ws.schild.jave.*;
 import java.io.File;
 import java.io.IOException;
@@ -31,10 +32,13 @@ public class AudioConvert implements IConvert {
     @Override
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
+        Checksum checksum = new Checksum();
+        MetadataFileCreator metadataFileCreator = new MetadataFileCreator();
         try {
             AudioCriteria audiocri = (AudioCriteria) criteria;
             File source = new File(audiocri.getFilePath()) ;
             File target = new File(audiocri.getTarget());
+            String zipName = checksum.checksum(audiocri.getTarget());
             //Audio Attributes
             AudioAttributes audio = new AudioAttributes();
             audio.setCodec(audiocri.getCodec());
@@ -53,13 +57,24 @@ public class AudioConvert implements IConvert {
             res.setUrl(source.getName());
 
             ZipFiles zipFiles = new ZipFiles();
-            String [] filePaths = new String[1];
-            filePaths[0]=audiocri.getTarget();
-            zipFiles.zipFiles(filePaths);
+            String [] filePaths;
+            if(audiocri.getMetadata()){
+                filePaths = new String[2];
+                filePaths[0]=audiocri.getTarget();
+                String fileMetaD;
+                fileMetaD = metadataFileCreator.getMetada(audiocri.getTarget());
+
+                filePaths[1]=fileMetaD;
+
+
+            } else {
+                filePaths = new String[1];
+                filePaths[0]=audiocri.getTarget();
+            }
+            zipFiles.zipFiles(filePaths,zipName);
             return res;
         } catch (Exception e) {
             res.setStatus(Response.Status.BadRequest);
-            System.out.println("test 2");
             return res;
         }
     }

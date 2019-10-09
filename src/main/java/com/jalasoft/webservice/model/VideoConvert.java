@@ -9,6 +9,7 @@
  */
 package com.jalasoft.webservice.model;
 
+import com.jalasoft.webservice.utils.Checksum;
 import ws.schild.jave.*;
 import java.io.File;
 import java.io.IOException;
@@ -31,10 +32,13 @@ public class VideoConvert implements IConvert {
     @Override
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
+        Checksum checksum = new Checksum();
+        MetadataFileCreator metadataFileCreator = new MetadataFileCreator();
         try {
              VideoCriteria videocri = (VideoCriteria)criteria;
              File source = new File(videocri.getFilePath()) ;
              File target = new File(videocri.getTarget());
+              String zipName = checksum.checksum(videocri.getTarget());
              //Audio Attributes
              AudioAttributes audio = new AudioAttributes();
              audio.setCodec(videocri.getCodec());
@@ -57,10 +61,22 @@ public class VideoConvert implements IConvert {
              res.setMessage("Video conversion succesfully.");
              res.setUrl(source.getName());
 
-             ZipFiles zipFiles = new ZipFiles();
-             String [] filePaths = new String[1];
-             filePaths[0]=videocri.getTarget();
-             zipFiles.zipFiles(filePaths);
+            ZipFiles zipFiles = new ZipFiles();
+            String [] filePaths;
+            if(videocri.getMetadata()){
+                filePaths = new String[2];
+                filePaths[0]=videocri.getTarget();
+                String fileMetaD;
+                fileMetaD = metadataFileCreator.getMetada(videocri.getTarget());
+
+                filePaths[1]=fileMetaD;
+
+
+            } else {
+                filePaths = new String[1];
+                filePaths[0]=videocri.getTarget();
+            }
+            zipFiles.zipFiles(filePaths,zipName);
 
              return res;
         }

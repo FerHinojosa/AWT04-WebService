@@ -70,7 +70,7 @@ public class ImageCriteria extends Criteria {
     }
 
     /**
-     * Gets extension.
+     * Gets metadata
      * @return extension.
      */
     public boolean getMetadata() {
@@ -78,10 +78,10 @@ public class ImageCriteria extends Criteria {
     }
 
     /**
-     * Sets extension.
+     * Sets metadata
      * @param extension set the value.
      */
-    public void setMetadata(boolean extension) {
+    public void setMetadata(boolean metadata) {
         this.metadata = metadata;
     }
 }

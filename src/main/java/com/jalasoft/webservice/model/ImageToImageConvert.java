@@ -9,6 +9,10 @@
  */
 package com.jalasoft.webservice.model;
 
+import com.jalasoft.webservice.utils.Checksum;
+import org.apache.tika.exception.TikaException;
+import org.xml.sax.SAXException;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -16,6 +20,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * The class implements methods to convert Image to image using ImageIO to change the extension file.
@@ -31,14 +36,16 @@ public class ImageToImageConvert implements IConvert{
      * @return response
      */
     @Override
-    public Response convert(Criteria criteria) {
+    public Response convert(Criteria criteria) throws IOException, NoSuchAlgorithmException, SAXException, TikaException {
+        Checksum checksum = new Checksum();
+        MetadataFileCreator metadataFileCreator = new MetadataFileCreator();
         Response response = new Response();
         ImageToImageCriteria imgCriteria = (ImageToImageCriteria) criteria;
         try {
             String source = imgCriteria.getInputImagePath();
             File destination = new File(imgCriteria.getOutputImagePath());
             String ext = imgCriteria.getFormatName();
-
+            String zipName = checksum.checksum(imgCriteria.getOutputImagePath());
             FileInputStream inputStream = new FileInputStream(source);
             FileOutputStream outputStream = new FileOutputStream(destination);
             int weight = imgCriteria.getWeight();
@@ -50,12 +57,26 @@ public class ImageToImageConvert implements IConvert{
             outputStream.close();
             inputStream.close();
 
+
+            ZipFiles zipFiles = new ZipFiles();
+            String [] filePaths;
+            if(imgCriteria.getMetadata()){
+                filePaths = new String[2];
+                filePaths[0]=imgCriteria.getOutputImagePath();
+                String fileMetaD;
+                fileMetaD = metadataFileCreator.getMetada(imgCriteria.getOutputImagePath());
+
+                filePaths[1]=fileMetaD;
+
+
+            } else {
+                filePaths = new String[1];
+                filePaths[0]=imgCriteria.getOutputImagePath();
+            }
+            zipFiles.zipFiles(filePaths,zipName);
+
             response.setStatus(Response.Status.Ok);
             response.setUrl(destination.getName());
-            ZipFiles zipFiles = new ZipFiles();
-            String [] filePaths = new String[1];
-            filePaths[0]=destination.getName();
-            zipFiles.zipFiles(filePaths);
             return response;
         } catch (IOException e) {
             response.setStatus(Response.Status.BadRequest);

@@ -54,10 +54,7 @@ public class ImageController {
             ImageConvert img = new ImageConvert();
             ImageCriteria imageCriteria = new ImageCriteria();
             Utils utils = new Utils();
-            /*if (metadata){
-                MetadataFileCreator metadataF =  new MetadataFileCreator();
-                metadataF.getMetada(filePath);
-            }*/
+
             String pathDb = "";
             if (checksum.equals(checksumResult)) {
                 if (db.getPath(checksumResult).isEmpty()) {

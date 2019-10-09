@@ -22,6 +22,7 @@ public class AudioCriteria extends Criteria {
     private int channels;
     private int samplingRate;
     private String format;
+    private boolean metadata;
 
     /**
      * Set target file.
@@ -117,5 +118,16 @@ public class AudioCriteria extends Criteria {
      */
     public void setFormat(String format) {
         this.format = format;
+    }
+    public boolean getMetadata() {
+        return metadata;
+    }
+
+    /**
+     * Sets metadata
+     * @param extension set the value.
+     */
+    public void setMetadata(boolean metadata) {
+        this.metadata = metadata;
     }
 }

@@ -73,10 +73,6 @@ public class VideoController {
         Utils utils = new Utils();
         String fileTarget = utils.getPublic() + nameFile + "." + format ;
         IConvert video = new VideoConvert();
-        if (metadata) {
-            MetadataFileCreator metadataF =  new MetadataFileCreator();
-            metadataF.getMetada(filePath);
-        }
         String pathDb = "";
         if (checksum.equals(checksumResult)) {
             if (db.getPath(checksumResult).isEmpty()) {
@@ -96,6 +92,7 @@ public class VideoController {
             cri.setSize1(size1);
             cri.setSize2(size2);
             cri.setFormat(format);
+            cri.setMetadata(metadata);
         } else {
             response.setStatus(Response.Status.BadRequest);
             response.setMessage("The cheksum is incorrect, please try again.");

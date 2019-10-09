@@ -57,10 +57,7 @@ public class ImageToImageController {
         ImageToImageConvert imageToImageConvert = new ImageToImageConvert();
         ImageToImageCriteria imageToImageCriteria = new ImageToImageCriteria();
         Utils utils = new Utils();
-        if (metadata) {
-            MetadataFileCreator metadataF =  new MetadataFileCreator();
-            metadataF.getMetada(filePath);
-        }
+
         String pathDb = "";
         if (checksum.equals(checksumResult)) {
             if (db.getPath(checksumResult).isEmpty()) {
@@ -73,6 +70,7 @@ public class ImageToImageController {
             imageToImageCriteria.setFormatName(ext);
             imageToImageCriteria.setHeight(height);
             imageToImageCriteria.setWeight(weight);
+            imageToImageCriteria.setMetadata(metadata);
         } else {
             response.setStatus(Response.Status.BadRequest);
             response.setMessage("The cheksum is incorrect, please try again.");

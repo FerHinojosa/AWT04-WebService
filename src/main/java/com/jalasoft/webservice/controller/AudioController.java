@@ -63,10 +63,6 @@ public class AudioController {
         Utils utils = new Utils();
         String fileTarget = utils.getPublic() + nameFile + "." + format ;
         IConvert audio = new AudioConvert();
-        if (metadata) {
-            MetadataFileCreator metadataF =  new MetadataFileCreator();
-            metadataF.getMetada(filePath);
-        }
         String pathDb = "";
         if (checksum.equals(checksumResult)) {
             if (db.getPath(checksumResult).isEmpty()) {
@@ -81,6 +77,7 @@ public class AudioController {
             cri.setChannels(channels);
             cri.setSamplingRate(samplingRate);
             cri.setFormat(format);
+            cri.setMetadata(metadata);
         } else {
             response.setStatus(Response.Status.BadRequest);
             response.setMessage("The cheksum is incorrect, please try again.");

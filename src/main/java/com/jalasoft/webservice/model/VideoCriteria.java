@@ -26,6 +26,7 @@ public class VideoCriteria extends Criteria {
      private int size1;
      private int size2;
      private String format;
+     private boolean metadata;
 
     /**
      * Set target file
@@ -177,5 +178,16 @@ public class VideoCriteria extends Criteria {
 
     public void setVideoCodec(String videoCodec) {
         this.videoCodec = videoCodec;
+    }
+    public boolean getMetadata() {
+        return metadata;
+    }
+
+    /**
+     * Sets metadata
+     * @param extension set the value.
+     */
+    public void setMetadata(boolean metadata) {
+        this.metadata = metadata;
     }
 }

@@ -9,6 +9,7 @@
  */
 package com.jalasoft.webservice.model;
 
+import com.jalasoft.webservice.utils.Checksum;
 import org.apache.pdfbox.pdmodel.PDDocument;
 import org.apache.pdfbox.rendering.ImageType;
 import org.apache.pdfbox.rendering.PDFRenderer;
@@ -31,7 +32,9 @@ public class ImageConvert implements IConvert{
      */
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
-        MetadataFileCreator metadataFileCreator;
+        MetadataFileCreator metadataFileCreator =new MetadataFileCreator();
+        Checksum checksum = new Checksum();
+
         ImageCriteria imgCriteria = (ImageCriteria) criteria;
         try {
 
@@ -39,30 +42,38 @@ public class ImageConvert implements IConvert{
             String destination = imgCriteria.getDestinationPath();
             int dpi = imgCriteria.getDpi();
             String ext = imgCriteria.getExtension();
+            String zipName = checksum.checksum(source);
 
-            //Loading an existing PDF document
+                    //Loading an existing PDF document
             File file = new File(source);
             PDDocument document = PDDocument.load(file);
 
             //Instantiating the PDFRenderer class
             PDFRenderer renderer = new PDFRenderer(document);
             int count = document.getNumberOfPages();
-            String [] filePaths = new String[count];
+            String [] filePaths;
+            if(imgCriteria.getMetadata()){
+                filePaths = new String[count*2];
+            } else {
+                filePaths = new String[count];
+            }
             for (int page = 0; page < count; ++page) {
                 BufferedImage img = renderer.renderImageWithDPI(page, dpi, ImageType.RGB);
                 String fileName = destination + page + "." + ext;
                 ImageIOUtil.writeImage(img, fileName, 300);
                 filePaths[page]=fileName;
                 if (imgCriteria.getMetadata()){
-                    metadataFileCreator = new MetadataFileCreator();
-                    metadataFileCreator.getMetada(fileName);
+                    String fileMetaD;
+                    fileMetaD = metadataFileCreator.getMetada(fileName);
+                    filePaths[page+count]=fileMetaD;
                 }
                 filePaths[page] = fileName;
             }
             document.close();
             ZipFiles zipFiles = new ZipFiles();
-            zipFiles.zipFiles(filePaths);
+            zipFiles.zipFiles(filePaths,zipName);
             res.setStatus(Response.Status.Ok);
+            res.setMessage("Success, file was converted");
             res.setUrl("0.zip");
             return res;
         } catch (Exception e) {
