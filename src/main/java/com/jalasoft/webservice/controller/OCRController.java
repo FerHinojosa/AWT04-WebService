@@ -41,8 +41,9 @@ public class OCRController{
     public Response OCRExtractor (@RequestParam("file") MultipartFile file,
                                   @RequestParam(value = "checksum",defaultValue = "false")String checksum,
                                   @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException,
-            NoSuchAlgorithmException, ParamInvalidException {
-        logger.info("Starting OCR Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+                                  NoSuchAlgorithmException, ParamInvalidException {
+        logger.info("Starting OCR Controller - Method: " +
+        new Object() {}.getClass().getEnclosingMethod().getName());
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
         Response test = new Response();

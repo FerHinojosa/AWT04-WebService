@@ -59,7 +59,8 @@ public class ImageController {
             ImageCriteria imageCriteria = new ImageCriteria();
             Utils utils = new Utils();
             if (metadata) {
-                logger.info("Verifying metadata - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+                logger.info("Verifying metadata - Method: " +
+                new Object() {}.getClass().getEnclosingMethod().getName());
                 MetadataFileCreator metadataF =  new MetadataFileCreator();
                 metadataF.getMetada(filePath);
             }

@@ -83,22 +83,18 @@ public class ImageCriteria extends Criteria {
         if(this.filePath==null){
             throw new ParamInvalidException(10, "filePath");
         }
-
         if (this.filePath.isEmpty()){
             throw new ParamInvalidException(11, "filePath");
         }
-
         if (this.dpi == 0){
             throw new ParamInvalidException(11, "bitRate");
         }
         if(this.extension==null){
             throw new ParamInvalidException(10, "filePath");
         }
-
         if (this.extension.isEmpty()){
             throw new ParamInvalidException(11, "filePath");
         }
-
         if (ext == "jpg" || ext == "gif" || ext == "jpeg"){
             throw new ParamInvalidException(12, "format");
         }

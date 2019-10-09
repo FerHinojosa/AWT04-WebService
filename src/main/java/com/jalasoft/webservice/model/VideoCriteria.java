@@ -204,19 +204,15 @@ public class VideoCriteria extends Criteria {
         if(this.filePath==null){
             throw new ParamInvalidException(10, "filePath");
         }
-
         if (this.filePath.isEmpty()){
             throw new ParamInvalidException(11, "filePath");
         }
-
         if(this.codec==null){
             throw new ParamInvalidException(10, "codec");
         }
-
         if (this.codec.isEmpty()){
             throw new ParamInvalidException(11, "codec");
         }
-
         if (this.bitRate == 0){
             throw new ParamInvalidException(11, "bitRate");
         }
@@ -226,35 +222,27 @@ public class VideoCriteria extends Criteria {
         if(this.samplingRate==0){
             throw new ParamInvalidException(12, "samplingRate");
         }
-
-
         if(this.videoCodec==null){
             throw new ParamInvalidException(10, "videoCodec");
         }
-
         if (this.videoCodec.isEmpty()){
             throw new ParamInvalidException(11, "videoCodec");
         }
-
         if(this.frameRate==0){
             throw new ParamInvalidException(12, "frameRate");
         }
         if(this.size1==0){
             throw new ParamInvalidException(12, "size1");
         }
-
         if(this.size2==0){
             throw new ParamInvalidException(10, "size2");
         }
-
         if(this.format==null){
             throw new ParamInvalidException(10, "format");
         }
-
         if (this.format.isEmpty()){
             throw new ParamInvalidException(11, "format");
         }
-
         if (ext == "mp4" || ext == "avi" || ext == "flv" || ext == "mov"){
             throw new ParamInvalidException(12, "format");
         }

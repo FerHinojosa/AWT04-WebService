@@ -133,37 +133,30 @@ public class AudioCriteria extends Criteria {
         if(this.filePath==null){
             throw new ParamInvalidException(10, "filePath");
         }
-
         if (this.filePath.isEmpty()){
             throw new ParamInvalidException(11, "filePath");
         }
         if(this.codec==null){
             throw new ParamInvalidException(10, "codec");
         }
-
         if (this.codec.isEmpty()){
             throw new ParamInvalidException(11, "codec");
         }
-
         if (this.bitRate == 0){
             throw new ParamInvalidException(11, "bitRate");
         }
         if(this.channels==0){
             throw new ParamInvalidException(12, "channels");
         }
-
         if(this.samplingRate==0){
             throw new ParamInvalidException(12, "samplingRate");
         }
-
         if(this.format==null){
             throw new ParamInvalidException(10, "format");
         }
-
         if (this.format.isEmpty()){
             throw new ParamInvalidException(11, "format");
         }
-
         if (ext == "jpg" || ext == "png" || ext == "gif" || ext == "bmp"){
             throw new ParamInvalidException(12, "format");
         }

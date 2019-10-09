@@ -22,7 +22,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
-
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -61,9 +60,10 @@ public class AudioController {
                              @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
                              @RequestParam(value = "format", defaultValue = "mp3") String format) throws IOException,
                              TikaException, SAXException, NoSuchAlgorithmException {
-        logger.info("Starting Audio Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
-        Validator validator = new Validator ();
-        if (!validator.isValidAudio(file.getOriginalFilename())){
+        logger.info("Starting Audio Controller - Method: " +
+        new Object() {}.getClass().getEnclosingMethod().getName());
+        Validator validator = new Validator();
+        if (!validator.isValidAudio(file.getOriginalFilename())) {
             logger.error("Invalid file: " + file.getOriginalFilename());
             response.setStatus(Response.Status.Conflict);
             response.setMessage("Invalid file: " + file.getOriginalFilename());
@@ -78,7 +78,8 @@ public class AudioController {
         String fileTarget = utils.getPublic() + nameFile + "." + format ;
         IConvert audio = new AudioConvert();
         if (metadata) {
-            logger.info("Verifying metadata - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.info("Verifying metadata - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             MetadataFileCreator metadataF =  new MetadataFileCreator();
             metadataF.getMetada(filePath);
         }

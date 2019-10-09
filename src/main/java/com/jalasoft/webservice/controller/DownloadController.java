@@ -37,8 +37,8 @@ public class DownloadController {
      */
     @GetMapping ("/file/{fileName:.+}")
     public void download(HttpServletResponse response, @PathVariable("fileName")String fileName) {
-
-        logger.info("Starting Download Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        logger.info("Starting Download Controller - Method: " +
+        new Object() {}.getClass().getEnclosingMethod().getName());
         Utils utils = new Utils();
         try {
             File file = new File(utils.getPublic());

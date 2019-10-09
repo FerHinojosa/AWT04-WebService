@@ -67,7 +67,8 @@ public class VideoController {
                              @RequestParam(value = "sizeY", defaultValue = "300") int size2,
                              @RequestParam(value = "format", defaultValue = "mp4") String format)
                              throws IOException, TikaException, SAXException, NoSuchAlgorithmException {
-        logger.info("Starting Video Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        logger.info("Starting Video Controller - Method: " +
+        new Object() {}.getClass().getEnclosingMethod().getName());
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
         Response response = new Response();
@@ -78,7 +79,8 @@ public class VideoController {
         String fileTarget = utils.getPublic() + nameFile + "." + format ;
         IConvert video = new VideoConvert();
         if (metadata) {
-            logger.info("Verifying metadata - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.info("Verifying metadata - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             MetadataFileCreator metadataF =  new MetadataFileCreator();
             metadataF.getMetada(filePath);
         }
@@ -102,7 +104,8 @@ public class VideoController {
             cri.setSize2(size2);
             cri.setFormat(format);
         } else {
-            logger.error("The cheksum send is not match - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.error("The cheksum send is not match - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             response.setStatus(Response.Status.BadRequest);
             response.setMessage("The cheksum is incorrect, please try again.");
             return response;

@@ -26,7 +26,6 @@ import org.xml.sax.SAXException;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
-
 /**
  * Implements Image to image controller classes.
  *
@@ -52,7 +51,8 @@ public class ImageToImageController {
                              @RequestParam(value = "height", defaultValue = "600") int height,
                              @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException,
                              NoSuchAlgorithmException, TikaException, SAXException {
-        logger.info("Starting Image to image Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        logger.info("Starting Image to image Controller - Method: " +
+        new Object() {}.getClass().getEnclosingMethod().getName());
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
         Response response = new Response();
@@ -62,7 +62,8 @@ public class ImageToImageController {
         ImageToImageCriteria imageToImageCriteria = new ImageToImageCriteria();
         Utils utils = new Utils();
         if (metadata) {
-            logger.info("Verifying metadata - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.info("Verifying metadata - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             MetadataFileCreator metadataF =  new MetadataFileCreator();
             metadataF.getMetada(filePath);
         }
@@ -79,7 +80,8 @@ public class ImageToImageController {
             imageToImageCriteria.setHeight(height);
             imageToImageCriteria.setWeight(weight);
         } else {
-            logger.error("The cheksum send is not match - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.error("The cheksum send is not match - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             response.setStatus(Response.Status.BadRequest);
             response.setMessage("The cheksum is incorrect, please try again.");
             return response;

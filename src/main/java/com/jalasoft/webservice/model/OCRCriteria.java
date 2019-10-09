@@ -61,22 +61,17 @@ public class OCRCriteria extends Criteria {
         if(this.filePath==null){
             throw new ParamInvalidException(10, "filePath");
         }
-
         if (this.filePath.isEmpty()){
             throw new ParamInvalidException(11, "filePath");
         }
-
         if(this.lang == null){
             throw new ParamInvalidException(10, "lang");
         }
-
         if(this.lang.isEmpty()){
             throw new ParamInvalidException(11, "lang");
         }
-
         if(!(this.lang == "eng" || this.lang =="spa")){
             throw new ParamInvalidException(12, "lang");
         }
-
     }
 }
