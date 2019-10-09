@@ -9,6 +9,7 @@
  */
 package com.jalasoft.webservice.model;
 
+import com.jalasoft.webservice.utils.Validator;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import ws.schild.jave.*;
@@ -23,6 +24,8 @@ import java.io.IOException;
  */
 public class AudioConvert implements IConvert {
     Logger logger = LoggerFactory.getLogger(AudioConvert.class);
+    Validator validator = new Validator();
+
     /**
      * Converts audio extension in another type using the criteria.
      *

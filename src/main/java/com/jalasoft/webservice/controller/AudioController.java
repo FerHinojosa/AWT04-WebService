@@ -12,6 +12,7 @@ package com.jalasoft.webservice.controller;
 import com.jalasoft.webservice.model.*;
 import com.jalasoft.webservice.utils.Checksum;
 import com.jalasoft.webservice.utils.Utils;
+import com.jalasoft.webservice.utils.Validator;
 import org.apache.tika.exception.TikaException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,7 @@ import java.security.NoSuchAlgorithmException;
 @RequestMapping("/api/v1.0/audioConv")
 public class AudioController {
     Logger logger = LoggerFactory.getLogger(AudioController.class);
+    Response response = new Response();
     /**
      * Converts to another type of audio.
      * @param file has the file to be converted in another type.
@@ -58,9 +60,15 @@ public class AudioController {
                              @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
                              @RequestParam(value = "format", defaultValue = "mp3") String format) throws IOException, TikaException, SAXException, NoSuchAlgorithmException {
         logger.info("Starting Audio Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        Validator validator = new Validator();
+        if (!validator.isValidAudio(file.getName())){
+            logger.error("Invalid file");
+            response.setStatus(Response.Status.Conflict);
+            response.setMessage("Invalid file");
+            return response;
+        }
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
-        Response response = new Response();
         DBManager db = new DBManager();
         String checksumResult = checksum1.checksum(filePath);
         AudioCriteria cri = new AudioCriteria();
