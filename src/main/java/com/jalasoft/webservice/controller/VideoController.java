@@ -81,7 +81,7 @@ public class VideoController {
         if (metadata) {
             logger.info("Verifying metadata - Method: " +
             new Object() {}.getClass().getEnclosingMethod().getName());
-            MetadataFileCreator metadataF =  new MetadataFileCreator();
+            MetadataFileCreator metadataF = new MetadataFileCreator();
             metadataF.getMetada(filePath);
         }
         String pathDb = "";

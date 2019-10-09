@@ -9,8 +9,6 @@
  */
 package com.jalasoft.webservice.model;
 
-import java.io.IOException;
-
 /**
  * The class is an paramInvalidException
  *
