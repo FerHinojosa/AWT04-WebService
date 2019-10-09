@@ -61,10 +61,10 @@ public class AudioController {
                              @RequestParam(value = "format", defaultValue = "mp3") String format) throws IOException, TikaException, SAXException, NoSuchAlgorithmException {
         logger.info("Starting Audio Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         Validator validator = new Validator();
-        if (!validator.isValidAudio(file.getName())){
-            logger.error("Invalid file");
+        if (!validator.isValidAudio(file.getOriginalFilename())){
+            logger.error("Invalid file: " + file.getOriginalFilename());
             response.setStatus(Response.Status.Conflict);
-            response.setMessage("Invalid file");
+            response.setMessage("Invalid file: " + file.getOriginalFilename());
             return response;
         }
         String filePath = FileManager.getFilePath(file);
