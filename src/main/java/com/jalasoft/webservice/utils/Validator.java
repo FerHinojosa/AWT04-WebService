@@ -1,28 +1,15 @@
 package com.jalasoft.webservice.utils;
 
+import com.jalasoft.webservice.model.Response;
 import org.apache.commons.io.FilenameUtils;
-
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Validator{
-
-    private Pattern pattern;
-    private Matcher matcher;
-
-    private static final String IMAGE_PATTERN =
-            "([^\\s]+(\\.(?i)(jpg|png|gif|bmp))$)";
-    private static final String VIDEO_PATTERN =
-            "([^\\s]+(\\.(?i)(avi|mp4|flv))$)";
-    private static final String LANG_PATTERN =
-            "([^\\s]+(\\.(?i)(eng|spa))$)";
-
-    public Validator(){
-        pattern = Pattern.compile(IMAGE_PATTERN);
-    }
-
+    Logger logger = LoggerFactory.getLogger(Validator.class);
+    Response response = new Response();
     /**
-     * Validate image with regular expression
+     * Validate image extensions
      * @param imageName image for validation
      * @return true valid image, false invalid image
      */
@@ -32,13 +19,39 @@ public class Validator{
         String ext =  FilenameUtils.getExtension(imageName);
         if (ext == "jpg" || ext == "png" || ext == "gif" || ext == "bmp") {
             validExt = true;
-        } else {
-            validExt = false;
+        }else{
+            logger.error("The  image extension is invalid: - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         }
         return validExt;
     }
 
+    public boolean isValidOCRImage(String imageName, String lang){
+        //Extension verification
+        boolean validExt = false;
+        boolean validLang = false;
+        String ext =  FilenameUtils.getExtension(imageName);
+        if (ext == "jpg" || ext == "jpeg") {
+            validExt = true;
+        }else{
+            logger.error("The  image extension is invalid: - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        }
+        if(lang=="eng"|| lang =="spa"){
+            validLang = true;
+        }else{
+            logger.error("The  language is not allowed extension is invalid: - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        }
+        return validExt && validLang;
+    }
 
-
-
+    public boolean isValidVideo(String imageName){
+        //Extension verification
+        boolean validExt = false;
+        String ext =  FilenameUtils.getExtension(imageName);
+        if (ext == "avi" || ext == "mp4" || ext == "flv" || ext == "mov") {
+            validExt = true;
+        } else {
+            logger.error("The  image extension is invalid: - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        }
+        return validExt;
+    }
 }

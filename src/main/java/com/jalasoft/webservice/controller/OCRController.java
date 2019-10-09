@@ -33,6 +33,7 @@ import java.security.NoSuchAlgorithmException;
 @RequestMapping ("/api/v1.0/ocr")
 public class OCRController{
     Logger logger = LoggerFactory.getLogger(OCRController.class);
+
     /**
      *
      * @param file the parameter have the file path information.
