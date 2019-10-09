@@ -13,6 +13,8 @@ import com.jalasoft.webservice.model.*;
 import com.jalasoft.webservice.utils.Checksum;
 import com.jalasoft.webservice.utils.Utils;
 import org.apache.tika.exception.TikaException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -30,7 +32,7 @@ import java.security.NoSuchAlgorithmException;
 @RestController
 @RequestMapping("/api/v1.0/image")
 public class ImageController {
-
+    Logger logger = LoggerFactory.getLogger(ImageController.class);
     /**
      * Implements the Convert classes.
      * @param file the parameter have the file path information.
@@ -46,6 +48,7 @@ public class ImageController {
                              @RequestParam (value = "dpi", defaultValue = "") int dpi,
                              @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException,
                              NoSuchAlgorithmException, TikaException, SAXException {
+            logger.info("Starting Image Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
             String filePath = FileManager.getFilePath(file);
             Checksum checksum1 = new Checksum();
             Response response = new Response();
@@ -55,6 +58,7 @@ public class ImageController {
             ImageCriteria imageCriteria = new ImageCriteria();
             Utils utils = new Utils();
             if (metadata) {
+                logger.info("Verifying metadata - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
                 MetadataFileCreator metadataF =  new MetadataFileCreator();
                 metadataF.getMetada(filePath);
             }
@@ -70,6 +74,7 @@ public class ImageController {
                 imageCriteria.setDestinationPath(utils.getPublic());
                 imageCriteria.setExtension(ext);
             } else {
+                logger.error("The cheksum send is not match - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
                 response.setStatus(Response.Status.BadRequest);
                 response.setMessage("The cheksum is incorrect, please try again.");
                 return response;

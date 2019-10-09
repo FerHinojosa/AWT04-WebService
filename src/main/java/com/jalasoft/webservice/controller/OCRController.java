@@ -33,7 +33,6 @@ import java.security.NoSuchAlgorithmException;
 @RequestMapping ("/api/v1.0/ocr")
 public class OCRController{
     Logger logger = LoggerFactory.getLogger(OCRController.class);
-
     /**
      *
      * @param file the parameter have the file path information.
@@ -46,7 +45,7 @@ public class OCRController{
                                   @RequestParam(value = "checksum",defaultValue = "false")String checksum,
                                   @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException,
                                   NoSuchAlgorithmException {
-        logger.info("Starting OCR Controller");
+        logger.info("Starting OCR Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
         Response test = new Response();
@@ -54,7 +53,7 @@ public class OCRController{
         String checksumResult = checksum1.checksum(filePath);
         String pathDb = "";
         if (checksum.equals(checksumResult)){
-            logger.info("Verifying checksum - " + Thread.currentThread().getStackTrace());
+            logger.error("The cheksum send is not match - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
             if (db.getPath(checksumResult).isEmpty()){
                 db.add(checksum,filePath);
             } else {

@@ -9,6 +9,8 @@
  */
 package com.jalasoft.webservice.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ws.schild.jave.*;
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +22,7 @@ import java.io.IOException;
  * @version v1.0
  */
 public class VideoConvert implements IConvert {
-
+    Logger logger = LoggerFactory.getLogger(VideoConvert.class);
       /**
       * Converts the data video data type in another type using the criterias
       *
@@ -31,6 +33,7 @@ public class VideoConvert implements IConvert {
     @Override
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
+        logger.info("Starting Response Model - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         try {
              VideoCriteria videocri = (VideoCriteria)criteria;
              File source = new File(videocri.getFilePath()) ;
@@ -61,9 +64,11 @@ public class VideoConvert implements IConvert {
              String [] filePaths = new String[5];
              filePaths[0]=videocri.getTarget();
              zipFiles.zipFiles(filePaths);
+            logger.info("Video conversion succesfully - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
              return res;
         } catch (Exception e) {
               res.setStatus(Response.Status.BadRequest);
+              logger.error("Video conversion Error - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
               return res;
         }
     }

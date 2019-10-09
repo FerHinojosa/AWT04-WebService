@@ -9,6 +9,8 @@
  */
 package com.jalasoft.webservice.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import ws.schild.jave.*;
 import java.io.File;
 import java.io.IOException;
@@ -20,7 +22,7 @@ import java.io.IOException;
  * @version v1.0
  */
 public class AudioConvert implements IConvert {
-
+    Logger logger = LoggerFactory.getLogger(AudioConvert.class);
     /**
      * Converts audio extension in another type using the criteria.
      *
@@ -31,6 +33,7 @@ public class AudioConvert implements IConvert {
     @Override
     public Response convert(Criteria criteria) throws IOException {
         Response res = new Response();
+        logger.info("Starting Response Model - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         try {
             AudioCriteria audiocri = (AudioCriteria) criteria;
             File source = new File(audiocri.getFilePath()) ;
@@ -55,9 +58,11 @@ public class AudioConvert implements IConvert {
             String [] filePaths = new String[5];
             filePaths[0]=audiocri.getTarget();
             zipFiles.zipFiles(filePaths);
+            logger.info("Audio conversion succesfully - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         } catch (Exception e) {
             res.setStatus(Response.Status.BadRequest);
+            logger.error("Audio conversion Error - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         }
     }

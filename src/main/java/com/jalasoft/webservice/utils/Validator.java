@@ -54,4 +54,16 @@ public class Validator{
         }
         return validExt;
     }
+
+    public boolean isValidAudio(String imageName){
+        //Extension verification
+        boolean validExt = false;
+        String ext =  FilenameUtils.getExtension(imageName);
+        if (ext == "mp3" || ext == "wav") {
+            validExt = true;
+        } else {
+            logger.error("The  image extension is invalid: - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        }
+        return validExt;
+    }
 }

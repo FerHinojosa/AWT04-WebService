@@ -34,7 +34,7 @@ import java.security.NoSuchAlgorithmException;
 @RestController
 @RequestMapping("/api/v1.0/audioConv")
 public class AudioController {
-    Logger logger = LoggerFactory.getLogger(OCRController.class);
+    Logger logger = LoggerFactory.getLogger(AudioController.class);
     /**
      * Converts to another type of audio.
      * @param file has the file to be converted in another type.
@@ -57,7 +57,7 @@ public class AudioController {
                              @RequestParam(value = "channels", defaultValue = "1") int channels,
                              @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
                              @RequestParam(value = "format", defaultValue = "mp3") String format) throws IOException, TikaException, SAXException, NoSuchAlgorithmException {
-        logger.info("Starting OCR Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        logger.info("Starting Audio Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
         Response response = new Response();
