@@ -15,6 +15,9 @@ import com.jalasoft.webservice.utils.Utils;
 import net.sourceforge.tess4j.ITesseract;
 import net.sourceforge.tess4j.TesseractException;
 import net.sourceforge.tess4j.Tesseract;
+import org.apache.logging.log4j.LogManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * The class implements methods to convert PDF files into image files, Creates the Controller Model using Tesseract
@@ -25,7 +28,7 @@ import net.sourceforge.tess4j.Tesseract;
  */
 public class OCRExtractor implements IConvert {
     private OCRCriteria ocrCriteria;
-
+    Logger logger = LoggerFactory.getLogger(OCRExtractor.class);
     /**
      * This class convert PDF files into image files.
      *
@@ -34,6 +37,7 @@ public class OCRExtractor implements IConvert {
      * @throws IOException get input/output exception to read files.
      */
     public Response convert(Criteria criteria) throws IOException {
+        logger.info("Starting Response Model - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         ocrCriteria = (OCRCriteria) criteria;
         ITesseract tesseract = new Tesseract();
         Utils fileManager = new Utils();
@@ -45,9 +49,16 @@ public class OCRExtractor implements IConvert {
             String result = tesseract.doOCR(imageFile);
             res.setStatus(Response.Status.Ok);
             res.setMessage(result);
+            logger.info("OCR conversion succesfully - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            ocrCriteria.Validate();
             return res;
-        } catch (TesseractException e){
+        } catch (TesseractException  e){
             res.setStatus(Response.Status.BadRequest);
+            logger.error("OCR conversion Error Tesseract- Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            return res;
+        } catch (ParamInvalidException e){
+            res.setStatus(Response.Status.BadRequest);
+            logger.error("OCR conversion Error param - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         }
     }

@@ -15,9 +15,8 @@ package com.jalasoft.webservice.model;
  * @author Fernando Hinojosa on 09/23/2019.
  * @version v1.0
  */
-
 public abstract class Criteria {
-    private String filePath;
+    protected String filePath;
 
     /**
      * Gets file path.
@@ -34,4 +33,6 @@ public abstract class Criteria {
     public void setFilePath(String filePath) {
         this.filePath = filePath;
     }
+
+    public abstract void Validate() throws ParamInvalidException;
 }

@@ -9,6 +9,9 @@
  */
 package com.jalasoft.webservice.model;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -24,7 +27,7 @@ import java.io.IOException;
  * @version v1.0
  */
 public class ImageToImageConvert implements IConvert{
-
+    Logger logger = LoggerFactory.getLogger(ImageToImageConvert.class);
     /**
      * Creates the Image to image convert using ImageIO to change the extension file.
      * @param criteria
@@ -33,6 +36,7 @@ public class ImageToImageConvert implements IConvert{
     @Override
     public Response convert(Criteria criteria) {
         Response response = new Response();
+        logger.info("Starting Response Model - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         ImageToImageCriteria imgCriteria = (ImageToImageCriteria) criteria;
         try {
             String source = imgCriteria.getInputImagePath();
@@ -56,9 +60,11 @@ public class ImageToImageConvert implements IConvert{
             String [] filePaths = new String[1];
             filePaths[0]=destination.getName();
             zipFiles.zipFiles(filePaths);
+            logger.info("Image to image conversion succesfully - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
             return response;
         } catch (IOException e) {
             response.setStatus(Response.Status.BadRequest);
+            logger.error("Image to image conversion Error - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
             return response;
         }
     }

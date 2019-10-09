@@ -9,6 +9,8 @@
  */
 package com.jalasoft.webservice.model;
 
+import org.apache.commons.io.FilenameUtils;
+
 /**
  * Implements the criteria needs for convert the video in other format.
  *
@@ -171,11 +173,78 @@ public class VideoCriteria extends Criteria {
         this.format = format;
     }
 
+    /**
+     * Get video codec
+     * @return video codec
+     */
     public String getVideoCodec() {
         return videoCodec;
     }
 
+    /**
+     * Set Video codec
+     * @param videoCodec for conversion
+     */
     public void setVideoCodec(String videoCodec) {
         this.videoCodec = videoCodec;
+    }
+
+
+
+    /**
+     * Implements the validation needs for convert the video in other format.
+     *
+     * @author Raul Laredo
+     * @version v1.0
+     */
+    @Override
+    public void Validate() throws ParamInvalidException {
+        String ext =  FilenameUtils.getExtension(this.filePath);
+
+        if(this.filePath==null){
+            throw new ParamInvalidException(10, "filePath");
+        }
+        if (this.filePath.isEmpty()){
+            throw new ParamInvalidException(11, "filePath");
+        }
+        if(this.codec==null){
+            throw new ParamInvalidException(10, "codec");
+        }
+        if (this.codec.isEmpty()){
+            throw new ParamInvalidException(11, "codec");
+        }
+        if (this.bitRate == 0){
+            throw new ParamInvalidException(11, "bitRate");
+        }
+        if(this.channels==0){
+            throw new ParamInvalidException(12, "channels");
+        }
+        if(this.samplingRate==0){
+            throw new ParamInvalidException(12, "samplingRate");
+        }
+        if(this.videoCodec==null){
+            throw new ParamInvalidException(10, "videoCodec");
+        }
+        if (this.videoCodec.isEmpty()){
+            throw new ParamInvalidException(11, "videoCodec");
+        }
+        if(this.frameRate==0){
+            throw new ParamInvalidException(12, "frameRate");
+        }
+        if(this.size1==0){
+            throw new ParamInvalidException(12, "size1");
+        }
+        if(this.size2==0){
+            throw new ParamInvalidException(10, "size2");
+        }
+        if(this.format==null){
+            throw new ParamInvalidException(10, "format");
+        }
+        if (this.format.isEmpty()){
+            throw new ParamInvalidException(11, "format");
+        }
+        if (ext == "mp4" || ext == "avi" || ext == "flv" || ext == "mov"){
+            throw new ParamInvalidException(12, "format");
+        }
     }
 }
