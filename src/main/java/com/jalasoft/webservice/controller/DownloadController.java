@@ -29,6 +29,7 @@ import java.io.*;
 @RestController
 @RequestMapping("/download")
 public class DownloadController {
+
     Logger logger = LoggerFactory.getLogger(DownloadController.class);
     /**
      * This classes display the file in the browser to download the file.
@@ -36,6 +37,7 @@ public class DownloadController {
      */
     @GetMapping ("/file/{fileName:.+}")
     public void download(HttpServletResponse response, @PathVariable("fileName")String fileName) {
+
         logger.info("Starting Download Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         Utils utils = new Utils();
         try {

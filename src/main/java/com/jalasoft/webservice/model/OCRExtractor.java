@@ -50,10 +50,15 @@ public class OCRExtractor implements IConvert {
             res.setStatus(Response.Status.Ok);
             res.setMessage(result);
             logger.info("OCR conversion succesfully - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            ocrCriteria.Validate();
             return res;
-        } catch (TesseractException e){
+        } catch (TesseractException  e){
             res.setStatus(Response.Status.BadRequest);
-            logger.error("OCR conversion Error - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.error("OCR conversion Error Tesseract- Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            return res;
+        } catch (ParamInvalidException e){
+            res.setStatus(Response.Status.BadRequest);
+            logger.error("OCR conversion Error param - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         }
     }

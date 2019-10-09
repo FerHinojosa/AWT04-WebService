@@ -48,7 +48,8 @@ public class ImageController {
                              @RequestParam (value = "dpi", defaultValue = "") int dpi,
                              @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException,
                              NoSuchAlgorithmException, TikaException, SAXException {
-            logger.info("Starting Image Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.info("Starting Image Controller - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             String filePath = FileManager.getFilePath(file);
             Checksum checksum1 = new Checksum();
             Response response = new Response();
@@ -74,7 +75,8 @@ public class ImageController {
                 imageCriteria.setDestinationPath(utils.getPublic());
                 imageCriteria.setExtension(ext);
             } else {
-                logger.error("The cheksum send is not match - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+                logger.error("The cheksum send is not match - Method: " +
+                new Object() {}.getClass().getEnclosingMethod().getName());
                 response.setStatus(Response.Status.BadRequest);
                 response.setMessage("The cheksum is incorrect, please try again.");
                 return response;

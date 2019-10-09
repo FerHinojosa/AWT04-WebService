@@ -90,10 +90,11 @@ public class Validator{
         //Extension verification
         boolean validExt = false;
         String ext =  FilenameUtils.getExtension(audioName);
-        if (ext == "mp3" ) { //|| ext == "wav"
+        if (ext == "mp3" || ext == "wav") {
             validExt = true;
         } else {
             logger.error("The  image extension is invalid: - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.error("Extension: " + ext + " is not allowed");
         }
         return validExt;
     }

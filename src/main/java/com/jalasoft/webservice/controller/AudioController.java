@@ -37,6 +37,7 @@ import java.security.NoSuchAlgorithmException;
 public class AudioController {
     Logger logger = LoggerFactory.getLogger(AudioController.class);
     Response response = new Response();
+
     /**
      * Converts to another type of audio.
      * @param file has the file to be converted in another type.
@@ -58,9 +59,10 @@ public class AudioController {
                              @RequestParam(value = "bitRate", defaultValue = "64000") int bitRate,
                              @RequestParam(value = "channels", defaultValue = "1") int channels,
                              @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
-                             @RequestParam(value = "format", defaultValue = "mp3") String format) throws IOException, TikaException, SAXException, NoSuchAlgorithmException {
+                             @RequestParam(value = "format", defaultValue = "mp3") String format) throws IOException,
+                             TikaException, SAXException, NoSuchAlgorithmException {
         logger.info("Starting Audio Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
-        Validator validator = new Validator();
+        Validator validator = new Validator ();
         if (!validator.isValidAudio(file.getOriginalFilename())){
             logger.error("Invalid file: " + file.getOriginalFilename());
             response.setStatus(Response.Status.Conflict);
@@ -95,7 +97,8 @@ public class AudioController {
             cri.setSamplingRate(samplingRate);
             cri.setFormat(format);
         } else {
-            logger.error("The cheksum send is not match - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.error("The cheksum send is not match - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             response.setStatus(Response.Status.BadRequest);
             response.setMessage("The cheksum is incorrect, please try again.");
             return response;

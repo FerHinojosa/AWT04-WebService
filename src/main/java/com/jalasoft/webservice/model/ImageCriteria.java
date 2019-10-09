@@ -9,6 +9,8 @@
  */
 package com.jalasoft.webservice.model;
 
+import org.apache.commons.io.FilenameUtils;
+
 /**
  * Implements Image Criteria Class.
  *
@@ -66,5 +68,39 @@ public class ImageCriteria extends Criteria {
      */
     public void setExtension(String extension) {
         this.extension = extension;
+    }
+
+
+    /**
+     * Implements the validation needs for the conversion of an image.
+     *
+     * @author Raul Laredo
+     * @version v1.0
+     */
+    @Override
+    public void Validate() throws ParamInvalidException {
+        String ext =  FilenameUtils.getExtension(this.filePath);
+        if(this.filePath==null){
+            throw new ParamInvalidException(10, "filePath");
+        }
+
+        if (this.filePath.isEmpty()){
+            throw new ParamInvalidException(11, "filePath");
+        }
+
+        if (this.dpi == 0){
+            throw new ParamInvalidException(11, "bitRate");
+        }
+        if(this.extension==null){
+            throw new ParamInvalidException(10, "filePath");
+        }
+
+        if (this.extension.isEmpty()){
+            throw new ParamInvalidException(11, "filePath");
+        }
+
+        if (ext == "jpg" || ext == "gif" || ext == "jpeg"){
+            throw new ParamInvalidException(12, "format");
+        }
     }
 }

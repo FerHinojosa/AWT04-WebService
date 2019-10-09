@@ -50,6 +50,12 @@ public class OCRCriteria extends Criteria {
         return;
     }
 
+    /**
+     * Implements the validation needs for getting the text of an image.
+     *
+     * @author Raul Laredo
+     * @version v1.0
+     */
     @Override
     public void Validate() throws ParamInvalidException {
         if(this.filePath==null){
@@ -67,5 +73,10 @@ public class OCRCriteria extends Criteria {
         if(this.lang.isEmpty()){
             throw new ParamInvalidException(11, "lang");
         }
+
+        if(!(this.lang == "eng" || this.lang =="spa")){
+            throw new ParamInvalidException(12, "lang");
+        }
+
     }
 }

@@ -32,7 +32,7 @@ public class ImageConvert implements IConvert{
      *  Creates the Controller Model using Tesseract with the wrapper Tess4J.
      *
      */
-    public Response convert(Criteria criteria) throws IOException {
+    public Response convert(Criteria criteria) {
         Response res = new Response();
         logger.info("Starting Response Model - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         ImageCriteria imgCriteria = (ImageCriteria) criteria;
@@ -62,10 +62,16 @@ public class ImageConvert implements IConvert{
             res.setStatus(Response.Status.Ok);
             res.setUrl("0.zip");
             logger.info("Image conversion succesful... - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            imgCriteria.Validate();
             return res;
-        } catch (Exception e) {
+        } catch (IOException e) {
             res.setStatus(Response.Status.BadRequest);
             logger.error("Image conversion Error - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            return res;
+        }
+        catch (ParamInvalidException e) {
+            res.setStatus(Response.Status.BadRequest);
+            logger.error("Image conversion Error Params- Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         }
     }

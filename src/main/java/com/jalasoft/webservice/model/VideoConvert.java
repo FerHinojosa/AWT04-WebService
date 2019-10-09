@@ -31,7 +31,7 @@ public class VideoConvert implements IConvert {
       * @throws IOException throws input/output exceptions
       */
     @Override
-    public Response convert(Criteria criteria) throws IOException {
+    public Response convert(Criteria criteria) {
         Response res = new Response();
         logger.info("Starting Response Model - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         try {
@@ -64,12 +64,20 @@ public class VideoConvert implements IConvert {
              String [] filePaths = new String[5];
              filePaths[0]=videocri.getTarget();
              zipFiles.zipFiles(filePaths);
-            logger.info("Video conversion succesfully - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+             logger.info("Video conversion succesfully - Method: " +
+             new Object() {}.getClass().getEnclosingMethod().getName());
+             videocri.Validate();
              return res;
-        } catch (Exception e) {
+        } catch (ParamInvalidException  e) {
               res.setStatus(Response.Status.BadRequest);
-              logger.error("Video conversion Error - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
-              return res;
+              logger.error("Video conversion Error Params - Method: " +
+              new Object() {}.getClass().getEnclosingMethod().getName());
+               return res;
+        } catch (EncoderException e) {
+            res.setStatus(Response.Status.BadRequest);
+            logger.error("Video conversion Error Encoder- Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
+            return res;
         }
     }
 }

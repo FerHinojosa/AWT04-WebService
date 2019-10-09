@@ -31,12 +31,12 @@ public class AudioConvert implements IConvert {
      *
      * @param criteria has the params of the convert method.
      * @return video transformed in another video data type.
-     * @throws IOException
      */
     @Override
-    public Response convert(Criteria criteria) throws IOException {
+    public Response convert(Criteria criteria) {
         Response res = new Response();
-        logger.info("Starting Response Model - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+        logger.info("Starting Response Model - Method: " +
+        new Object() {}.getClass().getEnclosingMethod().getName());
         try {
             AudioCriteria audiocri = (AudioCriteria) criteria;
             File source = new File(audiocri.getFilePath()) ;
@@ -55,17 +55,26 @@ public class AudioConvert implements IConvert {
             encoder.encode(new MultimediaObject(source), target, attrs);
 
             res.setStatus(Response.Status.Ok);
-            res.setMessage("Audio conversion succesfully.");
+            res.setMessage("Audio conversion successfully.");
             res.setUrl(source.getName());
             ZipFiles zipFiles = new ZipFiles();
             String [] filePaths = new String[5];
             filePaths[0]=audiocri.getTarget();
             zipFiles.zipFiles(filePaths);
-            logger.info("Audio conversion succesfully - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.info("Audio conversion succesfully - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
+            audiocri.Validate();
             return res;
-        } catch (Exception e) {
+        } catch (ParamInvalidException e) {
             res.setStatus(Response.Status.BadRequest);
-            logger.error("Audio conversion Error - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
+            logger.error("Audio conversion Param Error - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
+            return res;
+        }
+         catch (EncoderException e) {
+            res.setStatus(Response.Status.BadRequest);
+            logger.error("Audio conversion Encoder Error - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         }
     }
