@@ -12,7 +12,6 @@ package com.jalasoft.webservice.controller;
 import com.jalasoft.webservice.model.*;
 import com.jalasoft.webservice.utils.Checksum;
 import com.jalasoft.webservice.utils.Utils;
-import com.jalasoft.webservice.utils.Validator;
 import org.apache.tika.exception.TikaException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -63,13 +62,6 @@ public class AudioController {
                              TikaException, SAXException, NoSuchAlgorithmException {
         logger.info("Starting Audio Controller - Method: " +
         new Object() {}.getClass().getEnclosingMethod().getName());
-        Validator validator = new Validator();
-        if (!validator.isValidAudio(file.getOriginalFilename())) {
-            logger.error("Invalid file: " + file.getOriginalFilename());
-            response.setStatus(Response.Status.Conflict);
-            response.setMessage("Invalid file: " + file.getOriginalFilename());
-            return response;
-        }
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
         DBManager db = new DBManager();
