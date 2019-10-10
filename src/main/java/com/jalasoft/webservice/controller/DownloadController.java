@@ -41,7 +41,7 @@ public class DownloadController {
         new Object() {}.getClass().getEnclosingMethod().getName());
         Utils utils = new Utils();
         try {
-            File file = new File(utils.getPublic());
+            File file = new File(utils.getPublic() + fileName);
             if (file.exists()) {
                 response.setContentType("application/octet-stream");
                 InputStream inputStream = new BufferedInputStream(new FileInputStream(file));

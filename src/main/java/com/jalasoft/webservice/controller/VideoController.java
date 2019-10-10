@@ -21,6 +21,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
+
+import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -59,7 +61,7 @@ public class VideoController {
                              @RequestParam(value = "codec", defaultValue = "libmp3lame") String codec,
                              @RequestParam(value = "bitRate", defaultValue = "64000") int bitRate,
                              @RequestParam(value = "channels", defaultValue = "1") int channels,
-                             @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
+                                 @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
                              @RequestParam(value = "videoCodec", defaultValue = "h264") String videoCodec,
                              @RequestParam(value = "videoBitRate", defaultValue = "160000") int videoBitRate,
                              @RequestParam(value = "frameRate", defaultValue = "24") int frameRate,
@@ -77,19 +79,14 @@ public class VideoController {
         VideoCriteria cri = new VideoCriteria();
         Utils utils = new Utils();
         String fileTarget = utils.getPublic() + nameFile + "." + format ;
+        File tartgetFile = new File(fileTarget);
         IConvert video = new VideoConvert();
-        if (metadata) {
-            logger.info("Verifying metadata - Method: " +
-            new Object() {}.getClass().getEnclosingMethod().getName());
-            MetadataFileCreator metadataF = new MetadataFileCreator();
-            metadataF.getMetada(filePath);
-        }
         String pathDb = "";
         if (checksum.equals(checksumResult)) {
             if (db.getPath(checksumResult).isEmpty()) {
                 db.add(checksum,filePath);
             } else {
-                pathDb= db.getPath(checksumResult);
+                pathDb = db.getPath(checksumResult);
             }
             cri.setFilePath(filePath);
             cri.setTarget(fileTarget);
@@ -103,6 +100,7 @@ public class VideoController {
             cri.setSize1(size1);
             cri.setSize2(size2);
             cri.setFormat(format);
+            cri.setMetadata(metadata);
         } else {
             logger.error("The cheksum send is not match - Method: " +
             new Object() {}.getClass().getEnclosingMethod().getName());

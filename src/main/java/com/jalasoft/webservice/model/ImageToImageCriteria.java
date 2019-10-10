@@ -23,6 +23,7 @@ public class ImageToImageCriteria extends Criteria {
     private String formatName;
     private int height;
     private int weight;
+    private boolean metadata;
 
      /**
      * Gets input path.
@@ -102,6 +103,22 @@ public class ImageToImageCriteria extends Criteria {
      */
     public void setWeight(int weight) {
         this.weight = weight;
+    }
+
+    /**
+     * Gets metadata
+     * @return metadata set the value.
+     */
+    public boolean getMetadata() {
+        return metadata;
+    }
+
+    /**
+     * Sets metadata
+     * @param metadata set the value.
+     */
+    public void setMetadata(boolean metadata) {
+        this.metadata = metadata;
     }
 
     /**

@@ -21,6 +21,7 @@ public class ImageCriteria extends Criteria {
     private int dpi;
     private String destinationPath;
     private String extension;
+    private boolean metadata;
 
     /**
      * Gets dpi resolution.
@@ -70,6 +71,21 @@ public class ImageCriteria extends Criteria {
         this.extension = extension;
     }
 
+    /**
+     * Gets metadata
+     * @return extension.
+     */
+    public boolean getMetadata() {
+        return metadata;
+    }
+
+    /**
+     * Sets metadata
+     * @param extension set the value.
+     */
+    public void setMetadata(boolean metadata) {
+        this.metadata = metadata;
+    }
 
     /**
      * Implements the validation needs for the conversion of an image.

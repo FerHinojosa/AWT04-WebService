@@ -32,11 +32,11 @@ public class ZipFiles {
      *
      * @param filePaths
      */
-    public void zipFiles(String [] filePaths) {
+    public void zipFiles(String [] filePaths, String checksum) throws IOException{
         try {
             Utils util = new Utils();
-            File firstFile = new File(filePaths[0]);
-            String zipFileName = util.getPublic() + firstFile.getName().concat(".zip");
+            //File firstFile = new File(filePaths[0]);
+            String zipFileName = util.getPublic() + checksum.concat(".zip");
 
             FileOutputStream fos = new FileOutputStream(zipFileName);
             ZipOutputStream zos = new ZipOutputStream(fos);
