@@ -168,7 +168,7 @@ public class AudioCriteria extends Criteria {
         if (this.format.isEmpty()){
             throw new ParamInvalidException(11, "format");
         }
-        if (ext == "jpg" || ext == "png" || ext == "gif" || ext == "bmp"){
+        if (ext == "mp3" || ext == "wav"){
             throw new ParamInvalidException(12, "format");
         }
     }

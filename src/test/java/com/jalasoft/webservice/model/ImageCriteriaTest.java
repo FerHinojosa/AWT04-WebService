@@ -9,6 +9,7 @@
  */
 package com.jalasoft.webservice.model;
 
+import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
 
@@ -55,5 +56,10 @@ public class ImageCriteriaTest {
     public void getExtension() {
         imageCriteria.setExtension("jpg");
         assertEquals("jpg", imageCriteria.getExtension());
+    }
+
+    @Test
+    public void validate() {
+        String ext =  FilenameUtils.getExtension("C/");
     }
 }

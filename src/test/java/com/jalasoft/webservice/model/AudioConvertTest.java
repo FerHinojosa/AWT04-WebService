@@ -8,6 +8,7 @@ public class AudioConvertTest {
 
     @Test
     public void convert() {
+        AudioConvert audioConvert = new AudioConvert();
 
     }
 }
