@@ -28,7 +28,6 @@ import java.security.NoSuchAlgorithmException;
  */
 public class AudioConvert implements IConvert {
     Logger logger = LoggerFactory.getLogger(AudioConvert.class);
-    Validator validator = new Validator();
 
     /**
      * Converts audio extension in another type using the criteria.
@@ -47,7 +46,7 @@ public class AudioConvert implements IConvert {
             AudioCriteria audiocri = (AudioCriteria) criteria;
             File source = new File(audiocri.getFilePath()) ;
             File target = new File(audiocri.getTarget());
-            String zipName = checksum.checksum(audiocri.getTarget());
+            String zipName = checksum.checksum(audiocri.getFilePath());
             //Audio Attributes
             AudioAttributes audio = new AudioAttributes();
             audio.setCodec(audiocri.getCodec());
@@ -59,9 +58,6 @@ public class AudioConvert implements IConvert {
             attrs.setAudioAttributes(audio);
             Encoder encoder = new Encoder();
             encoder.encode(new MultimediaObject(source), target, attrs);
-            res.setStatus(Response.Status.Ok);
-            res.setMessage("Audio conversion successfully.");
-            res.setUrl(source.getName());
             ZipFiles zipFiles = new ZipFiles();
             String [] filePaths;
             if(audiocri.getMetadata()){
@@ -78,6 +74,9 @@ public class AudioConvert implements IConvert {
             logger.info("Audio conversion succesfully - Method: " +
             new Object() {}.getClass().getEnclosingMethod().getName());
             audiocri.Validate();
+            res.setStatus(Response.Status.Ok);
+            res.setMessage("Audio conversion successfully.");
+            res.setUrl(zipName + ".zip");
             return res;
         } catch (ParamInvalidException e) {
             res.setStatus(Response.Status.BadRequest);
@@ -87,20 +86,33 @@ public class AudioConvert implements IConvert {
         }
          catch (EncoderException e) {
             res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
             logger.error("Audio conversion Encoder Error - Method: " +
             new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         } catch (TikaException e) {
-            e.printStackTrace();
+            res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
+            logger.error("Audio conversion Encoder Error - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
+            logger.error("Audio conversion Encoder Error - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         } catch (IOException e) {
-            e.printStackTrace();
+            res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
+            logger.error("Audio conversion Encoder Error - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         } catch (SAXException e) {
-            e.printStackTrace();
+            res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
+            logger.error("Audio conversion Encoder Error - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         }
     }

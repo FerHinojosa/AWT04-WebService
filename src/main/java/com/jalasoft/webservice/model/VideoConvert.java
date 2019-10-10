@@ -45,7 +45,7 @@ public class VideoConvert implements IConvert {
              VideoCriteria videocri = (VideoCriteria)criteria;
              File source = new File(videocri.getFilePath()) ;
              File target = new File(videocri.getTarget());
-              String zipName = checksum.checksum(videocri.getTarget());
+             String zipName = checksum.checksum(videocri.getFilePath());
              //Audio Attributes
              AudioAttributes audio = new AudioAttributes();
              audio.setCodec(videocri.getCodec());
@@ -66,7 +66,7 @@ public class VideoConvert implements IConvert {
              encoder.encode(new MultimediaObject(source), target, attrs);
              res.setStatus(Response.Status.Ok);
              res.setMessage("Video conversion succesfully.");
-             res.setUrl(source.getName());
+             res.setUrl(zipName + ".zip");
             ZipFiles zipFiles = new ZipFiles();
             String [] filePaths;
             if(videocri.getMetadata()){
@@ -87,25 +87,39 @@ public class VideoConvert implements IConvert {
              return res;
         } catch (ParamInvalidException  e) {
               res.setStatus(Response.Status.BadRequest);
+              res.setMessage(e.getMessage());
               logger.error("Video conversion Error Params - Method: " +
               new Object() {}.getClass().getEnclosingMethod().getName());
-               return res;
+              return res;
         } catch (EncoderException e) {
             res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
             logger.error("Video conversion Error Encoder- Method: " +
             new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         } catch (TikaException e) {
-            e.printStackTrace();
+            res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
+            logger.error("Video conversion Error Encoder- Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
+            logger.error("Video conversion Error Encoder- Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         } catch (IOException e) {
-            e.printStackTrace();
+            res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
+            logger.error("Video conversion Error Encoder- Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         } catch (SAXException e) {
-            e.printStackTrace();
+            res.setStatus(Response.Status.BadRequest);
+            res.setMessage(e.getMessage());
+            logger.error("Video conversion Error Encoder- Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             return res;
         }
     }

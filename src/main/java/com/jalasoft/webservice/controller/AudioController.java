@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
+import java.io.File;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -76,6 +77,7 @@ public class AudioController {
         AudioCriteria cri = new AudioCriteria();
         Utils utils = new Utils();
         String fileTarget = utils.getPublic() + nameFile + "." + format ;
+        File tartgetFile = new File(fileTarget);
         IConvert audio = new AudioConvert();
         String pathDb = "";
         if (checksum.equals(checksumResult)) {
