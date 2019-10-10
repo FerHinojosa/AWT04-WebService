@@ -1,6 +1,7 @@
 package com.jalasoft.webservice.controller;
 
 import com.jalasoft.webservice.model.DBManager;
+import com.jalasoft.webservice.model.OCRCriteria;
 import com.jalasoft.webservice.model.OCRExtractor;
 import com.jalasoft.webservice.model.Response;
 import com.jalasoft.webservice.utils.Checksum;
@@ -24,9 +25,12 @@ public class OCRControllerTest {
             String checksumResult = checksum1.checksum(filePath);
             String pathDb = "";
             OCRExtractor ocr = new OCRExtractor();
+            OCRCriteria ocrCriteria = new OCRCriteria("eng", filePath);
+            test = ocr.convert(ocrCriteria);
         }catch (Exception e){
             thrown = true;
         }
     assertTrue(thrown);
     }
+
 }
