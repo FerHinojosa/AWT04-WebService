@@ -58,12 +58,6 @@ public class ImageController {
             ImageConvert img = new ImageConvert();
             ImageCriteria imageCriteria = new ImageCriteria();
             Utils utils = new Utils();
-            if (metadata) {
-                logger.info("Verifying metadata - Method: " +
-                new Object() {}.getClass().getEnclosingMethod().getName());
-                MetadataFileCreator metadataF = new MetadataFileCreator();
-                metadataF.getMetada(filePath);
-            }
             String pathDb = "";
             if (checksum.equals(checksumResult)) {
                 if (db.getPath(checksumResult).isEmpty()) {
@@ -75,6 +69,7 @@ public class ImageController {
                 imageCriteria.setDpi(dpi);
                 imageCriteria.setDestinationPath(utils.getPublic());
                 imageCriteria.setExtension(ext);
+                imageCriteria.setMetadata(metadata);
             } else {
                 logger.error("The cheksum send is not match - Method: " +
                 new Object() {}.getClass().getEnclosingMethod().getName());

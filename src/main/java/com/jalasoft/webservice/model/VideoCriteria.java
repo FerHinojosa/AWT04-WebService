@@ -28,6 +28,7 @@ public class VideoCriteria extends Criteria {
      private int size1;
      private int size2;
      private String format;
+     private boolean metadata;
 
     /**
      * Set target file
@@ -189,14 +190,22 @@ public class VideoCriteria extends Criteria {
         this.videoCodec = videoCodec;
     }
 
-
+    /**
+     * Gets metadata
+     * @return metadata value.
+     */
+    public boolean getMetadata() {
+        return metadata;
+    }
 
     /**
-     * Implements the validation needs for convert the video in other format.
-     *
-     * @author Raul Laredo
-     * @version v1.0
+     * Sets metadata
+     * @param metadata set the value.
      */
+    public void setMetadata(boolean metadata) {
+        this.metadata = metadata;
+        }
+
     @Override
     public void Validate() throws ParamInvalidException {
         String ext =  FilenameUtils.getExtension(this.filePath);

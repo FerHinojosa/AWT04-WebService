@@ -23,6 +23,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import org.xml.sax.SAXException;
+
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 
@@ -51,8 +54,7 @@ public class ImageToImageController {
                              @RequestParam(value = "height", defaultValue = "600") int height,
                              @RequestParam(value = "ext", defaultValue = "") String ext) throws IOException,
                              NoSuchAlgorithmException, TikaException, SAXException {
-        logger.info("Starting Image to image Controller - Method: " +
-        new Object() {}.getClass().getEnclosingMethod().getName());
+        logger.info("Starting Image to image Controller - Method: " +        new Object() {}.getClass().getEnclosingMethod().getName());
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
         Response response = new Response();
@@ -61,24 +63,20 @@ public class ImageToImageController {
         ImageToImageConvert imageToImageConvert = new ImageToImageConvert();
         ImageToImageCriteria imageToImageCriteria = new ImageToImageCriteria();
         Utils utils = new Utils();
-        if (metadata) {
-            logger.info("Verifying metadata - Method: " +
-            new Object() {}.getClass().getEnclosingMethod().getName());
-            MetadataFileCreator metadataF =  new MetadataFileCreator();
-            metadataF.getMetada(filePath);
-        }
         String pathDb = "";
         if (checksum.equals(checksumResult)) {
             if (db.getPath(checksumResult).isEmpty()) {
                 db.add(checksum,filePath);
             } else {
-                pathDb= db.getPath(checksumResult);
+                pathDb = db.getPath(checksumResult);
             }
             imageToImageCriteria.setInputImagePath(filePath);
-            imageToImageCriteria.setOutputImagePath(utils.getPublic()+"1"+"."+ext);
+            FileWriter writer = new FileWriter(utils.getPublic()+checksum+"."+ext);
+            imageToImageCriteria.setOutputImagePath(utils.getPublic()+checksum+"."+ext);
             imageToImageCriteria.setFormatName(ext);
             imageToImageCriteria.setHeight(height);
             imageToImageCriteria.setWeight(weight);
+            imageToImageCriteria.setMetadata(metadata);
         } else {
             logger.error("The cheksum send is not match - Method: " +
             new Object() {}.getClass().getEnclosingMethod().getName());

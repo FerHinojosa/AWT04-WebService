@@ -9,7 +9,11 @@
  */
 package com.jalasoft.webservice.model;
 
+import org.apache.tika.exception.TikaException;
+import org.xml.sax.SAXException;
+
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * The interface implements convert function for ImageConvert, videoConvert and OCRExtractor classes.
@@ -19,5 +23,5 @@ import java.io.IOException;
  */
 
 public interface IConvert {
-    Response convert(Criteria criteria) throws IOException;
+    Response convert(Criteria criteria) throws IOException, NoSuchAlgorithmException, SAXException, TikaException;
 }

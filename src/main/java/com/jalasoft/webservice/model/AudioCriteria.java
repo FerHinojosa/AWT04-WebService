@@ -24,6 +24,7 @@ public class AudioCriteria extends Criteria {
     private int channels;
     private int samplingRate;
     private String format;
+    private boolean metadata;
 
     /**
      * Set target file.
@@ -120,13 +121,23 @@ public class AudioCriteria extends Criteria {
     public void setFormat(String format) {
         this.format = format;
     }
+    
+    /**
+     * Gets metadata
+     * @return metadata set the value.
+     */
+    public boolean getMetadata() {
+        return metadata;
+    }
 
     /**
-     * Implements the validation needs for the conversion of an audio.
-     *
-     * @author Raul Laredo
-     * @version v1.0
+     * Sets metadata
+     * @param metadata set the value.
      */
+    public void setMetadata(boolean metadata) {
+        this.metadata = metadata;
+    }
+ 
     @Override
     public void Validate() throws ParamInvalidException {
         String ext =  FilenameUtils.getExtension(this.filePath);

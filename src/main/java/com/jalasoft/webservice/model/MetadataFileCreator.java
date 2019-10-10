@@ -35,7 +35,7 @@ public class MetadataFileCreator {
      * @throws TikaException trows Tika exceptions.
      * @throws SAXException trows SAX exceptions.
      */
-    public void getMetada(String filepath) throws IOException, TikaException, SAXException {
+    public String getMetada(String filepath) throws IOException, TikaException, SAXException {
         //Assume that boy.jpg is in your current directory
         File file = new File(filepath);
         //Parser method parameters
@@ -55,8 +55,10 @@ public class MetadataFileCreator {
             FileWriter writer = new FileWriter(filepath+".json");
             writer.write(json);
             writer.close();
+            return filepath+".json";
         } catch (IOException e) {
             e.printStackTrace();
+            return e.getMessage();
         }
     }
 }
