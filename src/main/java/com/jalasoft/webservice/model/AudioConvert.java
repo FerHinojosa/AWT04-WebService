@@ -10,7 +10,6 @@
 package com.jalasoft.webservice.model;
 
 import com.jalasoft.webservice.utils.Checksum;
-import com.jalasoft.webservice.utils.Validator;
 import org.apache.tika.exception.TikaException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

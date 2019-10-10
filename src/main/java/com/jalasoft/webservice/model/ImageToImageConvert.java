@@ -72,6 +72,7 @@ public class ImageToImageConvert implements IConvert{
             }
             zipFiles.zipFiles(filePaths,zipName);
             response.setStatus(Response.Status.Ok);
+            response.setMessage("Success, file was converted");
             response.setUrl(zipName + ".zip");
             logger.info("Image to image conversion succesfully - Method: " + 
             new Object() {}.getClass().getEnclosingMethod().getName());
