@@ -2,9 +2,7 @@ package com.jalasoft.webservice.model;
 
 import org.junit.Test;
 import ws.schild.jave.*;
-
 import java.io.File;
-
 import static org.junit.Assert.*;
 
 public class AudioConvertTest {

@@ -31,6 +31,7 @@ public class ImageControllerTest {
             imageCriteria.setDestinationPath(utils.getPublic());
             imageCriteria.setExtension("mp3");
             imageCriteria.setMetadata(true);
+            img.convert(imageCriteria);
         }catch (Exception e){
             thrown = true;
         }

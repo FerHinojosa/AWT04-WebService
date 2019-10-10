@@ -7,16 +7,13 @@ import com.jalasoft.webservice.model.IConvert;
 import com.jalasoft.webservice.utils.Checksum;
 import com.jalasoft.webservice.utils.Utils;
 import org.junit.Test;
-
 import java.io.File;
-
 import static org.junit.Assert.*;
 
 public class AudioControllerTest {
     @Test
     public void convert() {
         AudioController audioController = new AudioController();
-
         Checksum checksum1 = new Checksum();
         DBManager db = new DBManager();
         boolean thrown = false;
@@ -28,7 +25,6 @@ public class AudioControllerTest {
             File tartgetFile = new File(fileTarget);
             IConvert audio = new AudioConvert();
             String pathDb = "";
-
             cri.setFilePath("C/");
             cri.setTarget(fileTarget);
             cri.setCodec("mp3");
