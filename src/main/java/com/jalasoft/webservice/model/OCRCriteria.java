@@ -16,6 +16,7 @@ package com.jalasoft.webservice.model;
  * @version v1.0
  */
 public class OCRCriteria extends Criteria {
+
     private String lang;
 
     /**
@@ -47,5 +48,30 @@ public class OCRCriteria extends Criteria {
     public void setLang(String lang) {
         this.lang = lang;
         return;
+    }
+
+    /**
+     * Implements the validation needs for getting the text of an image.
+     *
+     * @author Raul Laredo
+     * @version v1.0
+     */
+    @Override
+    public void Validate() throws ParamInvalidException {
+        if(this.filePath==null){
+            throw new ParamInvalidException(10, "filePath");
+        }
+        if (this.filePath.isEmpty()){
+            throw new ParamInvalidException(11, "filePath");
+        }
+        if(this.lang == null){
+            throw new ParamInvalidException(10, "lang");
+        }
+        if(this.lang.isEmpty()){
+            throw new ParamInvalidException(11, "lang");
+        }
+        if(!(this.lang == "eng" || this.lang =="spa")){
+            throw new ParamInvalidException(12, "lang");
+        }
     }
 }

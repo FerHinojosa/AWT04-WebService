@@ -10,6 +10,8 @@
 package com.jalasoft.webservice.controller;
 
 import com.jalasoft.webservice.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,15 +30,18 @@ import java.io.*;
 @RequestMapping("/download")
 public class DownloadController {
 
+    Logger logger = LoggerFactory.getLogger(DownloadController.class);
     /**
      * This classes display the file in the browser to download the file.
      *
      */
     @GetMapping ("/file/{fileName:.+}")
     public void download(HttpServletResponse response, @PathVariable("fileName")String fileName) {
+        logger.info("Starting Download Controller - Method: " +
+        new Object() {}.getClass().getEnclosingMethod().getName());
         Utils utils = new Utils();
         try {
-            File file = new File(utils.getPublic());
+            File file = new File(utils.getPublic() + fileName);
             if (file.exists()) {
                 response.setContentType("application/octet-stream");
                 InputStream inputStream = new BufferedInputStream(new FileInputStream(file));

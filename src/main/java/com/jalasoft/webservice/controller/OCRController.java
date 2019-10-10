@@ -8,10 +8,9 @@
  * with Jalasoft.
  */
 package com.jalasoft.webservice.controller;
-import com.jalasoft.webservice.model.DBManager;
-import com.jalasoft.webservice.model.OCRCriteria;
-import com.jalasoft.webservice.model.OCRExtractor;
-import com.jalasoft.webservice.model.Response;
+import com.jalasoft.webservice.model.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import com.jalasoft.webservice.utils.Checksum;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -30,6 +29,7 @@ import java.security.NoSuchAlgorithmException;
 @RestController
 @RequestMapping ("/api/v1.0/ocr")
 public class OCRController{
+    Logger logger = LoggerFactory.getLogger(OCRController.class);
     /**
      *
      * @param file the parameter have the file path information.
@@ -42,25 +42,37 @@ public class OCRController{
                                   @RequestParam(value = "checksum",defaultValue = "false")String checksum,
                                   @RequestParam(value = "lang", defaultValue = "") String lang) throws IOException,
                                   NoSuchAlgorithmException {
-        String filePath = FileManager.getFilePath(file);
-        Checksum checksum1 = new Checksum();
-        Response test = new Response();
-        DBManager db = new DBManager();
-        String checksumResult = checksum1.checksum(filePath);
-        String pathDb = "";
-        if (checksum.equals(checksumResult)) {
-            if (db.getPath(checksumResult).isEmpty()) {
-                db.add(checksum,filePath);
+
+            logger.info("Starting OCR Controller - Method: " +
+                    new Object() {
+                    }.getClass().getEnclosingMethod().getName());
+            String filePath = FileManager.getFilePath(file);
+            Checksum checksum1 = new Checksum();
+            Response test = new Response();
+            DBManager db = new DBManager();
+            String checksumResult = checksum1.checksum(filePath);
+            String pathDb = "";
+        try {
+            if (checksum.equals(checksumResult)) {
+                logger.error("The cheksum send is not match - Method: " +
+                        new Object() {
+                        }.getClass().getEnclosingMethod().getName());
+                if (db.getPath(checksumResult).isEmpty()) {
+                    db.add(checksum, filePath);
+                } else {
+                    pathDb = db.getPath(checksumResult);
+                }
+                OCRExtractor ocr = new OCRExtractor();
+                OCRCriteria ocrCriteria = new OCRCriteria(lang, filePath);
+                test = ocr.convert(ocrCriteria);
+                return test;
             } else {
-                pathDb= db.getPath(checksumResult);
+                test.setStatus(Response.Status.BadRequest);
+                test.setMessage("The cheksum is incorrect, please try again.");
+                return test;
             }
-            OCRExtractor ocr = new OCRExtractor();
-            OCRCriteria ocrCriteria = new OCRCriteria(lang,filePath);
-            test = ocr.convert(ocrCriteria);
-            return test;
-        } else {
-            test.setStatus(Response.Status.BadRequest);
-            test.setMessage("The cheksum is incorrect, please try again.");
+        } catch (IOException e){
+            test.setMessage(e.getMessage());
             return test;
         }
     }

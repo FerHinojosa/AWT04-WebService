@@ -10,6 +10,8 @@
 package com.jalasoft.webservice.controller;
 
 import com.jalasoft.webservice.utils.Utils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
@@ -32,6 +34,8 @@ public class FileManager {
      * @throws IOException
      */
     public static String getFilePath(@RequestParam("file") MultipartFile file) throws IOException {
+        Logger logger = LoggerFactory.getLogger(FileManager.class);
+        logger.info("Starting File Manager Controller - Method: " + new Object() {}.getClass().getEnclosingMethod().getName());
         Utils utils = new Utils();
         String filePath = utils.getTemp() + file.getOriginalFilename();
         Path location = Paths.get(filePath);

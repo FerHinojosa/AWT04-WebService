@@ -10,9 +10,14 @@
 package com.jalasoft.webservice.model;
 
 import com.jalasoft.webservice.utils.Checksum;
+import org.apache.tika.exception.TikaException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.xml.sax.SAXException;
 import ws.schild.jave.*;
 import java.io.File;
 import java.io.IOException;
+import java.security.NoSuchAlgorithmException;
 
 /**
  * Implements the video convert implementing IConvert for using in the conversion.
@@ -21,7 +26,7 @@ import java.io.IOException;
  * @version v1.0
  */
 public class VideoConvert implements IConvert {
-
+    Logger logger = LoggerFactory.getLogger(VideoConvert.class);
       /**
       * Converts the data video data type in another type using the criterias
       *
@@ -30,10 +35,12 @@ public class VideoConvert implements IConvert {
       * @throws IOException throws input/output exceptions
       */
     @Override
-    public Response convert(Criteria criteria) throws IOException {
+    public Response convert(Criteria criteria) {
         Response res = new Response();
         Checksum checksum = new Checksum();
         MetadataFileCreator metadataFileCreator = new MetadataFileCreator();
+        logger.info("Starting Response Model - Method: " + 
+        new Object() {}.getClass().getEnclosingMethod().getName());
         try {
              VideoCriteria videocri = (VideoCriteria)criteria;
              File source = new File(videocri.getFilePath()) ;
@@ -60,29 +67,46 @@ public class VideoConvert implements IConvert {
              res.setStatus(Response.Status.Ok);
              res.setMessage("Video conversion succesfully.");
              res.setUrl(source.getName());
-
             ZipFiles zipFiles = new ZipFiles();
             String [] filePaths;
             if(videocri.getMetadata()){
                 filePaths = new String[2];
-                filePaths[0]=videocri.getTarget();
+                filePaths[0] = videocri.getTarget();
                 String fileMetaD;
                 fileMetaD = metadataFileCreator.getMetada(videocri.getTarget());
-
-                filePaths[1]=fileMetaD;
-
-
+                filePaths[1] = fileMetaD;
             } else {
                 filePaths = new String[1];
                 filePaths[0]=videocri.getTarget();
             }
             zipFiles.zipFiles(filePaths,zipName);
-
+             filePaths[0]=videocri.getTarget();
+             logger.info("Video conversion succesfully - Method: " +
+             new Object() {}.getClass().getEnclosingMethod().getName());
+             videocri.Validate();
              return res;
-        }
-        catch (Exception e) {
+        } catch (ParamInvalidException  e) {
               res.setStatus(Response.Status.BadRequest);
-              return res;
+              logger.error("Video conversion Error Params - Method: " +
+              new Object() {}.getClass().getEnclosingMethod().getName());
+               return res;
+        } catch (EncoderException e) {
+            res.setStatus(Response.Status.BadRequest);
+            logger.error("Video conversion Error Encoder- Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
+            return res;
+        } catch (TikaException e) {
+            e.printStackTrace();
+            return res;
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+            return res;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return res;
+        } catch (SAXException e) {
+            e.printStackTrace();
+            return res;
         }
     }
 }

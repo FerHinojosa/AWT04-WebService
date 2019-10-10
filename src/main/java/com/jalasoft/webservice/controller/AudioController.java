@@ -12,7 +12,10 @@ package com.jalasoft.webservice.controller;
 import com.jalasoft.webservice.model.*;
 import com.jalasoft.webservice.utils.Checksum;
 import com.jalasoft.webservice.utils.Utils;
+import com.jalasoft.webservice.utils.Validator;
 import org.apache.tika.exception.TikaException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,6 +34,9 @@ import java.security.NoSuchAlgorithmException;
 @RestController
 @RequestMapping("/api/v1.0/audioConv")
 public class AudioController {
+    Logger logger = LoggerFactory.getLogger(AudioController.class);
+    Response response = new Response();
+
     /**
      * Converts to another type of audio.
      * @param file has the file to be converted in another type.
@@ -52,11 +58,19 @@ public class AudioController {
                              @RequestParam(value = "bitRate", defaultValue = "64000") int bitRate,
                              @RequestParam(value = "channels", defaultValue = "1") int channels,
                              @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
-                             @RequestParam(value = "format", defaultValue = "mp3") String format)
-                             throws IOException, TikaException, SAXException, NoSuchAlgorithmException {
+                             @RequestParam(value = "format", defaultValue = "mp3") String format) throws IOException,
+                             TikaException, SAXException, NoSuchAlgorithmException {
+        logger.info("Starting Audio Controller - Method: " +
+        new Object() {}.getClass().getEnclosingMethod().getName());
+        Validator validator = new Validator();
+        if (!validator.isValidAudio(file.getOriginalFilename())) {
+            logger.error("Invalid file: " + file.getOriginalFilename());
+            response.setStatus(Response.Status.Conflict);
+            response.setMessage("Invalid file: " + file.getOriginalFilename());
+            return response;
+        }
         String filePath = FileManager.getFilePath(file);
         Checksum checksum1 = new Checksum();
-        Response response = new Response();
         DBManager db = new DBManager();
         String checksumResult = checksum1.checksum(filePath);
         AudioCriteria cri = new AudioCriteria();
@@ -79,6 +93,8 @@ public class AudioController {
             cri.setFormat(format);
             cri.setMetadata(metadata);
         } else {
+            logger.error("The cheksum send is not match - Method: " +
+            new Object() {}.getClass().getEnclosingMethod().getName());
             response.setStatus(Response.Status.BadRequest);
             response.setMessage("The cheksum is incorrect, please try again.");
             return response;
