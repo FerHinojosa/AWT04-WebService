@@ -61,7 +61,7 @@ public class VideoController {
                              @RequestParam(value = "codec", defaultValue = "libmp3lame") String codec,
                              @RequestParam(value = "bitRate", defaultValue = "64000") int bitRate,
                              @RequestParam(value = "channels", defaultValue = "1") int channels,
-                                 @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
+                             @RequestParam(value = "samplingRate", defaultValue = "22050") int samplingRate,
                              @RequestParam(value = "videoCodec", defaultValue = "h264") String videoCodec,
                              @RequestParam(value = "videoBitRate", defaultValue = "160000") int videoBitRate,
                              @RequestParam(value = "frameRate", defaultValue = "24") int frameRate,

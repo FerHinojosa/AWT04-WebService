@@ -18,7 +18,7 @@ import static org.junit.Assert.assertEquals;
  * @author Raul Laredo
  * @version v1.0
  */
-public class OCRCriteriaTest extends Criteria {
+public class OCRCriteriaTest {
     private final OCRCriteria ocrCriteria = new OCRCriteria("eng", "C:/");
 
     /**

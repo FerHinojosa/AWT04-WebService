@@ -9,8 +9,10 @@
  */
 package com.jalasoft.webservice.model;
 
+import org.apache.commons.io.FilenameUtils;
 import org.junit.Test;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Implements test for the audio Criteria class
@@ -20,13 +22,18 @@ import static org.junit.Assert.assertEquals;
  */
 public class AudioCriteriaTest {
     private final AudioCriteria audioCriteria = new AudioCriteria();
-
+    private String target = "C/";
+    private String codec="mp3";
+    private int bitRate=3500;
+    private int channels=1;
+    private int samplingRate=2200;
+    private String format="wav";
     /**
      * Implements test for File Path
      */
     @Test
     public void getFilePath() {
-        audioCriteria.setFilePath("C/");
+        audioCriteria.setFilePath(target);
         assertEquals("C/", audioCriteria.getFilePath());
     }
 
@@ -44,7 +51,7 @@ public class AudioCriteriaTest {
      */
     @Test
     public void getCodec() {
-        audioCriteria.setCodec("mp3");
+        audioCriteria.setCodec(codec);
         assertEquals("mp3", audioCriteria.getCodec());
     }
 
@@ -53,7 +60,7 @@ public class AudioCriteriaTest {
      */
     @Test
     public void getBitRate() {
-        audioCriteria.setBitRate(3500);
+        audioCriteria.setBitRate(bitRate);
         assertEquals(3500, audioCriteria.getBitRate());
     }
 
@@ -62,7 +69,7 @@ public class AudioCriteriaTest {
      */
     @Test
     public void getChannels() {
-        audioCriteria.setChannels(1);
+        audioCriteria.setChannels(channels);
         assertEquals(1, audioCriteria.getChannels());
     }
 
@@ -71,8 +78,8 @@ public class AudioCriteriaTest {
      */
     @Test
     public void getSamplingRate() {
-        audioCriteria.setSamplingRate(22058);
-        assertEquals(22058, audioCriteria.getSamplingRate());
+        audioCriteria.setSamplingRate(samplingRate);
+        assertEquals(2200, audioCriteria.getSamplingRate());
     }
 
     /**
@@ -80,7 +87,35 @@ public class AudioCriteriaTest {
      */
     @Test
     public void getFormat() {
-        audioCriteria.setFormat("mp3");
-        assertEquals("mp3", audioCriteria.getFormat());
+        audioCriteria.setFormat(format);
+        assertEquals("wav", audioCriteria.getFormat());
+    }
+
+    @Test
+    public void validate() throws ParamInvalidException {
+        boolean thrown = false;
+        if(this.codec==null){
+            throw new ParamInvalidException(10, "codec");
+        }
+        if (this.codec.isEmpty()){
+            throw new ParamInvalidException(11, "codec");
+        }
+        if (this.bitRate == 0){
+            throw new ParamInvalidException(11, "bitRate");
+        }
+        if(this.channels==0){
+            throw new ParamInvalidException(12, "channels");
+        }
+        if(this.samplingRate==0){
+            throw new ParamInvalidException(12, "samplingRate");
+        }
+        if(this.format==null){
+            throw new ParamInvalidException(10, "format");}
+        try {
+            audioCriteria.Validate();
+        } catch (ParamInvalidException e) {
+            thrown= true;
+        }
+        assertTrue(thrown);
     }
 }
