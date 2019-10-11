@@ -1,55 +1,30 @@
-## DockerCompose
+# WebService AWT04
 
-1. Clone this project 
-2. Install docker compose
-   sudo apt-get install docker-compose
-3. Go to this path /src/usr/AWT04-WebService
-4. Run
-   docker-compose up -d
-5. Install Postman and paste this path:
-	http://localhost:8080/api/v1.0/hello
-   Select option(Get, Post, Put, Delete)
+The web service is focused to make file convertions, OCR.
+e.g. convert jpge file to png.
 
+Also the service validates checksum using md5 and generates metada.json files of the converted files.
 
-## Dockerfile to create a image WebService
+## Getting Started
 
-FROM ubuntu 
-MAINTAINER Fernando Hinojosa (Fernando.Hinojosa@fundacion-jala.org)
-RUN apt-get update && apt-get install -y default-jdk
-COPY . /tmp/AWT04-WebService
-ENTRYPOINT /bin/bash
-EXPOSE 8080
-CMD java -jar spring.jar
+These instructions will guide you to make the installation of the web service.
 
-## Create a image
-docker build -t <image_name> .
+### Prerequisites
 
-## Create a container
+Before have the web service installed, is needed to make some installations and set ups before.
+```
+Java 1.8
+Gradle
+IntelliJ Community Edition
+Git
+```
+---
+### Installing
 
-docker run -it -d <image_name> /bin/bash 
-
-## 
-=======
-Create image with a Dockerfile
-
-    docker build -t ubuntufer .
-
-To Run a container
-
-    docker run -it -d <image_name>
-
-Connect to the container
-
-    docker exec -it <ID_image>
-
-Go to the path
-
-    cd /tmp/AWT04-WebService/
-
-Build project
-
-    ./gradlew build 
-
-Run project
-    java -jar /tmp/AWT04-WebService/build/libs/WebService-1.0-SNAPSHOT.jar
-
+```
+first create a folder to copy/clone the app
+clone/download the app from https://github.com/FerHinojosa/AWT04-WebService inside the folder created on step 1
+open the project with IntellJ
+build and run the project
+```
+---
